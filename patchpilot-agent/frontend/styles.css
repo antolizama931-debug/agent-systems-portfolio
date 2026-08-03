@@ -174,3 +174,51 @@ footer { display: flex; justify-content: space-between; padding: 28px max(4vw, 2
   footer { gap: 10px; flex-direction: column; }
 }
 
+/* Compact workspace layout: the interactive task area appears earlier, while
+   preserving enough room for diffs and approval controls once a run starts. */
+.hero {
+  width: min(1240px, 92vw);
+  min-height: 540px;
+  grid-template-columns: minmax(0, 1.05fr) minmax(420px, .95fr);
+  gap: 54px;
+  padding-block: 64px 56px;
+}
+h1 { font-size: clamp(43px, 4.8vw, 66px); }
+.hero-copy > p { font-size: 16px; line-height: 1.75; }
+.terminal-body { padding-block: 16px; }
+.terminal-body p { padding-block: 12px; }
+.metrics article { min-height: 100px; }
+.workbench-section,
+.architecture { width: min(1280px, 94vw); padding-block: 78px; }
+.section-title { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr); margin-bottom: 32px; }
+.section-title > p { justify-self: end; }
+.workbench { min-height: 550px; grid-template-columns: 292px minmax(0, 1fr); }
+.empty-state { min-height: 475px; }
+.architecture { padding-top: 12px; }
+.architecture-grid article { min-height: 220px; }
+.architecture-grid h3 { margin-top: 48px; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .section-title { grid-template-columns: 1fr; gap: 14px; }
+  .section-title > p { justify-self: start; }
+  .workbench { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .hero { min-height: 0; gap: 34px; padding-block: 42px 44px; }
+  h1 { font-size: 38px; }
+  .hero-copy > p { font-size: 14px; }
+  .terminal-body { padding: 12px; }
+  .terminal-body p { grid-template-columns: 24px 1fr; gap: 8px; }
+  .terminal-body p em { grid-column: 2; }
+  .metrics article { min-height: 88px; }
+  .workbench-section,
+  .architecture { padding-block: 56px; }
+  .scenario-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .scenario { grid-template-columns: 22px minmax(0, 1fr) 10px; padding: 12px 8px; }
+  .scenario b { font-size: 11px; line-height: 1.4; }
+  .boundary { margin: 4px 10px 10px; }
+  .empty-state { min-height: 340px; }
+  .architecture-grid article { min-height: 175px; }
+}

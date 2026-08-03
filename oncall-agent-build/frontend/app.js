@@ -197,7 +197,7 @@ function landingHeader() {
   return `
     <header class="landing-header shell">
       <a class="brand" href="#landing" aria-label="OnCall Agent 首页"><span class="brand-glyph">OC</span><span>OnCall <b>Agent</b></span></a>
-      <nav><a href="#capabilities">能力</a><a href="#incidents">真实数据</a><a href="#architecture">架构</a></nav>
+      <nav><a href="#capabilities">能力</a><a href="#incidents">真实数据</a><a href="#architecture">架构</a>${config.portfolioUrl ? `<a href="${config.portfolioUrl}">项目导航</a>` : ""}</nav>
       <div class="header-actions"><span class="runtime-pill"><i></i>${dataModeLabel(state.dashboard?.data_mode || "connecting")}</span><a class="text-link" href="#home">打开事故控制台 ${icon("arrow", 14)}</a></div>
     </header>`;
 }

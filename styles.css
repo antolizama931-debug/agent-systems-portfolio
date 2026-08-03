@@ -117,3 +117,44 @@ footer > div { display: flex; align-items: center; gap: 12px; color: var(--ink);
   .principle-grid h3 { margin-top: 55px; }
   footer { align-items: start; gap: 20px; flex-direction: column; justify-content: center; }
 }
+
+/* Layout refinement: keep the editorial character while reducing oversized
+   empty zones and making the two projects scannable within one viewport. */
+.hero {
+  min-height: 680px;
+  padding-block: 138px 68px;
+}
+h1 {
+  max-width: 1080px;
+  margin-block: 46px 56px;
+  font-size: clamp(54px, 6.6vw, 96px);
+  line-height: 1.01;
+}
+.hero-bottom { width: 70%; }
+.orbit { width: min(21vw, 244px); }
+.projects,
+.principles { padding-block: 96px; }
+.section-head { grid-template-columns: .72fr 1.35fr .93fr; margin-bottom: 42px; }
+.project-card { min-height: 560px; }
+.project-symbol { top: 90px; width: 205px; height: 165px; }
+.principle-grid article { min-height: 260px; }
+.principle-grid h3 { margin-top: 68px; }
+
+@media (max-width: 900px) {
+  .section-head { grid-template-columns: 1fr; gap: 18px; }
+  .section-head p { max-width: 620px; }
+}
+
+@media (max-width: 560px) {
+  .hero { min-height: 630px; padding-block: 118px 54px; }
+  h1 { margin-block: 34px 42px; font-size: 46px; line-height: 1.04; }
+  .hero-bottom { gap: 22px; }
+  .orbit { width: 132px; }
+  .projects,
+  .principles { padding-block: 64px; }
+  .section-head { margin-bottom: 30px; }
+  .project-card { min-height: 520px; }
+  .project-symbol { top: 76px; width: 150px; height: 122px; }
+  .principle-grid article { min-height: 205px; }
+  .principle-grid h3 { margin-top: 38px; }
+}
