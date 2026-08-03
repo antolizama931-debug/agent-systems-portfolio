@@ -1,0 +1,12 @@
+**/.venv/
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.pytest-*/
+**/.env
+**/data/
+**/.tools/
+**/.visual-qa/
+**/.screens/
+**/.deploy/
+output/

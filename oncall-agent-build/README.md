@@ -1,0 +1,202 @@
+# OnCall Agent
+
+面向高频、标准化、低风险事故的自动值守智能体（OnCall Agent）。系统接收企业告警或真实公开事故，完成告警去重、证据聚合、根因假设、版本化 Runbook 匹配、策略审批、处置演练、恢复验证、失败回滚和知识候选沉淀。
+
+当前公开部署使用安全演练模式（Dry Run），不会连接企业生产权限。它展示完整控制闭环，但不把模拟结果冒充为真实修复。真实企业部署需要单独配置监控、日志、Trace、Kubernetes 或云平台连接器，并通过 RBAC、允许列表、审批、变更窗口和自动回滚限制权限。
+
+## 项目文档
+
+- [项目技术说明书](docs/项目技术说明书.md)：完整理解需求、架构、数据流、Agent 状态机、Hybrid RAG、上下文、安全、测试、部署和生产化路线。
+- [大厂面试速查手册](docs/大厂面试速查手册.md)：包含 30 秒/2 分钟/5 分钟介绍、55 个高频问答、系统设计追问、STAR 表达和七天学习计划。
+
+建议先阅读技术说明书第 1～10 节，再使用面试手册进行口述练习。面试时必须区分当前已实现的安全演练和规划中的生产自动修复。
+
+## 原版项目参考边界
+
+实现参考了 `super_biz_agent_py-release-2026-05-17` 的 Plan-Execute-Replan 和 MCP 工具网关分层，但没有直接复制其模拟监控、模拟日志或带删除命令的通用文档：
+
+- 保留：规划与工具分离、工具动态接入、最大执行步数、失败后继续或升级；
+- 强化：证据与假设分离、告警去重、版本化 Runbook、人工审批、恢复验证、回滚和知识审核；
+- 拒绝迁移：随机生成的指标、Mock 日志、未经资源限定的 Shell 命令，以及未经审核的自动知识发布。
+
+**Railway 公网地址：** https://oncall-agent-production-4c9c.up.railway.app
+
+## 产品界面
+
+- `#landing`：产品落地页，展示运行边界、真实数据和五阶段执行模型。
+- `#home`：事故控制台，浏览真实事故、启动调查，并查看审批、恢复验证、回滚和知识候选状态。
+- `#/customer-service`：知识库 Agent 工作台，支持提问、文档上传、检索引用和会话记忆。
+- `#/incidents/{scenario_key}`：深色调查工作台，可启动真实 Agent Run。
+- `#/runs/{run_id}`：回放调查工具、证据、假设、Runbook、审批、处置、验证和复盘候选。
+
+前端为无构建依赖的单页应用（Single-Page Application, SPA），与 FastAPI 同源部署。
+
+## Agent 运行时
+
+每次 `Agent Run` 最多经过八个可审计阶段：
+
+1. `statuspage.read` / `incident.input`：读取固定官方状态页或接收脱敏输入；
+2. `evidence.normalize`：把观察事实与推测分开；
+3. `diagnosis.rank`：生成并排序可验证假设；
+4. `citations.validate`：校验证据引用；
+5. `policy.gate`：根据风险决定完成、审批或阻断。
+6. `runbook.execute`：执行已经批准的版本化 Runbook；公开站只调用演练连接器；
+7. `remediation.validate`：检查恢复条件，失败时进入回滚与人工升级；
+8. `knowledge.draft`：生成待审核事故复盘，不直接污染正式知识库。
+
+Agent Run、审批、处置结果、知识候选和企业告警去重状态写入 `data/runtime.db`（SQLite）。公开站的审批只授权安全演练，`approval.action_executed` 仍为 `false`，明确表示没有执行真实生产写操作。
+
+主要 API：
+
+| 方法 | 路径 | 用途 |
+|---|---|---|
+| `GET` | `/api/scenarios` | 获取真实事故回放 |
+| `GET` | `/api/dashboard` | 获取控制台汇总 |
+| `POST` | `/api/runs` | 从场景或自定义事件启动 Agent Run |
+| `GET` | `/api/runs/{run_id}` | 获取完整审计轨迹 |
+| `POST` | `/api/runs/{run_id}/decision` | 记录批准或拒绝，不执行生产动作 |
+| `POST` | `/api/runs/{run_id}/execute` | 对已批准 Runbook 执行成功或失败分支演练 |
+| `POST` | `/api/runs/{run_id}/knowledge-review` | 接收或拒绝事故知识候选 |
+| `POST` | `/api/integrations/alerts` | 接收经过令牌认证的企业告警并按指纹去重 |
+| `GET` | `/api/alerts` | 查看已经归一化的企业告警收件箱 |
+| `POST` | `/api/knowledge/documents` | 上传并解析 PDF、Markdown 或 TXT |
+| `GET` | `/api/knowledge/status` | 获取文档、分块和检索器状态 |
+| `POST` | `/api/knowledge/sync` | 后台同步 Wikimedia 事故复盘与 Runbook |
+| `POST` | `/api/chat` | 执行检索增强问答并写入会话记忆 |
+| `GET/DELETE` | `/api/sessions/{session_id}` | 读取或清空本次会话 |
+
+## RAG 检索架构
+
+- 数据库边界：项目没有使用 Milvus、Qdrant、Chroma 等独立向量数据库。上传文档的提取文本与元数据保存在 SQLite；BM25 与向量索引在应用进程内按需建立。
+- PDF 通过 `pypdf` 提取文本，Markdown/TXT 只按文本解析，不执行文档内指令。
+- 主生产域：Wikimedia Status、Wikitech 事故复盘和 Wikimedia Runbook，具有最高检索权重。
+- 技术补充域：Kubernetes、Prometheus、MariaDB 官方文档，只有确认组件版本后才能转化为操作建议。
+- 外部类比域：Cloudflare、Google Cloud、GitLab 事故复盘以低权重独立保存，不能直接生成 Wikimedia 生产操作。
+- 词法通道：BM25 召回故障码、服务名、命令和精确术语。
+- 语义通道：FastEmbed 运行 `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`，支持中文问题检索英文 Wikimedia 文档。
+- 融合阶段：倒数排名融合（Reciprocal Rank Fusion, RRF）合并两路排名，再按来源权威度重排。
+- 可审计流程：问题识别 → 数据源路由 → 混合检索 → RRF 融合 → DeepSeek 生成 → 安全校验 → 分层会话记忆。
+- 单文件最大 5 MB，提取文本最多 250,000 字符。
+- 用户上传文档的提取文本写入 `data/knowledge.db`（SQLite），原始 PDF 二进制不保存；文档分块在同步时建立，向量在首次检索时按需生成，避免阻塞首屏。
+- Railway 默认文件系统在重部署时可能清空。只有将 `ONCALL_DATA_DIR` 指向 Railway Volume 挂载目录后，上传知识才能跨部署保留。
+- 会话采用“滚动摘要 + 最近 8 条原文 + 12,000 字符硬预算”。会话仍保存在进程内存，服务重启后清空；摘要只维持上下文，不作为事实证据。
+- DeepSeek 只能依据返回的知识片段生成回答；API 密钥仅存在服务端。
+
+当前实现属于“分层路由的混合检索增强生成”，不是允许模型任意抓取网页的开放式智能体检索增强生成（Agentic RAG）。固定来源、命名空间、权威等级和动作适用性均可审计；只有接入企业日志、指标、Trace、CMDB 并建立检索评测集后，才应扩大自主检索范围。
+
+## 数据来源
+
+- 在线事故源：Wikimedia 官方 Statuspage JSON API，默认读取最近 20 条并缓存 5 分钟。
+- 知识源：Wikitech MediaWiki Action API，默认同步 18 份已完成或评审中的近期事故、6 份固定 Runbook，并缓存 1 小时。
+- 降级策略：Wikimedia Status 失败时使用仓库内带事故 ID 和原始链接的验证快照；Wikitech 失败时保留上游官方资料、外部低权重类比和用户上传文档。
+- 回放边界：只向智能体提供事故时间线最早的 3 条公开更新，不把后续根因分析提前泄漏给模型。
+- 来源展示：每个场景均返回 `source_name`、`source_url`、`source_incident_id`、`data_mode` 和 `fetched_at`。
+- 中文展示：API 额外返回中文标题、中文结构化摘要和中文状态更新；英文原文继续保留，用于来源核对与证据审计。
+
+这些数据只能证明 Wikimedia 或对应上游厂商公开发布了相关信息，不能替代内部日志、指标和链路追踪。模型输出是待验证假设，不是已证实根因。
+
+## 本地运行
+
+```powershell
+Copy-Item .env.example .env
+./run.ps1
+```
+
+- Web：`http://127.0.0.1:8000`
+- API 文档：`http://127.0.0.1:8000/docs`
+- 健康检查：`http://127.0.0.1:8000/api/health`
+
+未配置 `DEEPSEEK_API_KEY` 时，服务明确使用本地确定性回退，不会冒充模型结果。
+
+## 环境变量
+
+```dotenv
+ONCALL_ENV=production
+ONCALL_RATE_LIMIT_PER_MINUTE=5
+ONCALL_DAILY_LIMIT=30
+ONCALL_ALLOW_RULE_FALLBACK=true
+ONCALL_STATUS_CACHE_SECONDS=300
+ONCALL_STATUS_SCENARIO_LIMIT=6
+ONCALL_MAX_RUNS=100
+ONCALL_MAX_DOCUMENTS=20
+ONCALL_MAX_SESSIONS=100
+ONCALL_MAX_SESSION_MESSAGES=16
+ONCALL_DENSE_MIN_SCORE=0.36
+ONCALL_WEBHOOK_TOKEN=请生成高强度随机值
+ONCALL_TOOL_GATEWAY_URL=https://企业私网中的工具网关
+ONCALL_TOOL_GATEWAY_TOKEN=只读工具网关凭据
+ONCALL_TOOL_GATEWAY_TIMEOUT_SECONDS=5
+
+DEEPSEEK_API_KEY=你的服务端密钥
+DEEPSEEK_BASE_URL=https://api.deepseek.com
+DEEPSEEK_MODEL=deepseek-v4-flash
+DEEPSEEK_MAX_TOKENS=2200
+```
+
+密钥只能配置在服务端环境变量中，不得写入 `frontend/` 或 Git。DeepSeek 官方在 2026-07-31 发布的 V4 Flash API 仍使用 `deepseek-v4-flash` 模型名。
+
+### 企业只读工具网关契约
+
+配置工具网关后，自定义事故和企业 Webhook 告警会并行调用四个固定路径：
+
+| 工具 | 固定路径 | 作用 |
+|---|---|---|
+| `telemetry.metrics.query` | `/v1/metrics/query` | 查询指标窗口 |
+| `telemetry.logs.search` | `/v1/logs/search` | 检索错误日志 |
+| `telemetry.traces.search` | `/v1/traces/search` | 查询异常 Trace |
+| `telemetry.changes.read` | `/v1/changes/recent` | 读取最近部署和配置变更 |
+
+请求只包含服务名、环境、30 分钟窗口和截断后的事故描述。响应中的 `signals` 与 `artifacts` 会经过数量和长度限制后进入证据层；任一工具失败会写入审计轨迹，但不会伪造替代数据。网关 URL 只能由服务端环境变量配置，用户请求不能指定任意地址。
+
+## 测试
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+测试覆盖：Wikimedia 事故映射、草稿过滤、Runbook 同步、命名空间隔离、权威度重排、HTML 清理、来源追踪、上游失败快照回退、BM25 与多语言语义召回、RRF 状态、危险建议阻断、告警认证与去重、审批、处置演练、恢复验证、回滚和 API 端到端流程。
+
+## Railway 部署
+
+仓库已包含 `Dockerfile` 与 `railway.json`：
+
+- Dockerfile 监听 Railway 注入的 `PORT`；本地默认端口为 `8000`。
+- 健康检查路径为 `/api/health`。
+- 构建器固定为 Dockerfile。
+
+从本目录部署：
+
+```powershell
+railway login
+railway init
+railway variables set ONCALL_ENV=production ONCALL_ALLOW_RULE_FALLBACK=true ONCALL_STATUS_CACHE_SECONDS=300 ONCALL_STATUS_SCENARIO_LIMIT=20 ONCALL_STATUS_PER_SOURCE_LIMIT=20 ONCALL_WIKIMEDIA_CACHE_SECONDS=3600 ONCALL_WIKIMEDIA_INCIDENT_LIMIT=18 ONCALL_MAX_RUNS=100 ONCALL_MEMORY_RECENT_MESSAGES=8 ONCALL_MEMORY_SUMMARY_CHARS=2400 ONCALL_CONTEXT_MAX_CHARS=12000 ONCALL_WEBHOOK_TOKEN=请生成高强度随机值
+railway variables set DEEPSEEK_API_KEY=你的密钥 DEEPSEEK_BASE_URL=https://api.deepseek.com DEEPSEEK_MODEL=deepseek-v4-flash DEEPSEEK_MAX_TOKENS=2200
+railway up
+railway domain
+```
+
+若通过本仓库连接 GitHub 部署，Railway 服务的 Root Directory 保持为空（仓库根目录）；平台会直接读取根目录下的 `Dockerfile` 与 `railway.json`。
+
+如需让上传知识跨重部署保存，请先在 Railway 服务中创建并挂载 Volume（例如 `/data`），再设置 `ONCALL_DATA_DIR=/data`。Volume 是外部持久化资源，可能产生费用，因此仓库不会自动创建。
+
+## GitHub Pages
+
+`.github/workflows/pages.yml` 会把 `frontend/` 作为静态站点发布。前端通过
+`frontend/config.js` 中的公开 Railway URL 请求后端，密钥不会进入 Pages。
+
+发布要求：
+
+1. 仓库默认分支为 `main`；
+2. Repository Settings → Pages → Source 选择 `GitHub Actions`；
+3. Railway CORS 只允许 localhost 与 `*.github.io`，不携带 Cookie 凭据；
+4. 推送到 `main` 后查看 `Deploy frontend to GitHub Pages` 工作流。
+
+## 安全边界
+
+- Wikimedia Status、Wikitech 和补充资料 URL 均由后端白名单固定，不接受用户提供的抓取主机，避免服务端请求伪造（Server-Side Request Forgery, SSRF）。
+- 外部状态文本在后端去除 HTML，前端使用 `textContent` 构建节点，避免跨站脚本（Cross-Site Scripting, XSS）。
+- 上传内容会发送给已配置的 DeepSeek API；上传前必须删除密钥、令牌、个人信息和其他敏感数据。
+- 公共应用不执行 Shell、生产数据库写入、流量切换或真实自动回滚；仅写入自身的 SQLite 审计数据。
+- 告警 Webhook 在未配置 `ONCALL_WEBHOOK_TOKEN` 时返回 `503`，凭据错误时返回 `401`；相同指纹的重复告警只更新计数，不重复启动 Agent Run。
+- 处置端点只调用内置安全演练连接器。真实连接器必须部署在私有网络，并实现资源允许列表、最小权限、幂等、超时、熔断、恢复验证和回滚。
+- 自动生成的事故知识默认处于 `pending-review`，审核前不会进入正式 RAG 语料库。

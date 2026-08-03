@@ -1,0 +1,38 @@
+name: Test Agent Systems
+
+on:
+  push:
+    branches: ["main", "master", "agent/**", "codex/**"]
+  pull_request:
+
+jobs:
+  patchpilot:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: patchpilot-agent
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: patchpilot-agent/requirements.txt
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pytest -q
+
+  oncall:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: oncall-agent-build
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: oncall-agent-build/requirements.txt
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pytest -q
+

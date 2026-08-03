@@ -1,0 +1,15 @@
+[project]
+name = "patchpilot-agent"
+version = "0.1.0"
+description = "Auditable software-maintenance agent with approval-gated patch execution."
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi[standard]>=0.128,<1.0",
+  "langgraph>=1.2,<2.0",
+  "mcp[cli]>=1.26,<2.0",
+  "pytest>=8.0,<10.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
