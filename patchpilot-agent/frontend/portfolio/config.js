@@ -1,4 +1,4 @@
-// Public links only. Update PatchPilot after Railway creates its domain.
+// Public deployment and repository links for both Agent applications.
 window.AGENT_PORTFOLIO_CONFIG = {
   githubUrl: "https://github.com/antolizama931-debug",
   onCallAgentUrl: "https://oncall-agent-production-4c9c.up.railway.app",
