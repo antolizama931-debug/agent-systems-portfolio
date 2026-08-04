@@ -197,8 +197,8 @@ function landingHeader() {
   return `
     <header class="landing-header shell">
       <a class="brand" href="#landing" aria-label="OnCall Agent 首页"><span class="brand-glyph">OC</span><span>OnCall <b>Agent</b></span></a>
-      <nav><a href="#capabilities">能力</a><a href="#incidents">真实数据</a><a href="#architecture">架构</a>${config.portfolioUrl ? `<a href="${config.portfolioUrl}">项目导航</a>` : ""}</nav>
-      <div class="header-actions"><span class="runtime-pill"><i></i>${dataModeLabel(state.dashboard?.data_mode || "connecting")}</span><a class="text-link" href="#home">打开事故控制台 ${icon("arrow", 14)}</a></div>
+      <nav><a href="#agents">三 Agent</a><a href="#incidents">真实数据</a><a href="#architecture">运行架构</a>${config.portfolioUrl ? `<a href="${config.portfolioUrl}">项目导航</a>` : ""}</nav>
+      <div class="header-actions"><span class="deploy-chip">Railway · ${state.health?.version || "0.7.0"}</span><span class="runtime-pill"><i></i>${dataModeLabel(state.dashboard?.data_mode || "connecting")}</span><a class="text-link" href="#home">进入工作台 ${icon("arrow", 14)}</a></div>
     </header>`;
 }
 
@@ -209,62 +209,65 @@ function renderLanding() {
     <main>
       <section class="landing-hero shell">
         <div class="hero-copy">
-          <span class="eyebrow"><i></i> 真实事故响应运行时</span>
-          <h1>让每一次故障，<span>都留下可验证的<br class="mobile-only-break"/>答案。</span></h1>
-          <p>OnCall Agent 接收告警、聚合证据、定位已知故障，并通过受策略约束的 Runbook 完成处置、验证、回滚和知识沉淀。</p>
-          <div class="hero-buttons"><a class="button primary" href="#home">进入事故控制台 ${icon("arrow", 16)}</a><a class="button secondary" href="#incidents">查看真实事故</a></div>
-          <div class="hero-footnote"><span>${icon("shield", 15)} 公开站仅执行安全演练</span><span>${icon("link", 15)} 每个判断和动作可追溯</span></div>
+          <span class="eyebrow"><i></i> Railway 上运行的三 Agent 系统</span>
+          <h1>三个 Agent，<span>完成一次可审计的<br class="mobile-only-break"/>事故响应。</span></h1>
+          <p>知识库 Agent 组织运行知识，对话 Agent 用 RAG 与 ReAct 形成有引用的回答，运维 Agent 通过 Plan-Execute-Replan 调查事故。三者只通过共享证据层交换可验证结果。</p>
+          <div class="hero-buttons"><a class="button primary" href="#home">进入运维控制台 ${icon("arrow", 16)}</a><a class="button secondary" href="#/customer-service">打开对话 Agent</a></div>
+          <div class="hero-footnote"><span>${icon("shield", 15)} Railway 同源部署</span><span>${icon("link", 15)} 证据、判断与动作可回放</span></div>
         </div>
         <div class="hero-runtime" aria-label="OnCall Agent 执行预览">
           <div class="runtime-window">
-            <div class="runtime-bar"><span><i></i><i></i><i></i></span><b>Agent 运行轨迹</b><small>实时</small></div>
-            <div class="runtime-incident"><span class="severity-badge sev1">SEV-1</span><div><small>事故回放</small><strong>云服务性能下降</strong></div><span class="source-chip">官方状态页</span></div>
-            <div class="agent-flow">
-              <div class="flow-node active"><span>01</span><div><b>观察（Observe）</b><small>规范化公开信号</small></div><i></i></div>
+            <div class="runtime-bar"><span><i></i><i></i><i></i></span><b>Three-agent runtime</b><small>Railway 在线</small></div>
+            <div class="runtime-incident"><span class="severity-badge sev1">SEV-1</span><div><small>当前事故</small><strong>云服务性能下降</strong></div><span class="source-chip">共享证据 #E-24</span></div>
+            <div class="agent-flow three-agent-flow">
+              <div class="flow-node active knowledge-node"><span>K</span><div><b>知识库 Agent</b><small>解析 · 分块 · 混合检索</small></div><i></i></div>
               <div class="flow-line"></div>
-              <div class="flow-node active"><span>02</span><div><b>诊断（Diagnose）</b><small>排序可验证根因</small></div><i></i></div>
+              <div class="flow-node active conversation-node"><span>C</span><div><b>对话 Agent</b><small>RAG · ReAct · 引用校验</small></div><i></i></div>
               <div class="flow-line"></div>
-              <div class="flow-node guarded"><span>03</span><div><b>处置与验证</b><small>审批 · 回滚 · 复盘</small></div><i></i></div>
+              <div class="flow-node guarded operations-node"><span>O</span><div><b>运维 Agent</b><small>Plan · Execute · Replan</small></div><i></i></div>
             </div>
-            <div class="runtime-result"><div><span>首要根因假设</span><strong>下游依赖服务性能下降</strong></div><b>74%</b></div>
+            <div class="runtime-result evidence-result"><div><span>共享证据层</span><strong>工具结果、模型判断、最终结论</strong></div><b>12</b></div>
           </div>
-          <div class="floating-card card-source"><span>${icon("database", 17)}</span><div><b>真实数据源</b><small>Wikimedia 官方数据</small></div></div>
-          <div class="floating-card card-policy"><span>${icon("shield", 17)}</span><div><b>策略门控</b><small>低风险自动化边界</small></div></div>
+          <div class="floating-card card-source"><span>${icon("database", 17)}</span><div><b>FastAPI Runtime</b><small>三 Agent 统一 API</small></div></div>
+          <div class="floating-card card-policy"><span>${icon("shield", 17)}</span><div><b>Evidence Store</b><small>引用 · 审计 · 回放</small></div></div>
         </div>
       </section>
 
       <section class="proof-row shell">
         <div><strong>${state.dashboard?.incident_count ?? "—"}</strong><span>真实事故回放</span></div>
         <div><strong>${state.dashboard?.source_name || "Wikimedia"}</strong><span>主生产数据域</span></div>
-        <div><strong>8</strong><span>端到端工具阶段</span></div>
+        <div><strong>3</strong><span>专职 Agent</span></div>
         <div><strong>${state.dashboard?.recovered_count ?? 0}</strong><span>已验证闭环演练</span></div>
       </section>
 
-      <section class="capability-section shell" id="capabilities">
-        <div class="section-heading"><div><span>OnCall 控制平面</span><h2>从告警进入，<br/>到恢复验证结束。</h2></div><p>目标是自动处理高频、标准化、低风险且可回滚的告警；未知事故自动收集证据并升级人工。</p></div>
-        <div class="capability-grid">
-          <article class="cap-card violet"><div class="cap-icon">${icon("bell", 25)}</div><span>01 / 自动响应</span><h3>告警接收与去重</h3><p>受认证的 Webhook 接收企业告警，并按指纹去重；重复通知只更新发生次数，不重复启动调查。</p><footer>Alert → Incident ${icon("arrow", 15)}</footer></article>
-          <article class="cap-card orange"><div class="cap-icon">${icon("layers", 25)}</div><span>02 / 诊断推理</span><h3>证据约束诊断</h3><p>模型只能引用已编号证据；缺少区分性遥测时，系统明确降低置信度并请求补充数据。</p><footer>证据优先 ${icon("arrow", 15)}</footer></article>
-          <article class="cap-card blue"><div class="cap-icon">${icon("activity", 25)}</div><span>03 / 安全处置</span><h3>版本化 Runbook</h3><p>动作按风险分类；公开站只执行演练，企业连接器需要权限、审批、变更窗口和明确允许列表。</p><footer>策略约束执行 ${icon("arrow", 15)}</footer></article>
-          <article class="cap-card green"><div class="cap-icon">${icon("shield", 25)}</div><span>04 / 恢复验证</span><h3>验证失败自动回滚</h3><p>每次处置绑定恢复条件。指标不满足时停止继续执行、演练回滚步骤并升级人工。</p><footer>验证后才能关闭 ${icon("arrow", 15)}</footer></article>
-          <article class="cap-card rose"><div class="cap-icon">${icon("layers", 25)}</div><span>05 / 闭环沉淀</span><h3>待审核复盘候选</h3><p>自动整理证据、根因、动作和验证结果；审核通过后才允许进入正式知识库。</p><footer>越用越准，不污染知识库 ${icon("arrow", 15)}</footer></article>
+      <section class="capability-section shell" id="agents">
+        <div class="section-heading"><div><span>三段式 Agent 架构</span><h2>职责分离，<br/>证据相连。</h2></div><p>每个 Agent 只负责一个清晰边界。共享证据层是唯一协作接口，避免对话上下文直接变成生产事实。</p></div>
+        <div class="agent-system-grid">
+          <article class="agent-system-card knowledge"><header><span>01</span><i>${icon("database", 22)}</i></header><small>Knowledge Agent</small><h3>知识库 Agent</h3><p>接收 PDF、Markdown、TXT 与固定官方来源，完成解析、分块、命名空间隔离和混合检索。</p><ul><li>BM25 + 多语言向量</li><li>RRF 与权威度重排</li><li>只发布经审核知识</li></ul><a href="#/customer-service">查看知识工作台 ${icon("arrow", 14)}</a></article>
+          <article class="agent-system-card conversation"><header><span>02</span><i>${icon("code", 22)}</i></header><small>Conversation Agent</small><h3>对话 Agent</h3><p>使用检索增强生成（RAG）和受限 ReAct 回答问题，输出必须携带引用和检索轨迹。</p><ul><li>问题路由与工具选择</li><li>引用约束回答</li><li>滚动摘要会话记忆</li></ul><a href="#/customer-service">向 Agent 提问 ${icon("arrow", 14)}</a></article>
+          <article class="agent-system-card operations"><header><span>03</span><i>${icon("activity", 22)}</i></header><small>Operations Agent</small><h3>运维 Agent</h3><p>使用 Plan-Execute-Replan 规划并执行故障调查，策略门控高风险动作，验证失败进入回滚。</p><ul><li>事故证据收集与假设排序</li><li>Runbook 审批与演练</li><li>恢复验证与复盘候选</li></ul><a href="#home">进入运维控制台 ${icon("arrow", 14)}</a></article>
         </div>
+        <div class="evidence-rail"><div><span>${icon("link", 18)}</span><strong>共享证据层</strong><small>Evidence · Citation · Decision · Tool result · Replay</small></div><p>三 Agent 写入统一证据记录；每条结论可回到来源、工具调用和决策步骤。</p><b>${state.health?.evidence_store || "SQLite audit store"}</b></div>
       </section>
 
       <section class="incident-section" id="incidents"><div class="shell">
         <div class="section-heading compact"><div><span>实时事故数据流</span><h2>从真实事故开始调查</h2></div><p>每条记录保留来源、事故 ID、时间线与数据新鲜度；原始事故正文保留来源语言，避免改变证据含义。</p></div>
         <div id="landing-incidents" class="landing-incidents"></div>
-        <a class="wide-link" href="#home"><span>打开完整事故控制台</span>${icon("arrow", 18)}</a>
+        <a class="wide-link" href="#home"><span>打开运维 Agent 工作台</span>${icon("arrow", 18)}</a>
       </div></section>
 
       <section class="architecture-section shell" id="architecture">
-        <div class="section-heading"><div><span>执行模型</span><h2>八个工具阶段，<br/>形成完整处置闭环。</h2></div><p>调查、授权、执行和知识发布相互分离。每个阶段都有输入、输出、状态和审计记录。</p></div>
-        <div class="architecture-flow">
-          ${["alert.receive","evidence.normalize","diagnosis.rank","citations.validate","policy.gate","runbook.execute","remediation.validate","knowledge.draft"].map((item, index) => `<div class="arch-node"><span>${String(index + 1).padStart(2, "0")}</span><b>${item}</b><small>${["接收去重","规范证据","排序假设","验证引用","风险决策","执行处置","验证回滚","复盘候选"][index]}</small></div>${index < 7 ? '<i>→</i>' : ''}`).join("")}
+        <div class="section-heading"><div><span>Railway 运行拓扑</span><h2>一个服务，<br/>三条受控执行链。</h2></div><p>Railway 运行 FastAPI 与同源前端；模型密钥只存在服务端，SQLite 数据目录可挂载 Volume 持久化。</p></div>
+        <div class="deployment-topology">
+          <div class="topology-ingress"><span>01 · Ingress</span><strong>Browser / Alert Webhook</strong><small>HTTPS · CORS · token gate</small></div>
+          <i>${icon("arrow", 18)}</i>
+          <div class="topology-runtime"><header><span>02 · Railway Service</span><b>FastAPI + Uvicorn</b></header><div><span>Knowledge</span><span>Conversation</span><span>Operations</span></div><small>统一 API · 独立职责 · 共享审计上下文</small></div>
+          <i>${icon("arrow", 18)}</i>
+          <div class="topology-data"><span>03 · Evidence & Data</span><strong>SQLite / Railway Volume</strong><small>知识库 · 运行记录 · 共享证据</small></div>
         </div>
       </section>
 
-      <section class="landing-cta"><div><span>开始一次可审计调查</span><h2>把真实事故放进<br/>可审计的 Agent 循环。</h2><p>选择真实事故进入控制台，或使用混合检索 RAG 查询事故知识。</p><div class="cta-actions"><a class="button dark" href="#home">进入事故控制台 ${icon("arrow", 17)}</a><a class="button cta-secondary" href="#/customer-service">打开知识库 Agent</a></div></div></section>
+      <section class="landing-cta"><div><span>开始一次可审计调查</span><h2>把真实事故放进<br/>可审计的 Agent 循环。</h2><p>选择事故输入启动运维 Agent，或先使用对话 Agent 检索运行知识。</p><div class="cta-actions"><a class="button dark" href="#home">进入运维工作台 ${icon("arrow", 17)}</a><a class="button cta-secondary" href="#/customer-service">打开对话 Agent</a></div></div></section>
     </main>
     <footer class="landing-footer shell"><div class="brand"><span class="brand-glyph">OC</span><span>OnCall Agent</span></div><p>证据约束型事故响应 · Railway 部署</p><a href="${config.repositoryUrl || "#"}" target="_blank" rel="noopener noreferrer">查看源代码 ${icon("external", 13)}</a></footer>`;
   renderIncidentCards(document.querySelector("#landing-incidents"), state.scenarios.slice(0, 3), true);
@@ -333,15 +336,16 @@ function appSidebar(active = "home") {
   return `<aside class="app-sidebar">
     <a class="sidebar-brand" href="#landing"><span>OC</span></a>
     <nav>
-      <a class="${active === "home" ? "active" : ""}" href="#home" title="事故控制台">${icon("grid", 20)}<span>控制台</span></a>
-      <a class="${active === "runs" ? "active" : ""}" href="#home#runs" title="Agent 运行记录">${icon("pulse", 20)}<span>运行记录</span></a>
-      <a href="#landing#architecture" title="系统架构">${icon("layers", 20)}<span>执行架构</span></a>
+      <a href="#/customer-service" title="知识库 Agent">${icon("database", 20)}<span>知识库</span></a>
+      <a href="#/customer-service" title="对话 Agent">${icon("code", 20)}<span>对话</span></a>
+      <a class="${active === "home" || active === "runs" ? "active" : ""}" href="#home" title="运维 Agent">${icon("activity", 20)}<span>运维</span></a>
+      <a href="#landing#architecture" title="Railway 运行架构">${icon("layers", 20)}<span>架构</span></a>
     </nav>
     <div class="sidebar-bottom"><span class="sidebar-online"><i class="live-orb"></i>运行时在线</span><button title="当前会话">${icon("user", 18)}<span>当前会话</span></button></div>
   </aside>`;
 }
 
-function appTopbar(title = "事故控制台") {
+function appTopbar(title = "运维 Agent 工作台") {
   return `<header class="app-topbar">
     <div><button class="mobile-menu">${icon("menu", 18)}</button><a href="#landing">OnCall Agent</a><i>/</i><strong>${title}</strong></div>
     <div class="topbar-right"><span class="runtime-pill"><i></i>${dataModeLabel(state.dashboard?.data_mode || state.health?.incident_data_mode || "online")}</span><span class="avatar" title="演示操作员">操作</span></div>
@@ -353,21 +357,28 @@ function renderDashboard() {
   const investigationRuns = state.runs.filter((run) => ["analyzing", "blocked", "escalated"].includes(run.status));
   const approvalRuns = state.runs.filter((run) => ["awaiting-approval", "approved"].includes(run.status));
   const completedRuns = state.runs.filter((run) => ["completed", "recovered", "rolled-back", "rejected"].includes(run.status));
-  app.innerHTML = `<div class="app-frame">${appSidebar("home")}<div class="app-main">${appTopbar("事故控制台")}
+  app.innerHTML = `<div class="app-frame">${appSidebar("home")}<div class="app-main">${appTopbar("运维 Agent 工作台")}
     <main class="dashboard shell-app">
-      <section class="dashboard-heading"><div><span>自动响应、调查、审批与复盘</span><h1>事故处理中心</h1><p>先从待处理事故启动调查，再查看 Agent 聚合的证据和根因判断；任何处置建议都必须经过人工审批，完成后自动保存验证结果和复盘记录。</p></div><div class="dashboard-actions"><a class="button secondary" href="#/customer-service">向 Agent 提问</a><button class="button primary" id="new-incident">${icon("plus", 16)} 新建事故</button></div></section>
+      <section class="dashboard-heading"><div><span>Operations Agent · Plan-Execute-Replan</span><h1>运维 Agent 工作台</h1><p>这里不是传统事故管理台，而是运维 Agent 的执行入口：选择脱敏事故输入，观察计划与证据，处理策略门控，最后完成验证或回滚。</p></div><div class="dashboard-actions"><a class="button secondary" href="#/customer-service">打开对话 Agent</a><button class="button primary" id="new-incident">${icon("plus", 16)} 启动 Agent Run</button></div></section>
+      <section class="agent-status-deck" aria-label="三 Agent 运行状态">
+        <a href="#/customer-service"><span class="agent-status-icon knowledge">K</span><div><small>Knowledge Agent</small><strong>知识库 Agent</strong><p>${state.health?.knowledge_agent || "文档处理与混合检索"}</p></div><b><i></i> READY</b></a>
+        <a href="#/customer-service"><span class="agent-status-icon conversation">C</span><div><small>Conversation Agent</small><strong>对话 Agent</strong><p>${state.health?.conversation_agent || "RAG + ReAct + 引用校验"}</p></div><b><i></i> READY</b></a>
+        <a href="#home"><span class="agent-status-icon operations">O</span><div><small>Operations Agent</small><strong>运维 Agent</strong><p>${state.health?.operations_agent || "Plan-Execute-Replan"}</p></div><b><i></i> ACTIVE</b></a>
+        <div class="agent-evidence-link"><span>${icon("link", 18)}</span><div><small>Shared evidence</small><strong>共享证据层</strong></div></div>
+      </section>
+      <section class="agent-plan-strip" aria-label="运维 Agent 执行链"><div class="agent-plan-intro"><span>${icon("pulse", 18)}</span><div><small>Operations Agent Loop</small><strong>一条可回放的执行链</strong></div></div><div class="agent-plan-stages"><span><b>01</b>输入</span><i>→</i><span><b>02</b>计划</span><i>→</i><span><b>03</b>证据</span><i>→</i><span><b>04</b>门控</span><i>→</i><span><b>05</b>验证</span></div><a href="#landing#architecture">查看架构 ${icon("arrow", 14)}</a></section>
       <section class="console-notice"><span>${icon("shield", 18)}</span><div><strong>当前为安全演练环境</strong><p>事故数据来自 Wikimedia 官方公开状态页；系统不会连接或修改真实生产环境。接入企业监控和执行网关后，仍需使用权限控制、操作允许列表和人工审批。</p></div></section>
       <section class="metric-grid">
-        <article><span>01 · 待处理事故</span><strong>${state.dashboard?.incident_count ?? state.scenarios.length}</strong><small>选择事故并启动 Agent 调查</small><i class="metric-icon purple">${icon("database", 20)}</i></article>
-        <article><span>02 · Agent 调查</span><strong>${investigationRuns.length}</strong><small>收集证据、检索 Runbook、判断根因</small><i class="metric-icon orange">${icon("pulse", 20)}</i></article>
-        <article><span>03 · 操作审批</span><strong>${approvalRuns.length}</strong><small>核对风险、验证条件和回滚方案</small><i class="metric-icon blue">${icon("shield", 20)}</i></article>
-        <article><span>04 · 已完成事故</span><strong>${completedRuns.length}</strong><small>保存处置结果、恢复验证与复盘记录</small><i class="metric-icon green">${icon("check", 20)}</i></article>
+        <article><span>01 · 可用输入</span><strong>${state.dashboard?.incident_count ?? state.scenarios.length}</strong><small>选择一个脱敏事故启动 Agent Run</small><i class="metric-icon purple">${icon("database", 20)}</i></article>
+        <article><span>02 · 执行中 Run</span><strong>${investigationRuns.length}</strong><small>计划、工具调用与证据正在生成</small><i class="metric-icon orange">${icon("pulse", 20)}</i></article>
+        <article><span>03 · 策略门控</span><strong>${approvalRuns.length}</strong><small>需要人工批准或拒绝高风险动作</small><i class="metric-icon blue">${icon("shield", 20)}</i></article>
+        <article><span>04 · 验证闭环</span><strong>${completedRuns.length}</strong><small>恢复验证、回滚和复盘结果已保存</small><i class="metric-icon green">${icon("check", 20)}</i></article>
       </section>
       <section class="dashboard-operations">
-        <section class="panel incident-panel operation-panel operation-pending"><header><div><span>01 · 待处理事故</span><h2>公开事故待调查池</h2><small class="source-language-note">数据来自 ${state.dashboard?.source_name || "Wikimedia Status"}，用于验证调查流程，不代表你的企业正在发生这些事故。</small></div><span class="sync-label"><i></i>${dataModeLabel(state.dashboard?.data_mode || "loading")}</span></header><div id="dashboard-incidents" class="dashboard-incidents"></div>${state.scenarios.length > 5 ? `<footer class="incident-list-footer"><button id="toggle-incidents">${state.incidentListExpanded ? "收起事故列表" : `查看全部 ${state.scenarios.length} 条事故`}${icon("arrow", 15)}</button></footer>` : ""}</section>
-        <section class="panel operation-panel" id="investigations"><header><div><span>02 · Agent 调查</span><h2>正在调查</h2><small>查看证据采集、知识检索和根因判断过程</small></div><span class="count-chip">${investigationRuns.length}</span></header><div id="investigation-list" class="operation-run-list"></div></section>
-        <section class="panel operation-panel approval-panel" id="approvals"><header><div><span>03 · 操作审批</span><h2>等待人工决策</h2><small>批准前必须核对影响范围、风险、验证条件和回滚方案</small></div><span class="count-chip warning">${approvalRuns.length}</span></header><div id="approval-list" class="operation-run-list"></div></section>
-        <section class="panel operation-panel" id="completed"><header><div><span>04 · 已完成事故</span><h2>验证与复盘记录</h2><small>包括无需处置、恢复成功、回滚、拒绝和升级人工处理的结果</small></div><span class="count-chip success">${completedRuns.length}</span></header><div id="completed-list" class="operation-run-list"></div></section>
+        <section class="panel incident-panel operation-panel operation-pending"><header><div><span>01 · Agent 输入</span><h2>可用事故输入</h2><small class="source-language-note">数据来自 ${state.dashboard?.source_name || "Wikimedia Status"}，用于启动可回放的 Agent Run，不代表你的企业正在发生这些事故。</small></div><span class="sync-label"><i></i>${dataModeLabel(state.dashboard?.data_mode || "loading")}</span></header><div id="dashboard-incidents" class="dashboard-incidents"></div>${state.scenarios.length > 5 ? `<footer class="incident-list-footer"><button id="toggle-incidents">${state.incidentListExpanded ? "收起输入" : `查看全部 ${state.scenarios.length} 条输入`}${icon("arrow", 15)}</button></footer>` : ""}</section>
+        <section class="panel operation-panel" id="investigations"><header><div><span>02 · Agent Run</span><h2>计划与证据</h2><small>查看运维 Agent 的只读工具调用、证据聚合和根因判断</small></div><span class="count-chip">${investigationRuns.length}</span></header><div id="investigation-list" class="operation-run-list"></div></section>
+        <section class="panel operation-panel approval-panel" id="approvals"><header><div><span>03 · Policy Gate</span><h2>等待人工决策</h2><small>批准前核对影响范围、风险、验证条件和回滚方案</small></div><span class="count-chip warning">${approvalRuns.length}</span></header><div id="approval-list" class="operation-run-list"></div></section>
+        <section class="panel operation-panel" id="completed"><header><div><span>04 · Recovery</span><h2>验证与复盘</h2><small>保存恢复成功、回滚、拒绝和升级人工处理的 Agent Run</small></div><span class="count-chip success">${completedRuns.length}</span></header><div id="completed-list" class="operation-run-list"></div></section>
       </section>
       <section class="runtime-strip"><div><span class="live-orb"></span><strong>Agent 运行正常</strong></div><dl><div><dt>模型</dt><dd>${state.health?.model || "未加载"}</dd></div><div><dt>告警入口</dt><dd>${state.health?.webhook_configured ? "Webhook 已连接" : "演示数据"}</dd></div><div><dt>遥测工具</dt><dd>${state.health?.tool_gateway_configured ? "企业网关已连接" : "未连接生产环境"}</dd></div><div><dt>执行模式</dt><dd>安全演练</dd></div></dl></section>
     </main></div></div>
@@ -862,12 +873,12 @@ async function uploadKnowledgeFile(input) {
 
 async function renderCustomerService() {
   document.body.className = "page-knowledge";
-  app.innerHTML = `<header class="knowledge-topbar"><div class="knowledge-topbar-inner"><a href="#landing">← 返回导航页</a><div class="knowledge-brand"><span>OC</span><div><strong>OnCall 知识库 Agent</strong><small>证据约束型 RAG 工作台</small></div></div><span class="runtime-pill"><i></i>Agent 运行时在线</span></div></header>
+  app.innerHTML = `<header class="knowledge-topbar"><div class="knowledge-topbar-inner"><a href="#landing">← 返回导航页</a><div class="knowledge-brand"><span>KC</span><div><strong>知识库 + 对话 Agent</strong><small>Knowledge retrieval → ReAct answer</small></div></div><span class="runtime-pill"><i></i>Railway 运行时在线</span></div></header>
     <main class="knowledge-page shell-wide">
-      <section class="knowledge-hero"><div><span>OnCall Agent 知识工作台</span><h1>让运行知识，<br/>真正被 Agent 理解</h1></div><div><p>检索增强生成（RAG）以 Wikimedia 事故、Runbook 和工单为主域，回答保留原始来源、命名空间与权威等级。</p><p>检索链路：BM25 精确召回 + 多语言语义召回 + RRF 权威度重排；外部企业事故不能直接生成生产操作。</p></div></section>
+      <section class="knowledge-hero"><div><span>Knowledge Agent → Conversation Agent</span><h1>先检索证据，<br/>再生成回答</h1></div><div><p>知识库 Agent 负责文档解析、分层检索和权威度重排；对话 Agent 使用 RAG 与受限 ReAct 选择工具、生成回答并校验引用。</p><p>回答只引用共享证据层中的记录。外部事故类比不能直接生成生产操作，模型判断也不会自动升级为事实。</p></div></section>
       <section class="knowledge-layout">
         <article class="knowledge-chat-card">
-          <header><div class="knowledge-agent-title"><span>AI</span><div><strong>OnCall 知识库 Agent</strong><small><i></i> 知识库在线</small></div></div><b>混合检索 RAG</b></header>
+          <header><div class="knowledge-agent-title"><span>CA</span><div><strong>对话 Agent</strong><small><i></i> ReAct 运行时在线</small></div></div><b>RAG + ReAct</b></header>
           <div class="knowledge-messages" id="knowledge-messages"></div>
           <section class="knowledge-trace-panel"><header><strong>RAG 执行轨迹</strong><span>准备就绪</span></header><div id="knowledge-trace" class="knowledge-trace"></div></section>
           <section class="knowledge-composer"><h3>快捷问题</h3><div class="knowledge-prompts"><button>Wikimedia 最近发生了哪些事故？</button><button>Wiki 编辑延迟应检查什么？</button><button>Wikimedia Runbook 如何限制危险操作？</button><button>外部事故资料何时会被使用？</button></div><form id="knowledge-form"><input name="question" minlength="2" maxlength="4000" placeholder="请输入要检索的知识库问题……" autocomplete="off" required><button type="submit">发送问题 →</button></form></section>
