@@ -3,63 +3,120 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f1efe9" />
+    <meta name="theme-color" content="#f5f7fb" />
     <meta name="description" content="Agent Systems Lab：OnCall Agent 与 PatchPilot 的统一项目入口。" />
     <title>Agent Systems Lab｜王存章</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=4" />
     <script src="./config.js"></script>
     <script src="./app.js" defer></script>
   </head>
   <body>
-    <header>
-      <a class="brand" href="#top"><span>AS</span><b>Agent Systems Lab</b></a>
-      <nav><a href="#projects">项目</a><a href="#principles">工程原则</a><a data-link="github">GitHub ↗</a></nav>
+    <header class="site-header">
+      <div class="page-shell nav-shell">
+        <a class="brand" href="#top"><span>AS</span><div><b>Agent Systems Lab</b><small>AI AGENT PORTFOLIO</small></div></a>
+        <nav><a href="#projects">项目导航</a><a href="#principles">工程边界</a><a class="github-link" data-link="github">GitHub <span>↗</span></a></nav>
+      </div>
     </header>
 
     <main id="top">
-      <section class="hero">
-        <div class="hero-index">PORTFOLIO / 2026</div>
-        <h1>面向真实约束构建<br /><em>可执行的 Agent 系统。</em></h1>
-        <div class="hero-bottom">
-          <p>两个端到端智能体项目，分别验证生产事故响应与软件维护场景中的证据约束、权限门控、故障恢复和自动化评测。</p>
-          <a href="#projects">查看项目 <span>↓</span></a>
+      <section class="hero page-shell">
+        <div class="hero-copy">
+          <div class="eyebrow"><i></i> TWO PRODUCTION-STYLE AGENT DEMOS</div>
+          <h1>选择一个 Agent，<br /><em>进入完整演示。</em></h1>
+          <p>统一入口连接两个端到端智能体项目：事故响应 Agent 与软件维护 Agent。每个项目均包含可交互界面、执行轨迹、安全边界和公开源码。</p>
+          <a class="hero-link" href="#projects">查看两个项目 <span>↓</span></a>
         </div>
-        <div class="orbit" aria-hidden="true"><i></i><i></i><i></i><span>AGENT<br />SYSTEMS</span></div>
+        <aside class="hero-summary" aria-label="项目概览">
+          <div><strong>02</strong><span>Agent 项目</span></div>
+          <div><strong>02</strong><span>在线演示</span></div>
+          <div class="summary-wide"><i></i><span>All systems available</span></div>
+        </aside>
       </section>
 
       <section class="projects" id="projects">
-        <div class="section-head"><span>01 / SELECTED SYSTEMS</span><h2>项目导航</h2><p>每个项目均提供可交互前端、结构化 API、执行轨迹与明确的公开演示边界。</p></div>
-        <div class="project-grid">
-          <article class="project-card oncall">
-            <div class="card-top"><span class="number">01</span><span class="availability"><i></i> LIVE</span></div>
-            <div class="project-symbol"><span></span><span></span><span></span></div>
-            <div class="card-copy"><small>INCIDENT RESPONSE AGENT</small><h3>OnCall Agent</h3><p>从企业告警与公开事故出发，完成证据归一化、根因假设、策略审批、Runbook 演练、恢复验证和知识审核。</p></div>
-            <ul><li>Hybrid RAG</li><li>Evidence Grounding</li><li>Human Approval</li><li>Rollback</li></ul>
-            <div class="card-actions"><a class="launch" data-link="oncall">打开 OnCall Agent <span>→</span></a><a class="source-link" data-link="oncallRepo">查看源码 <span>↗</span></a></div>
-          </article>
+        <div class="page-shell">
+          <div class="section-head">
+            <div><span>PROJECT DIRECTORY</span><h2>选择要进入的系统</h2></div>
+            <p>两个项目并列展示，入口、源码和技术边界保持一致，不需要经过额外页面。</p>
+          </div>
 
-          <article class="project-card patchpilot">
-            <div class="card-top"><span class="number">02</span><span class="availability"><i></i> LIVE</span></div>
-            <div class="project-symbol code"><span>&lt;/&gt;</span></div>
-            <div class="card-copy"><small>SOFTWARE MAINTENANCE AGENT</small><h3>PatchPilot</h3><p>将仓库分析、最小补丁、人工审批、受限测试和独立审查组织为可持久化、可回放的软件维护工作流。</p></div>
-            <ul><li>LangGraph</li><li>MCP</li><li>Fixture Sandbox</li><li>Pytest</li></ul>
-            <div class="card-actions"><a class="launch" data-link="patchpilot">打开 PatchPilot <span>→</span></a><a class="source-link" data-link="patchpilotRepo">查看源码 <span>↗</span></a></div>
-          </article>
+          <div class="project-grid">
+            <article class="project-card oncall">
+              <div class="card-accent"></div>
+              <div class="card-top">
+                <span class="project-icon">OC</span>
+                <span class="availability"><i></i> ONLINE</span>
+              </div>
+              <div class="card-copy">
+                <small>INCIDENT RESPONSE AGENT</small>
+                <h3>OnCall Agent</h3>
+                <p>从公开事故和企业告警出发，完成证据归一化、根因判断、策略审批、Runbook 演练、恢复验证与复盘沉淀。</p>
+              </div>
+              <div class="capability-list">
+                <span>Hybrid RAG</span><span>Evidence Grounding</span><span>Human Approval</span><span>Rollback</span>
+              </div>
+              <dl class="project-facts">
+                <div><dt>场景</dt><dd>事故响应</dd></div>
+                <div><dt>核心流程</dt><dd>调查 → 审批 → 恢复</dd></div>
+                <div><dt>部署</dt><dd>Railway</dd></div>
+              </dl>
+              <div class="card-actions">
+                <a class="launch" data-link="oncall"><span>打开 OnCall Agent</span><b>→</b></a>
+                <a class="source-link" data-link="oncallRepo"><span>查看源码</span><b>↗</b></a>
+              </div>
+            </article>
+
+            <article class="project-card patchpilot">
+              <div class="card-accent"></div>
+              <div class="card-top">
+                <span class="project-icon">PP</span>
+                <span class="availability"><i></i> ONLINE</span>
+              </div>
+              <div class="card-copy">
+                <small>SOFTWARE MAINTENANCE AGENT</small>
+                <h3>PatchPilot</h3>
+                <p>将仓库分析、最小补丁、人工审批、受限测试和独立审查组织为可持久化、可回放的软件维护工作流。</p>
+              </div>
+              <div class="capability-list">
+                <span>LangGraph</span><span>MCP</span><span>Fixture Sandbox</span><span>Pytest</span>
+              </div>
+              <dl class="project-facts">
+                <div><dt>场景</dt><dd>软件维护</dd></div>
+                <div><dt>核心流程</dt><dd>分析 → 补丁 → 验证</dd></div>
+                <div><dt>部署</dt><dd>Railway</dd></div>
+              </dl>
+              <div class="card-actions">
+                <a class="launch" data-link="patchpilot"><span>打开 PatchPilot</span><b>→</b></a>
+                <a class="source-link" data-link="patchpilotRepo"><span>查看源码</span><b>↗</b></a>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
       <section class="principles" id="principles">
-        <div class="section-head"><span>02 / ENGINEERING PRINCIPLES</span><h2>不是聊天界面，而是受约束的执行系统</h2></div>
-        <div class="principle-grid">
-          <article><b>Evidence</b><h3>先建立证据，再生成结论</h3><p>观察事实、模型假设和可执行动作使用不同数据结构，避免把推测冒充事实。</p></article>
-          <article><b>Authority</b><h3>置信度不等于执行权限</h3><p>工具允许列表、风险等级和人工审批共同决定动作是否能够进入执行层。</p></article>
-          <article><b>Recovery</b><h3>失败必须可恢复、可回放</h3><p>状态、工具输出和审批事件持续保存，支持失败分析、断点续跑与结果复核。</p></article>
-          <article><b>Evaluation</b><h3>用固定任务衡量迭代</h3><p>对成功率、测试通过率、时延、成本和危险动作阻断率进行版本化评测。</p></article>
+        <div class="page-shell">
+          <div class="section-head compact">
+            <div><span>SHARED ENGINEERING BOUNDARY</span><h2>两个项目遵循相同的执行约束</h2></div>
+            <p>模型负责提出候选方案，证据、权限系统和验证流程决定方案是否可以执行。</p>
+          </div>
+          <div class="principle-grid">
+            <article><span>01</span><b>Evidence</b><h3>证据与推测分离</h3><p>观察事实、模型假设与执行动作使用不同结构。</p></article>
+            <article><span>02</span><b>Authority</b><h3>权限先于置信度</h3><p>允许列表、风险等级和人工审批共同控制执行。</p></article>
+            <article><span>03</span><b>Recovery</b><h3>失败可以恢复</h3><p>状态、工具输出和审批事件可保存、可回放。</p></article>
+            <article><span>04</span><b>Evaluation</b><h3>固定任务评测</h3><p>用成功率、时延、成本和阻断率衡量迭代。</p></article>
+          </div>
         </div>
       </section>
     </main>
 
-    <footer><div><span class="footer-mark">AS</span><b>王存章 · AI Agent 应用开发</b></div><p>Python · Java · FastAPI · LangGraph · RAG · MCP</p></footer>
+    <footer>
+      <div class="page-shell footer-inner">
+        <div class="footer-brand"><span>AS</span><p><b>王存章</b><small>AI Agent 应用开发</small></p></div>
+        <p>Python · Java · FastAPI · LangGraph · RAG · MCP</p>
+      </div>
+    </footer>
   </body>
 </html>
+
