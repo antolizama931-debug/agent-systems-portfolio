@@ -71,9 +71,14 @@ h1 em { color: var(--green); font-style: italic; }
 .card-copy p { min-height: 70px; margin: 0; font-size: 13px; line-height: 1.75; opacity: .7; }
 .project-card ul { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 7px; padding: 25px 0; margin: 0; list-style: none; }
 .project-card li { padding: 6px 9px; border: 1px solid currentColor; border-radius: 20px; font: 9px ui-monospace, monospace; opacity: .55; }
-.card-actions { position: relative; z-index: 2; display: flex; align-items: center; gap: 20px; }
-.card-actions a { font-size: 11px; border-bottom: 1px solid currentColor; cursor: pointer; }
-.card-actions .launch { display: flex; justify-content: space-between; width: 165px; padding: 11px 13px; border: 1px solid currentColor; }
+.card-actions { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(118px, .8fr); gap: 10px; }
+.card-actions a { min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 0 16px; border: 1px solid currentColor; font-size: 11px; font-weight: 700; cursor: pointer; transition: transform .18s ease, background-color .18s ease, border-color .18s ease; }
+.card-actions a:hover { transform: translateY(-2px); }
+.card-actions .launch { justify-content: space-between; }
+.oncall .card-actions .launch { color: #153d33; border-color: #eef6f0; background: #eef6f0; }
+.oncall .card-actions .source-link { color: #eef6f0; border-color: rgba(238, 246, 240, .45); background: rgba(255, 255, 255, .03); }
+.patchpilot .card-actions .launch { color: #f3f7f4; border-color: var(--green); background: var(--green); }
+.patchpilot .card-actions .source-link { color: var(--ink); border-color: rgba(23, 32, 29, .36); background: rgba(255, 255, 255, .12); }
 .card-actions a.disabled { cursor: not-allowed; opacity: .38; pointer-events: none; }
 
 .principles { padding-bottom: 150px; }
@@ -126,7 +131,8 @@ h1 { max-width: 1080px; margin-block: 46px 56px; font-size: clamp(54px, 6.6vw, 9
 .orbit { width: min(21vw, 244px); }
 .projects, .principles { padding-block: 96px; }
 .section-head { grid-template-columns: .72fr 1.35fr .93fr; margin-bottom: 42px; }
-.project-card { min-height: 560px; }
+.project-card { min-height: 525px; }
+.project-card ul { padding-block: 19px; }
 .project-symbol { top: 90px; width: 205px; height: 165px; }
 .principle-grid article { min-height: 260px; }
 .principle-grid h3 { margin-top: 68px; }
@@ -143,8 +149,10 @@ h1 { max-width: 1080px; margin-block: 46px 56px; font-size: clamp(54px, 6.6vw, 9
   .orbit { width: 132px; }
   .projects, .principles { padding-block: 64px; }
   .section-head { margin-bottom: 30px; }
-  .project-card { min-height: 520px; }
+  .project-card { min-height: 500px; }
   .project-symbol { top: 76px; width: 150px; height: 122px; }
+  .card-actions { grid-template-columns: 1fr; }
+  .card-actions a { width: 100%; min-height: 46px; }
   .principle-grid article { min-height: 205px; }
   .principle-grid h3 { margin-top: 38px; }
 }
