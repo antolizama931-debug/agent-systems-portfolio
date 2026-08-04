@@ -1,7 +1,7 @@
 # PatchPilot 项目入门与接手指南
 
-> 适用对象：第一次接触 Agent、LangGraph、MCP、FastAPI 和软件维护自动化的开发者。  
-> 当前版本：0.1.0  
+> 适用对象：第一次接触 Agent、LangGraph、MCP、FastAPI 和软件维护自动化的开发者。
+> 当前版本：0.1.0
 > 在线演示：https://patchpilot-agent-production.up.railway.app/
 
 ## 1. 先用一句话理解项目
@@ -647,4 +647,3 @@ PATCHPILOT_DATA_DIR=/data
 10. 如果接入任意 GitHub 仓库，首先要增加哪些安全措施？
 
 第 7 题的正确答案是：当前版本没有调用 LLM。
-
