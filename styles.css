@@ -57,10 +57,10 @@ h1 em { color: var(--oncall); font-style: normal; }
 .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .project-card { position: relative; min-width: 0; min-height: 530px; display: flex; flex-direction: column; padding: 30px; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: 0 16px 42px rgba(35, 49, 68, .055); }
 .card-accent { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--oncall); }
-.patchpilot .card-accent { background: var(--patch); }
+.mewcode .card-accent { background: var(--patch); }
 .card-top { display: flex; align-items: center; justify-content: space-between; }
 .project-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 13px; color: var(--oncall); background: var(--oncall-soft); font: 800 12px ui-monospace, monospace; }
-.patchpilot .project-icon { color: var(--patch); background: var(--patch-soft); }
+.mewcode .project-icon { color: var(--patch); background: var(--patch-soft); }
 .availability { display: flex; align-items: center; gap: 8px; color: #477263; font: 700 9px ui-monospace, monospace; letter-spacing: .08em; }
 .card-copy { margin-top: 30px; }
 .card-copy small { color: var(--muted); font: 700 9px ui-monospace, monospace; letter-spacing: .11em; }
@@ -78,7 +78,7 @@ h1 em { color: var(--oncall); font-style: normal; }
 .card-actions a { min-width: 0; min-height: 50px; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 0 17px; border: 1px solid var(--line); border-radius: 10px; font-size: 13px; font-weight: 750; transition: transform .18s ease, box-shadow .18s ease; }
 .card-actions a:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(35, 49, 68, .1); }
 .card-actions .launch { color: white; border-color: var(--oncall); background: var(--oncall); }
-.patchpilot .card-actions .launch { border-color: var(--patch); background: var(--patch); }
+.mewcode .card-actions .launch { border-color: var(--patch); background: var(--patch); }
 .card-actions .source-link { color: var(--ink); background: var(--surface); }
 .card-actions a.disabled { opacity: .4; pointer-events: none; }
 
@@ -142,4 +142,3 @@ footer { border-top: 1px solid var(--line); background: var(--surface); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
-

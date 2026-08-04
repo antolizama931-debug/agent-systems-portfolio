@@ -1,171 +1,105 @@
-"""LangGraph workflows for proposal generation and approved execution."""
+"""Deterministic, sandboxed Agent Loop used by the online showcase.
+
+The production CLI can call model providers and local tools. The public demo
+uses fixed model decisions and versioned in-memory files so visitors can inspect
+the same model -> tool -> observation loop without receiving code-execution
+authority on the Railway container.
+"""
 
 from __future__ import annotations
 
-import time
 import uuid
-from datetime import datetime, timezone
-from typing import TypedDict
 
-from langgraph.graph import END, START, StateGraph
-
-from .fixtures import get_scenario
-from .models import AgentRun, ReviewResult, RunStatus, TestResult, TraceEvent
+from .fixtures import FILES, get_scenario
+from .models import AgentRun, RunStatus, TraceEvent
 from .store import RunStore
-from .tools import execute_approved_patch, patch_preview, repo_list_files, repo_read_file
 
 
-class ProposalState(TypedDict, total=False):
-    scenario_key: str
-    files: list[str]
-    target_content: str
-    plan: list[str]
-    proposed_diff: str
-
-
-def _inspect(state: ProposalState) -> ProposalState:
-    scenario = get_scenario(state["scenario_key"])
-    if scenario is None:
-        raise ValueError("unknown scenario")
-    return {
-        "files": repo_list_files(scenario.key),
-        "target_content": repo_read_file(scenario.key, scenario.target_file),
-    }
-
-
-def _plan(state: ProposalState) -> ProposalState:
-    scenario = get_scenario(state["scenario_key"])
-    if scenario is None:
-        raise ValueError("unknown scenario")
-    return {
-        "plan": [
-            f"定位并读取 {scenario.target_file}",
-            "生成满足验收条件的最小补丁",
-            "等待人工确认补丁后执行受限测试",
-            "根据测试输出完成独立审查并记录轨迹",
-        ]
-    }
-
-
-def _preview(state: ProposalState) -> ProposalState:
-    return {"proposed_diff": patch_preview(state["scenario_key"])}
-
-
-proposal_builder = StateGraph(ProposalState)
-proposal_builder.add_node("repo_analyst", _inspect)
-proposal_builder.add_node("planner", _plan)
-proposal_builder.add_node("patch_preview", _preview)
-proposal_builder.add_edge(START, "repo_analyst")
-proposal_builder.add_edge("repo_analyst", "planner")
-proposal_builder.add_edge("planner", "patch_preview")
-proposal_builder.add_edge("patch_preview", END)
-proposal_graph = proposal_builder.compile()
-
-
-def _event(run: AgentRun, stage: str, actor: str, message: str, *, tool: str | None = None, duration_ms: int = 0) -> None:
+def _event(
+    run: AgentRun,
+    kind: str,
+    name: str,
+    summary: str,
+    *,
+    status: str = "succeeded",
+    input: dict | None = None,
+    output: str | None = None,
+    duration_ms: int = 0,
+) -> None:
     run.trace.append(
         TraceEvent(
             sequence=len(run.trace) + 1,
-            stage=stage,
-            actor=actor,
-            status="succeeded",
-            message=message,
-            tool=tool,
+            kind=kind,
+            name=name,
+            status=status,
+            summary=summary,
+            input=input,
+            output=output,
             duration_ms=duration_ms,
         )
     )
-    run.updated_at = datetime.now(timezone.utc)
 
 
-def create_proposal(store: RunStore, scenario_key: str, session_id: str) -> AgentRun:
+def create_run(store: RunStore, scenario_key: str) -> AgentRun:
     scenario = get_scenario(scenario_key)
     if scenario is None:
         raise ValueError("unknown scenario")
-    started = time.perf_counter()
-    state = proposal_graph.invoke({"scenario_key": scenario_key})
-    elapsed = round((time.perf_counter() - started) * 1000)
+
     run = AgentRun(
-        run_id=f"run_{uuid.uuid4().hex[:12]}",
+        run_id=f"run_{uuid.uuid4().hex[:10]}",
         scenario_key=scenario.key,
-        session_id=session_id,
-        status=RunStatus.AWAITING_APPROVAL,
-        issue=scenario.issue,
-        repository=scenario.repository,
-        language=scenario.language,
-        plan=state["plan"],
-        files=state["files"],
-        proposed_diff=state["proposed_diff"],
-        limitations=[
-            "公开演示只运行仓库内置、版本化的可信 fixture，不接受任意 Git URL 或用户代码。",
-            "公开环境不创建真实 Pull Request，也不持有 GitHub 写权限。",
-            "SQLite 用于单实例演示；多副本生产部署需迁移到 PostgreSQL。",
-        ],
+        status=RunStatus.COMPLETED,
+        prompt=scenario.prompt,
+        trace=[],
+        context_tokens=318,
     )
-    _event(run, "inspect", "Repo Analyst", f"发现 {len(run.files)} 个文件并读取目标文件。", tool="repo_list_files")
-    _event(run, "plan", "Coordinator", f"生成 {len(run.plan)} 步维护计划。")
-    _event(run, "preview", "Patch Agent", "生成最小 Unified Diff，等待人工审批。", tool="patch_preview", duration_ms=elapsed)
+    _event(run, "system", "Context", "载入系统提示、工具 Schema 与任务 Fixture。", output="318 tokens")
+    _event(run, "model", "Agent", "先定位与任务相关的文件。", output="tool_call: Grep")
+
+    files = FILES[scenario.fixture]
+    if scenario.key == "trace-auth-flow":
+        _event(run, "tool", "Grep", "搜索 profile 与鉴权符号。", input={"pattern": "profile|require_user"}, output="src/api.py:3, src/api.py:4, src/auth.py:1", duration_ms=3)
+        _event(run, "model", "Agent", "读取接口入口和鉴权实现。", output="tool_call: ReadFile x2")
+        _event(run, "tool", "ReadFile", "读取 src/api.py。", input={"path": "src/api.py"}, output=files["src/api.py"], duration_ms=1)
+        _event(run, "tool", "ReadFile", "读取 src/auth.py。", input={"path": "src/auth.py"}, output=files["src/auth.py"], duration_ms=1)
+        run.tool_calls = 3
+        run.context_tokens = 612
+        run.final_answer = "profile() 从 Authorization 请求头取值并调用 require_user()；请求头缺失时，require_user() 直接抛出 PermissionError，因此业务处理不会继续执行。"
+        _event(run, "model", "Agent", "依据真实文件内容给出调用链结论。", output=run.final_answer)
+    else:
+        _event(run, "tool", "Grep", "定位 checkout 定义与失败测试。", input={"pattern": "checkout|negative"}, output="src/checkout.py:1, tests/test_checkout.py:3", duration_ms=2)
+        _event(run, "tool", "ReadFile", "读取目标实现。", input={"path": "src/checkout.py"}, output=files["src/checkout.py"], duration_ms=1)
+        _event(run, "model", "Agent", "生成最小修改，请求写权限。", output="tool_call: EditFile")
+        _event(run, "gate", "Permission Gate", "EditFile 属于写操作，等待人工批准。", status="pending", input={"path": "src/checkout.py"})
+        run.status = RunStatus.AWAITING_APPROVAL
+        run.tool_calls = 2
+        run.context_tokens = 544
+
     return store.save(run)
 
 
-def decide_run(store: RunStore, run: AgentRun, decision: str, operator: str) -> AgentRun:
+def decide_run(store: RunStore, run: AgentRun, decision: str) -> AgentRun:
     if run.status != RunStatus.AWAITING_APPROVAL:
         raise RuntimeError("run is not awaiting approval")
-    run.approval = {
-        "decision": decision,
-        "operator": operator,
-        "decided_at": datetime.now(timezone.utc).isoformat(),
-    }
+
+    gate = run.trace[-1]
     if decision == "reject":
+        gate.status = "rejected"
+        gate.summary = "用户拒绝写入；文件保持不变。"
         run.status = RunStatus.REJECTED
-        _event(run, "approval", "Human Reviewer", "补丁被拒绝，未执行任何代码。")
+        run.final_answer = "写操作已取消，未修改 Fixture，也未执行测试。"
+        _event(run, "model", "Agent", "遵循权限决定并停止。", output=run.final_answer)
         return store.save(run)
 
-    _event(run, "approval", "Human Reviewer", "补丁已批准，允许在临时 fixture 副本中执行。")
-    run.status = RunStatus.PATCHING
-    store.save(run)
-    try:
-        diff, raw_test = execute_approved_patch(run.scenario_key)
-    except Exception as exc:
-        run.status = RunStatus.FAILED
-        run.trace.append(
-            TraceEvent(
-                sequence=len(run.trace) + 1,
-                stage="execution",
-                actor="Test Agent",
-                status="failed",
-                message=f"受限执行失败：{type(exc).__name__}",
-            )
-        )
-        return store.save(run)
-
-    run.applied_diff = diff
-    _event(run, "patch", "Patch Agent", "补丁已应用到临时工作区。", tool="approved_patch.apply")
-    run.status = RunStatus.TESTING
-    store.save(run)
-    run.test_result = TestResult.model_validate(raw_test)
-    _event(
-        run,
-        "test",
-        "Test Agent",
-        "全部测试通过。" if run.test_result.passed else "测试失败，补丁未通过验证。",
-        tool="pytest.run",
-        duration_ms=run.test_result.duration_ms,
-    )
-    run.status = RunStatus.REVIEWING
-    store.save(run)
-
-    findings = [
-        "补丁只修改一个允许列表文件。",
-        "补丁不引入网络、文件系统或进程执行能力。",
-        "测试命令由服务端固定，用户无法覆盖。",
-    ]
-    approved = run.test_result.passed and run.applied_diff == run.proposed_diff
-    run.review = ReviewResult(
-        approved=approved,
-        findings=findings,
-        summary="测试与安全审查通过。" if approved else "测试或补丁一致性审查未通过。",
-    )
-    run.status = RunStatus.COMPLETED if approved else RunStatus.FAILED
-    _event(run, "review", "Review Agent", run.review.summary)
+    gate.status = "succeeded"
+    gate.summary = "用户批准仅修改 Fixture 中的 src/checkout.py。"
+    patch = "@@\n def checkout(quantity: int, unit_price: float) -> float:\n+    if quantity < 0:\n+        raise ValueError(\"quantity must be non-negative\")\n     return quantity * unit_price"
+    _event(run, "tool", "EditFile", "应用单文件最小修改。", input={"path": "src/checkout.py"}, output=patch, duration_ms=2)
+    _event(run, "model", "Agent", "修改完成，运行固定测试。", output="tool_call: Pytest")
+    _event(run, "tool", "Pytest", "在隔离 Fixture 中执行允许列表测试。", input={"target": "tests/test_checkout.py"}, output="1 passed in 0.04s", duration_ms=41)
+    run.status = RunStatus.COMPLETED
+    run.tool_calls = 4
+    run.context_tokens = 781
+    run.final_answer = "已在 checkout() 入口拒绝负数数量；固定回归测试通过。公开演示未执行用户命令或访问外部仓库。"
+    _event(run, "model", "Agent", "根据补丁与测试结果结束循环。", output=run.final_answer)
     return store.save(run)
-

@@ -1,12 +1,10 @@
 [project]
-name = "patchpilot-agent"
-version = "0.1.0"
-description = "Auditable software-maintenance agent with approval-gated patch execution."
+name = "mewcode-showcase"
+version = "1.0.0"
+description = "Browser-safe showcase of a bounded Coding Agent runtime."
 requires-python = ">=3.12"
 dependencies = [
   "fastapi[standard]>=0.128,<1.0",
-  "langgraph>=1.2,<2.0",
-  "mcp[cli]>=1.26,<2.0",
   "pytest>=8.0,<10.0",
 ]
 

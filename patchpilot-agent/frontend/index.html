@@ -4,78 +4,78 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#08111f" />
-    <meta name="description" content="PatchPilot：可审计、可审批、可恢复的软件维护智能体。" />
-    <title>PatchPilot｜软件维护智能体</title>
+    <meta name="description" content="MewCode：可扩展、可审计的终端编程智能体在线演示。" />
+    <title>MewCode | Coding Agent</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=5" />
     <script src="./config.js"></script>
     <script src="./app.js" defer></script>
   </head>
   <body>
     <header class="topbar">
-      <a class="brand" href="#top"><span class="brand-icon">PP</span><span>PatchPilot<small>/ agent</small></span></a>
+      <a class="brand" href="#top"><span class="brand-icon">MC</span><span>MewCode<small>/ agent</small></span></a>
       <nav>
         <a href="#workbench">任务台</a>
         <a href="#architecture">架构</a>
         <a data-link="portfolio" hidden>项目导航</a>
-        <a class="source" data-link="repository" hidden>GitHub ↗</a>
+        <a class="source" data-link="repository" hidden>项目说明 ↗</a>
       </nav>
     </header>
 
     <main id="top">
       <section class="hero">
         <div class="hero-copy">
-          <div class="eyebrow"><i></i> APPROVAL-GATED SOFTWARE MAINTENANCE</div>
-          <h1>让代码智能体的每一步<br /><em>都可以被验证。</em></h1>
-          <p>PatchPilot 将仓库分析、最小补丁、受限测试和独立审查组织为可回放工作流。公开演示只执行版本化 fixture，不接受任意代码。</p>
+          <div class="eyebrow"><i></i> BOUNDED CODING AGENT RUNTIME</div>
+          <h1>让模型、工具与权限<br /><em>形成可验证闭环。</em></h1>
+          <p>MewCode 通过自定义异步 Agent Loop 连接模型与代码工具。在线版本使用固定 Fixture 复现真实决策轨迹，不开放服务器 Shell、任意文件路径或外部仓库。</p>
           <div class="hero-actions">
-            <a class="button primary" href="#workbench">启动安全任务</a>
+            <a class="button primary" href="#workbench">运行演示任务</a>
             <a class="button secondary" href="/docs">查看 API</a>
           </div>
-          <div class="tech-row"><span>LangGraph</span><span>MCP</span><span>FastAPI</span><span>SQLite</span><span>Pytest</span></div>
+          <div class="tech-row"><span>Python</span><span>Asyncio</span><span>Pydantic</span><span>MCP</span><span>Pytest</span></div>
         </div>
         <div class="terminal-card">
-          <div class="terminal-head"><span><i></i><i></i><i></i></span><b>run_trace.jsonl</b><small>FIXTURE SANDBOX</small></div>
+          <div class="terminal-head"><span><i></i><i></i><i></i></span><b>agent_loop.trace</b><small>FIXTURE MODE</small></div>
           <div class="terminal-body">
-            <p><span>01</span><b>repo_analyst</b><em>files discovered</em></p>
-            <p><span>02</span><b>coordinator</b><em>plan persisted</em></p>
-            <p><span>03</span><b>patch_agent</b><em>diff proposed</em></p>
-            <p class="pause"><span>04</span><b>human_gate</b><em>awaiting approval</em></p>
-            <p><span>05</span><b>test_agent</b><em>pytest -q</em></p>
-            <p><span>06</span><b>review_agent</b><em>policy passed</em></p>
+            <p><span>01</span><b>context</b><em>tools + task loaded</em></p>
+            <p><span>02</span><b>model</b><em>tool_call: Grep</em></p>
+            <p><span>03</span><b>tool</b><em>observation returned</em></p>
+            <p class="pause"><span>04</span><b>permission</b><em>write requires approval</em></p>
+            <p><span>05</span><b>pytest</b><em>fixed target only</em></p>
+            <p><span>06</span><b>agent</b><em>verified final answer</em></p>
           </div>
-          <div class="terminal-foot"><strong>6</strong><span>typed stages</span><strong>0</strong><span>arbitrary commands</span></div>
+          <div class="terminal-foot"><strong>6</strong><span>typed tools</span><strong>0</strong><span>arbitrary commands</span></div>
         </div>
       </section>
 
-      <section class="metrics" id="metrics">
-        <article><strong id="metric-scenarios">—</strong><span>版本化任务</span></article>
-        <article><strong id="metric-runs">—</strong><span>运行记录</span></article>
-        <article><strong id="metric-completed">—</strong><span>验证通过</span></article>
-        <article><strong>MCP</strong><span>Streamable HTTP</span></article>
+      <section class="metrics">
+        <article><strong id="metric-scenarios">-</strong><span>演示任务</span></article>
+        <article><strong id="metric-runs">-</strong><span>运行记录</span></article>
+        <article><strong id="metric-completed">-</strong><span>完成运行</span></article>
+        <article><strong id="metric-tools">-</strong><span>工具类型</span></article>
       </section>
 
       <section class="workbench-section" id="workbench">
-        <div class="section-title"><div><small>INTERACTIVE WORKBENCH</small><h2>从 Issue 到验证结论</h2></div><p>选择一个固定任务。补丁只有在人类批准后，才会进入临时工作区执行测试。</p></div>
+        <div class="section-title"><div><small>INTERACTIVE WORKBENCH</small><h2>观察 Agent 如何作出下一步决定</h2></div><p>选择只读分析或受控修复任务。每次模型决策、工具输入、工具输出和权限判断都会进入轨迹。</p></div>
         <div class="workbench">
           <aside>
-            <div class="aside-head"><span>安全任务集</span><small id="scenario-count">载入中</small></div>
+            <div class="aside-head"><span>版本化任务集</span><small id="scenario-count">载入中</small></div>
             <div id="scenario-list" class="scenario-list"></div>
-            <div class="boundary"><b>公开边界</b><p>不克隆外部仓库、不接受上传代码、不允许自定义命令、不创建真实 PR。</p></div>
+            <div class="boundary"><b>公开边界</b><p>不接收 Git URL、上传代码或自定义命令；写操作只作用于内存 Fixture。</p></div>
           </aside>
           <section class="run-panel">
-            <div id="empty-state" class="empty-state"><div class="radar"><i></i></div><h3>选择一个维护任务</h3><p>系统会先生成只读分析与补丁预览。</p></div>
+            <div id="empty-state" class="empty-state"><div class="radar"><i></i></div><h3>选择一个 Agent 任务</h3><p>运行后可逐项检查模型、工具与权限事件。</p></div>
             <div id="task-view" hidden>
-              <div class="task-head"><div><small id="task-repo"></small><h3 id="task-title"></h3><p id="task-issue"></p></div><button id="start-run" class="run-button">生成维护方案</button></div>
-              <div class="acceptance"><b>验收条件</b><ul id="acceptance-list"></ul></div>
+              <div class="task-head"><div><small id="task-mode"></small><h3 id="task-title"></h3><p id="task-prompt"></p></div><button id="start-run" class="run-button">启动 Agent Loop</button></div>
+              <div class="acceptance"><b>演示目标</b><p id="task-goal"></p><div id="tool-list" class="tech-row"></div></div>
               <div id="run-content" hidden>
                 <div class="status-row"><span id="run-id"></span><b id="run-status"></b></div>
                 <div class="trace-grid">
                   <div><h4>执行轨迹</h4><div id="trace-list" class="trace-list"></div></div>
-                  <div><h4>Unified Diff</h4><pre id="diff-view"></pre></div>
+                  <div><h4>工具观察 / 最终回答</h4><pre id="output-view"></pre></div>
                 </div>
-                <div id="approval-bar" class="approval-bar" hidden><div><b>需要人工审批</b><span>批准后只在临时 fixture 副本中运行固定测试。</span></div><button id="reject-run">拒绝</button><button id="approve-run" class="approve">批准并测试</button></div>
-                <div id="test-result" class="test-result" hidden><div><b id="test-label"></b><span id="test-meta"></span></div><pre id="test-output"></pre></div>
+                <div id="approval-bar" class="approval-bar" hidden><div><b>Permission Gate</b><p>该步骤将修改内存中的版本化 Fixture，不会写入服务器文件。</p></div><button id="reject-run" class="reject">拒绝</button><button id="approve-run" class="approve">批准一次</button></div>
+                <div class="run-summary"><span id="summary-tools"></span><span id="summary-context"></span><span>Default 权限模式</span></div>
               </div>
             </div>
           </section>
@@ -83,16 +83,16 @@
       </section>
 
       <section class="architecture" id="architecture">
-        <div class="section-title"><div><small>SYSTEM DESIGN</small><h2>约束优先的 Agent 状态图</h2></div><p>模型负责提出候选方案，权限系统决定方案是否可以执行。</p></div>
+        <div class="section-title"><div><small>RUNTIME ARCHITECTURE</small><h2>从模型事件到受控工具执行</h2></div><p>完整 CLI 支持模型适配、上下文压缩、MCP、Hooks、SubAgent 和 Worktree；在线版本只保留可公开验证的核心循环。</p></div>
         <div class="architecture-grid">
-          <article><span>01</span><h3>Repo Analyst</h3><p>通过允许列表 MCP 工具读取固定仓库结构与目标文件。</p></article>
-          <article><span>02</span><h3>Patch Agent</h3><p>生成最小差异，校验补丁前置条件，不直接写入源仓库。</p></article>
-          <article><span>03</span><h3>Human Gate</h3><p>状态写入 SQLite 后暂停，明确记录批准者与决策时间。</p></article>
-          <article><span>04</span><h3>Test + Review</h3><p>固定 Pytest 命令、10 秒超时、输出截断与补丁一致性审查。</p></article>
+          <article><span>01</span><b>Model Adapter</b><h3>统一流式事件</h3><p>文本、思考和结构化工具调用进入同一 Agent Loop。</p></article>
+          <article><span>02</span><b>Tool Registry</b><h3>Schema 先于执行</h3><p>Pydantic 校验参数，工具结果作为下一轮模型观察。</p></article>
+          <article><span>03</span><b>Permission Gate</b><h3>写入必须授权</h3><p>只读自动通过，修改和执行按权限模式进入人工确认。</p></article>
+          <article><span>04</span><b>Context Budget</b><h3>长任务可恢复</h3><p>大结果溢写、自动摘要与最近完整轮次共同约束上下文。</p></article>
         </div>
       </section>
     </main>
 
-    <footer><span>PatchPilot Agent · Public fixture sandbox</span><span>Python / LangGraph / MCP</span></footer>
+    <footer><div><b>MewCode Showcase</b><span>Browser-safe projection of a local Coding Agent</span></div><a data-link="portfolio" hidden>返回项目导航</a></footer>
   </body>
 </html>

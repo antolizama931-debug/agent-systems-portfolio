@@ -4,8 +4,8 @@ const links = {
   github: config.githubUrl,
   oncall: config.onCallAgentUrl,
   oncallRepo: config.onCallRepositoryUrl,
-  patchpilot: config.patchPilotAgentUrl,
-  patchpilotRepo: config.patchPilotRepositoryUrl,
+  mewcode: config.mewCodeAgentUrl,
+  mewcodeRepo: config.mewCodeRepositoryUrl,
 };
 
 Object.entries(links).forEach(([name, href]) => {
@@ -27,4 +27,3 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll(".project-card, .principle-grid article, .section-head").forEach((item) => observer.observe(item));
-
