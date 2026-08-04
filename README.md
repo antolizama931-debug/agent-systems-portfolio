@@ -22,10 +22,10 @@
 4. 获得 MewCode 公网域名后，更新根目录 `config.js`；
 5. `config.js` 只允许放公开 URL，禁止放任何 API Key 或 Token。
 
-当前 MewCode Railway 地址（暂沿用旧服务域名）：
+当前 MewCode Railway 地址：
 
 ```text
-https://patchpilot-agent-production.up.railway.app
+https://mewcode-production.up.railway.app
 ```
 
 统一导航由 GitHub Pages 提供，MewCode 服务内保留返回入口。
