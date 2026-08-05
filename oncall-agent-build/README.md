@@ -84,6 +84,24 @@ Agent Run、审批、处置结果、知识候选和企业告警去重状态写�
 
 当前实现属于“分层路由的混合检索增强生成”，不是允许模型任意抓取网页的开放式智能体检索增强生成（Agentic RAG）。固定来源、命名空间、权威等级和动作适用性均可审计；只有接入企业日志、指标、Trace、CMDB 并建立检索评测集后，才应扩大自主检索范围。
 
+## 检索评测（可复现）
+
+仓库提供 `benchmarks/knowledge_retrieval_benchmark.py`，在固定 Wikimedia Status 回放快照、官方参考资料和人工标注查询上对照 BM25、纯多语言向量和 Hybrid RAG，同时测量文档解析、Agent Run、API 路由和测试规模。最近一次本地运行包含 12 份文档、12 个文本块、4,917 个字符和 12 条查询，并对 PDF、Markdown、TXT 上传路径做了真实解析探针；由于外部网络不可用，本次来源模式为 `verified-snapshot` / `external-fallback`，结果不代表生产全量语料或线上流量。
+
+最近一次本地运行（Python 3.12.13，FastEmbed warm-cache，每个查询重复 5 次）的结果：
+
+| 检索模式 | Recall@5 | MRR | P50 延迟 | P95 延迟 |
+|---|---:|---:|---:|---:|
+| BM25 | **1.000** | **0.958** | 0.125 ms | 0.167 ms |
+| 纯多语言向量 | 0.958 | 0.938 | 4.262 ms | 4.747 ms |
+| Hybrid（RRF） | 0.958 | 0.892 | 4.423 ms | 5.151 ms |
+
+该评测集没有证明 Hybrid 相对 BM25 或纯向量的 Recall@5 提升，因此不能在简历中声称“RRF 使 Recall@5 提升 X%”。当前结果可作为基线；延迟只统计本地进程内 warm-cache 检索，不包含模型首次下载、网络和 DeepSeek 生成。完整逐查询结果见 [`benchmarks/results/analysis-report.md`](benchmarks/results/analysis-report.md) 和 [`benchmarks/results/benchmark.json`](benchmarks/results/benchmark.json)。
+
+```powershell
+\.venv\Scripts\python.exe benchmarks\knowledge_retrieval_benchmark.py
+```
+
 ## 数据来源
 
 - 在线事故源：Wikimedia 官方 Statuspage JSON API，默认读取最近 20 条并缓存 5 分钟。
@@ -155,6 +173,8 @@ DEEPSEEK_MAX_TOKENS=2200
 ```
 
 测试覆盖：Wikimedia 事故映射、草稿过滤、Runbook 同步、命名空间隔离、权威度重排、HTML 清理、来源追踪、上游失败快照回退、BM25 与多语言语义召回、RRF 状态、危险建议阻断、告警认证与去重、审批、处置演练、恢复验证、回滚和 API 端到端流程。
+
+当前 FastAPI 暴露 20 个 `/api/*` 路由；本地 `pytest -q` 最近一次结果为 31 passed。
 
 ## Railway 部署
 

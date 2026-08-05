@@ -1,0 +1,915 @@
+{
+  "generated_at_utc": "2026-08-05T06:22:00Z",
+  "benchmark_version": 1,
+  "corpus": {
+    "mode": "verified-snapshot+fixed-reference",
+    "document_count": 12,
+    "chunk_count": 12,
+    "character_count": 4917,
+    "namespace_counts": {
+      "external_postmortems": 3,
+      "upstream_official_docs": 3,
+      "wikimedia_status": 6
+    },
+    "media_type_counts": {
+      "application/vnd.statuspage+json": 6,
+      "text/html": 6
+    },
+    "supported_upload_formats_probed": [
+      "PDF",
+      "Markdown",
+      "TXT"
+    ]
+  },
+  "query_set": {
+    "count": 12,
+    "languages": [
+      "en",
+      "mixed",
+      "zh"
+    ],
+    "labeling": "hand-labeled relevance at document level",
+    "queries": [
+      {
+        "id": "q01",
+        "text": "俄罗斯用户无法访问图片和媒体服务",
+        "language": "zh",
+        "relevant_keys": [
+          "wikimedia-wfdnbnv00w3r"
+        ]
+      },
+      {
+        "id": "q02",
+        "text": "users cannot reach the wikis because of a network outage",
+        "language": "en",
+        "relevant_keys": [
+          "wikimedia-7m1vqs2gwnmq"
+        ]
+      },
+      {
+        "id": "q03",
+        "text": "编辑失败导致 Wikipedia 修改无法提交",
+        "language": "zh",
+        "relevant_keys": [
+          "wikimedia-kq46rrxd2yy4"
+        ]
+      },
+      {
+        "id": "q04",
+        "text": "wiki entered read only mode",
+        "language": "en",
+        "relevant_keys": [
+          "wikimedia-z7qjmqtrh8yq"
+        ]
+      },
+      {
+        "id": "q05",
+        "text": "编辑延迟可能与数据库服务器问题有关",
+        "language": "zh",
+        "relevant_keys": [
+          "wikimedia-ncw3k9b4ynz6"
+        ]
+      },
+      {
+        "id": "q06",
+        "text": "degraded performance accessing Wikimedia wikis",
+        "language": "en",
+        "relevant_keys": [
+          "wikimedia-qdkw27z7d2yt"
+        ]
+      },
+      {
+        "id": "q07",
+        "text": "Kubernetes Pod Service StatefulSet debugging",
+        "language": "mixed",
+        "relevant_keys": [
+          "upstream-kubernetes-debug"
+        ]
+      },
+      {
+        "id": "q08",
+        "text": "Prometheus pending firing keep_firing_for alert rules",
+        "language": "en",
+        "relevant_keys": [
+          "upstream-prometheus-alerting"
+        ]
+      },
+      {
+        "id": "q09",
+        "text": "MariaDB error log slow query binary log monitoring",
+        "language": "mixed",
+        "relevant_keys": [
+          "upstream-mariadb-monitoring"
+        ]
+      },
+      {
+        "id": "q10",
+        "text": "BGP route withdrawal caused a network outage",
+        "language": "en",
+        "relevant_keys": [
+          "external-cloudflare-2026-02-20",
+          "external-google-cloud-network"
+        ]
+      },
+      {
+        "id": "q11",
+        "text": "Gitaly Puma load balancer 5xx saturation",
+        "language": "en",
+        "relevant_keys": [
+          "external-gitlab-loadbalancer-2026-04-11"
+        ]
+      },
+      {
+        "id": "q12",
+        "text": "Wikimedia wiki 访问异常 incident history",
+        "language": "mixed",
+        "relevant_keys": [
+          "wikimedia-qdkw27z7d2yt",
+          "wikimedia-7m1vqs2gwnmq"
+        ]
+      }
+    ]
+  },
+  "retrieval": {
+    "methods": {
+      "bm25": {
+        "status": "measured",
+        "n_queries": 12,
+        "recall_at_1": 0.875,
+        "recall_at_3": 0.958333,
+        "recall_at_5": 1.0,
+        "mrr": 0.958333,
+        "latency_ms": {
+          "n": 60,
+          "mean_ms": 0.138,
+          "p50_ms": 0.134,
+          "p95_ms": 0.188,
+          "min_ms": 0.085,
+          "max_ms": 0.232
+        },
+        "delta_vs_bm25_percentage_points": {
+          "recall_at_1": 0.0,
+          "recall_at_3": 0.0,
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        }
+      },
+      "dense": {
+        "status": "measured",
+        "n_queries": 12,
+        "recall_at_1": 0.875,
+        "recall_at_3": 0.916667,
+        "recall_at_5": 0.958333,
+        "mrr": 0.9375,
+        "latency_ms": {
+          "n": 60,
+          "mean_ms": 5.261,
+          "p50_ms": 5.16,
+          "p95_ms": 6.209,
+          "min_ms": 4.159,
+          "max_ms": 6.584
+        },
+        "delta_vs_bm25_percentage_points": {
+          "recall_at_1": 0.0,
+          "recall_at_3": -4.167,
+          "recall_at_5": -4.167,
+          "mrr": -2.083
+        }
+      },
+      "hybrid_rrf": {
+        "status": "measured",
+        "n_queries": 12,
+        "recall_at_1": 0.791667,
+        "recall_at_3": 0.875,
+        "recall_at_5": 0.958333,
+        "mrr": 0.891667,
+        "latency_ms": {
+          "n": 60,
+          "mean_ms": 5.257,
+          "p50_ms": 5.284,
+          "p95_ms": 6.495,
+          "min_ms": 3.71,
+          "max_ms": 6.653
+        },
+        "delta_vs_bm25_percentage_points": {
+          "recall_at_1": -8.333,
+          "recall_at_3": -8.333,
+          "recall_at_5": -4.167,
+          "mrr": -6.667
+        }
+      }
+    },
+    "per_query": [
+      {
+        "id": "q01",
+        "relevant_document_ids": [
+          "STATUS-A3A3041C8EFD40D0"
+        ],
+        "methods": {
+          "bm25": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-A3A3041C8EFD40D0",
+              "STATUS-59D09147F6764333",
+              "PUBLIC-A71A8E2602C1A54E",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-890E8E71891E4037",
+              "STATUS-9FFB9A6A7228CBA1",
+              "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-724D8BFFFFFFA121",
+              "STATUS-FEF86732E13C93C9",
+              "PUBLIC-01CA3F4D1785F6EC",
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-E557E596579866ED"
+            ]
+          },
+          "dense": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-A3A3041C8EFD40D0",
+              "STATUS-FEF86732E13C93C9",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-890E8E71891E4037",
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-59D09147F6764333",
+              "PUBLIC-B9455E125477E1C4"
+            ]
+          },
+          "hybrid_rrf": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-A3A3041C8EFD40D0",
+              "STATUS-59D09147F6764333",
+              "STATUS-FEF86732E13C93C9",
+              "STATUS-BB23B07642EFC33A",
+              "PUBLIC-B9455E125477E1C4",
+              "STATUS-9FFB9A6A7228CBA1",
+              "STATUS-E557E596579866ED",
+              "PUBLIC-A71A8E2602C1A54E",
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-01CA3F4D1785F6EC"
+            ]
+          }
+        }
+      },
+      {
+        "id": "q02",
+        "relevant_document_ids": [
+          "STATUS-FEF86732E13C93C9"
+        ],
+        "methods": {
+          "bm25": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-FEF86732E13C93C9",
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-A3A3041C8EFD40D0",
+              "STATUS-9FFB9A6A7228CBA1",
+              "STATUS-E557E596579866ED",
+              "STATUS-59D09147F6764333"
+            ]
+          },
+          "dense": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-FEF86732E13C93C9",
+              "STATUS-59D09147F6764333",
+              "STATUS-BB23B07642EFC33A",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-C31C47D5C902966E",
+              "STATUS-9FFB9A6A7228CBA1",
+              "PUBLIC-724D8BFFFFFFA121",
+              "STATUS-E557E596579866ED",
+              "STATUS-A3A3041C8EFD40D0",
+              "PUBLIC-01CA3F4D1785F6EC"
+            ]
+          },
+          "hybrid_rrf": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-FEF86732E13C93C9",
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-59D09147F6764333",
+              "STATUS-9FFB9A6A7228CBA1",
+              "STATUS-A3A3041C8EFD40D0",
+              "STATUS-E557E596579866ED",
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-01CA3F4D1785F6EC"
+            ]
+          }
+        }
+      },
+      {
+        "id": "q03",
+        "relevant_document_ids": [
+          "STATUS-9FFB9A6A7228CBA1"
+        ],
+        "methods": {
+          "bm25": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-9FFB9A6A7228CBA1",
+              "PUBLIC-C31C47D5C902966E",
+              "STATUS-E557E596579866ED",
+              "STATUS-59D09147F6764333",
+              "STATUS-BB23B07642EFC33A"
+            ]
+          },
+          "dense": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-9FFB9A6A7228CBA1",
+              "STATUS-E557E596579866ED",
+              "STATUS-59D09147F6764333",
+              "PUBLIC-C31C47D5C902966E",
+              "STATUS-BB23B07642EFC33A",
+              "PUBLIC-890E8E71891E4037",
+              "STATUS-FEF86732E13C93C9",
+              "PUBLIC-724D8BFFFFFFA121"
+            ]
+          },
+          "hybrid_rrf": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-9FFB9A6A7228CBA1",
+              "STATUS-E557E596579866ED",
+              "STATUS-59D09147F6764333",
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-FEF86732E13C93C9",
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-890E8E71891E4037"
+            ]
+          }
+        }
+      },
+      {
+        "id": "q04",
+        "relevant_document_ids": [
+          "STATUS-BB23B07642EFC33A"
+        ],
+        "methods": {
+          "bm25": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-FEF86732E13C93C9",
+              "STATUS-59D09147F6764333",
+              "STATUS-9FFB9A6A7228CBA1",
+              "STATUS-E557E596579866ED"
+            ]
+          },
+          "dense": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-FEF86732E13C93C9",
+              "STATUS-59D09147F6764333",
+              "STATUS-9FFB9A6A7228CBA1",
+              "PUBLIC-C31C47D5C902966E"
+            ]
+          },
+          "hybrid_rrf": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-FEF86732E13C93C9",
+              "STATUS-59D09147F6764333",
+              "STATUS-9FFB9A6A7228CBA1",
+              "STATUS-E557E596579866ED",
+              "PUBLIC-C31C47D5C902966E"
+            ]
+          }
+        }
+      },
+      {
+        "id": "q05",
+        "relevant_document_ids": [
+          "STATUS-E557E596579866ED"
+        ],
+        "methods": {
+          "bm25": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-E557E596579866ED",
+              "STATUS-59D09147F6764333",
+              "STATUS-9FFB9A6A7228CBA1",
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-FEF86732E13C93C9",
+              "PUBLIC-A71A8E2602C1A54E",
+              "STATUS-A3A3041C8EFD40D0",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-01CA3F4D1785F6EC"
+            ]
+          },
+          "dense": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-E557E596579866ED",
+              "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-724D8BFFFFFFA121",
+              "STATUS-59D09147F6764333",
+              "STATUS-9FFB9A6A7228CBA1",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-A71A8E2602C1A54E"
+            ]
+          },
+          "hybrid_rrf": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-E557E596579866ED",
+              "STATUS-59D09147F6764333",
+              "STATUS-9FFB9A6A7228CBA1",
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-A71A8E2602C1A54E",
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-FEF86732E13C93C9",
+              "STATUS-A3A3041C8EFD40D0",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-01CA3F4D1785F6EC"
+            ]
+          }
+        }
+      },
+      {
+        "id": "q06",
+        "relevant_document_ids": [
+          "STATUS-59D09147F6764333"
+        ],
+        "methods": {
+          "bm25": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-59D09147F6764333",
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-9FFB9A6A7228CBA1",
+              "STATUS-E557E596579866ED",
+              "STATUS-FEF86732E13C93C9",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-A71A8E2602C1A54E",
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-01CA3F4D1785F6EC",
+              "STATUS-A3A3041C8EFD40D0"
+            ]
+          },
+          "dense": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-59D09147F6764333",
+              "STATUS-FEF86732E13C93C9",
+              "PUBLIC-890E8E71891E4037",
+              "STATUS-BB23B07642EFC33A",
+              "PUBLIC-C31C47D5C902966E",
+              "STATUS-9FFB9A6A7228CBA1",
+              "STATUS-E557E596579866ED",
+              "STATUS-A3A3041C8EFD40D0",
+              "PUBLIC-01CA3F4D1785F6EC",
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-B9455E125477E1C4"
+            ]
+          },
+          "hybrid_rrf": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-59D09147F6764333",
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-FEF86732E13C93C9",
+              "STATUS-9FFB9A6A7228CBA1",
+              "STATUS-E557E596579866ED",
+              "STATUS-A3A3041C8EFD40D0",
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-A71A8E2602C1A54E",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-01CA3F4D1785F6EC"
+            ]
+          }
+        }
+      },
+      {
+        "id": "q07",
+        "relevant_document_ids": [
+          "PUBLIC-724D8BFFFFFFA121"
+        ],
+        "methods": {
+          "bm25": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "PUBLIC-724D8BFFFFFFA121"
+            ]
+          },
+          "dense": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-C31C47D5C902966E",
+              "STATUS-59D09147F6764333",
+              "PUBLIC-01CA3F4D1785F6EC",
+              "STATUS-FEF86732E13C93C9",
+              "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-890E8E71891E4037",
+              "STATUS-BB23B07642EFC33A"
+            ]
+          },
+          "hybrid_rrf": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "PUBLIC-724D8BFFFFFFA121",
+              "STATUS-59D09147F6764333",
+              "STATUS-FEF86732E13C93C9",
+              "STATUS-BB23B07642EFC33A",
+              "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-01CA3F4D1785F6EC",
+              "PUBLIC-890E8E71891E4037"
+            ]
+          }
+        }
+      },
+      {
+        "id": "q08",
+        "relevant_document_ids": [
+          "PUBLIC-A71A8E2602C1A54E"
+        ],
+        "methods": {
+          "bm25": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "PUBLIC-A71A8E2602C1A54E"
+            ]
+          },
+          "dense": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "PUBLIC-A71A8E2602C1A54E",
+              "STATUS-E557E596579866ED",
+              "PUBLIC-B9455E125477E1C4",
+              "STATUS-59D09147F6764333"
+            ]
+          },
+          "hybrid_rrf": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "PUBLIC-A71A8E2602C1A54E",
+              "STATUS-E557E596579866ED",
+              "STATUS-59D09147F6764333",
+              "PUBLIC-B9455E125477E1C4"
+            ]
+          }
+        }
+      },
+      {
+        "id": "q09",
+        "relevant_document_ids": [
+          "PUBLIC-B9455E125477E1C4"
+        ],
+        "methods": {
+          "bm25": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "PUBLIC-B9455E125477E1C4",
+              "STATUS-59D09147F6764333",
+              "STATUS-E557E596579866ED"
+            ]
+          },
+          "dense": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-01CA3F4D1785F6EC",
+              "STATUS-59D09147F6764333"
+            ]
+          },
+          "hybrid_rrf": {
+            "status": "measured",
+            "first_relevant_rank": 2,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-59D09147F6764333",
+              "PUBLIC-B9455E125477E1C4",
+              "STATUS-E557E596579866ED",
+              "PUBLIC-01CA3F4D1785F6EC"
+            ]
+          }
+        }
+      },
+      {
+        "id": "q10",
+        "relevant_document_ids": [
+          "PUBLIC-890E8E71891E4037",
+          "PUBLIC-C31C47D5C902966E"
+        ],
+        "methods": {
+          "bm25": {
+            "status": "measured",
+            "first_relevant_rank": 2,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-FEF86732E13C93C9",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-C31C47D5C902966E"
+            ]
+          },
+          "dense": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "PUBLIC-890E8E71891E4037",
+              "STATUS-FEF86732E13C93C9",
+              "PUBLIC-C31C47D5C902966E",
+              "STATUS-A3A3041C8EFD40D0",
+              "STATUS-59D09147F6764333",
+              "PUBLIC-01CA3F4D1785F6EC",
+              "PUBLIC-724D8BFFFFFFA121"
+            ]
+          },
+          "hybrid_rrf": {
+            "status": "measured",
+            "first_relevant_rank": 5,
+            "recall_at_5": 0.5,
+            "ranked_document_ids": [
+              "STATUS-FEF86732E13C93C9",
+              "STATUS-A3A3041C8EFD40D0",
+              "STATUS-59D09147F6764333",
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-01CA3F4D1785F6EC"
+            ]
+          }
+        }
+      },
+      {
+        "id": "q11",
+        "relevant_document_ids": [
+          "PUBLIC-01CA3F4D1785F6EC"
+        ],
+        "methods": {
+          "bm25": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "PUBLIC-01CA3F4D1785F6EC"
+            ]
+          },
+          "dense": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "PUBLIC-01CA3F4D1785F6EC"
+            ]
+          },
+          "hybrid_rrf": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "PUBLIC-01CA3F4D1785F6EC"
+            ]
+          }
+        }
+      },
+      {
+        "id": "q12",
+        "relevant_document_ids": [
+          "STATUS-59D09147F6764333",
+          "STATUS-FEF86732E13C93C9"
+        ],
+        "methods": {
+          "bm25": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-59D09147F6764333",
+              "STATUS-A3A3041C8EFD40D0",
+              "STATUS-9FFB9A6A7228CBA1",
+              "STATUS-FEF86732E13C93C9",
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-E557E596579866ED",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-A71A8E2602C1A54E",
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-01CA3F4D1785F6EC"
+            ]
+          },
+          "dense": {
+            "status": "measured",
+            "first_relevant_rank": 4,
+            "recall_at_5": 0.5,
+            "ranked_document_ids": [
+              "STATUS-E557E596579866ED",
+              "STATUS-9FFB9A6A7228CBA1",
+              "PUBLIC-01CA3F4D1785F6EC",
+              "STATUS-59D09147F6764333",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-A71A8E2602C1A54E",
+              "STATUS-BB23B07642EFC33A",
+              "PUBLIC-724D8BFFFFFFA121",
+              "STATUS-FEF86732E13C93C9",
+              "PUBLIC-C31C47D5C902966E"
+            ]
+          },
+          "hybrid_rrf": {
+            "status": "measured",
+            "first_relevant_rank": 1,
+            "recall_at_5": 1.0,
+            "ranked_document_ids": [
+              "STATUS-59D09147F6764333",
+              "STATUS-9FFB9A6A7228CBA1",
+              "STATUS-E557E596579866ED",
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-FEF86732E13C93C9",
+              "STATUS-A3A3041C8EFD40D0",
+              "PUBLIC-A71A8E2602C1A54E",
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-01CA3F4D1785F6EC",
+              "PUBLIC-C31C47D5C902966E"
+            ]
+          }
+        }
+      }
+    ],
+    "cold_start": {
+      "dense_first_query_ms": 1011.926,
+      "dense_available": true
+    },
+    "repeats_per_query": 5
+  },
+  "format_probe": {
+    "runbook.md": {
+      "status": "passed",
+      "safe_name": "runbook.md",
+      "media_type": "text/markdown",
+      "character_count": 45,
+      "elapsed_ms": 0.047
+    },
+    "incident.txt": {
+      "status": "passed",
+      "safe_name": "incident.txt",
+      "media_type": "text/plain",
+      "character_count": 15,
+      "elapsed_ms": 0.012
+    },
+    "evidence.pdf": {
+      "status": "passed",
+      "safe_name": "evidence.pdf",
+      "media_type": "application/pdf",
+      "character_count": 19,
+      "elapsed_ms": 2.97
+    }
+  },
+  "agent_run": {
+    "status": "measured",
+    "mode": "deterministic-local-engine",
+    "repeats": 20,
+    "wall_clock_ms": {
+      "n": 20,
+      "mean_ms": 3.004,
+      "p50_ms": 2.965,
+      "p95_ms": 3.369,
+      "min_ms": 2.645,
+      "max_ms": 4.298
+    },
+    "tool_calls": {
+      "mean": 5,
+      "min": 5,
+      "max": 5
+    },
+    "reported_tool_duration_ms": {
+      "n": 20,
+      "mean_ms": 112.0,
+      "p50_ms": 112.0,
+      "p95_ms": 112.0,
+      "min_ms": 112.0,
+      "max_ms": 112.0
+    },
+    "token_usage": {
+      "status": "not_measured",
+      "deepseek_api_key_configured": false,
+      "reason": "本 benchmark 未调用 DeepSeek API；确定性本地引擎没有模型 token usage 返回值。"
+    }
+  },
+  "api": {
+    "status": "measured",
+    "unique_paths": 17,
+    "method_route_pairs": 20,
+    "routes": [
+      "GET /api/health",
+      "GET /api/scenarios",
+      "GET /api/scenarios/{key}",
+      "POST /api/analyze",
+      "GET /api/dashboard",
+      "POST /api/runs",
+      "GET /api/runs",
+      "GET /api/runs/{run_id}",
+      "POST /api/runs/{run_id}/decision",
+      "POST /api/runs/{run_id}/execute",
+      "POST /api/runs/{run_id}/knowledge-review",
+      "GET /api/alerts",
+      "POST /api/integrations/alerts",
+      "GET /api/knowledge/status",
+      "POST /api/knowledge/sync",
+      "GET /api/knowledge/documents",
+      "POST /api/knowledge/documents",
+      "GET /api/sessions/{session_id}",
+      "DELETE /api/sessions/{session_id}",
+      "POST /api/chat"
+    ]
+  },
+  "tests": {
+    "status": "measured",
+    "count": 31
+  },
+  "source_probe": {
+    "statuspage": {
+      "mode": "verified-snapshot",
+      "error": "Wikimedia Status: All connection attempts failed",
+      "scenario_count": 6
+    },
+    "wikitech": {
+      "mode": "external-fallback",
+      "error": "All connection attempts failed",
+      "document_count": 6
+    }
+  },
+  "reproducibility": {
+    "python": "3.12.13",
+    "retrieval_repeats_per_query": 5,
+    "agent_run_repeats": 20,
+    "top_k": 20,
+    "dense_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "rrf_rank_constant": 60
+  }
+}

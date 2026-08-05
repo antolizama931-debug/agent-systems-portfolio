@@ -643,20 +643,33 @@ class KnowledgeBaseStore:
         scored.sort(key=lambda item: item[0], reverse=True)
         return [chunk for _, chunk in scored[:RETRIEVAL_CANDIDATES]]
 
-    def search(self, query: str, top_k: int = 4) -> list[KnowledgeCitation]:
-        query_tokens = _tokenize(query)
-        if not query_tokens:
+    def search(self, query: str, top_k: int = 4, *, mode: str = "hybrid") -> list[KnowledgeCitation]:
+        """按指定检索模式返回可审计引用。
+
+        ``mode`` 仅用于内部评测和回归对照，默认仍是线上使用的混合检索：
+        ``bm25`` 只启用词法通道，``dense`` 只启用多语言向量通道，
+        ``hybrid`` 使用现有的 RRF 与来源权威度重排。
+        """
+        if mode not in {"bm25", "dense", "hybrid"}:
+            raise ValueError("检索模式必须是 bm25、dense 或 hybrid")
+        if not query or not query.strip():
             return []
+        query_tokens = _tokenize(query)
         with self._lock:
             chunks = [chunk for items in self._chunks.values() for chunk in items]
         if not chunks:
             return []
 
-        # 两路召回的分数不在同一量纲，因此只用排名进行 RRF 融合。
-        ranked_lists = [
-            ("BM25 词法", self._bm25_ranking(query_tokens, chunks)),
-            ("多语言语义向量", self._dense_ranking(query, chunks)),
-        ]
+        if mode == "bm25":
+            ranked_lists = [("BM25 词法", self._bm25_ranking(query_tokens, chunks))]
+        elif mode == "dense":
+            ranked_lists = [("多语言语义向量", self._dense_ranking(query, chunks))]
+        else:
+            # 两路召回的分数不在同一量纲，因此只用排名进行 RRF 融合。
+            ranked_lists = [
+                ("BM25 词法", self._bm25_ranking(query_tokens, chunks)),
+                ("多语言语义向量", self._dense_ranking(query, chunks)),
+            ]
         fused_scores: dict[str, float] = {}
         candidates: dict[str, _Chunk] = {}
         signals: dict[str, list[str]] = {}

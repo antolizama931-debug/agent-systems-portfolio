@@ -1,0 +1,74 @@
+[
+  {
+    "id": "q01",
+    "text": "俄罗斯用户无法访问图片和媒体服务",
+    "language": "zh",
+    "relevant_keys": ["wikimedia-wfdnbnv00w3r"]
+  },
+  {
+    "id": "q02",
+    "text": "users cannot reach the wikis because of a network outage",
+    "language": "en",
+    "relevant_keys": ["wikimedia-7m1vqs2gwnmq"]
+  },
+  {
+    "id": "q03",
+    "text": "编辑失败导致 Wikipedia 修改无法提交",
+    "language": "zh",
+    "relevant_keys": ["wikimedia-kq46rrxd2yy4"]
+  },
+  {
+    "id": "q04",
+    "text": "wiki entered read only mode",
+    "language": "en",
+    "relevant_keys": ["wikimedia-z7qjmqtrh8yq"]
+  },
+  {
+    "id": "q05",
+    "text": "编辑延迟可能与数据库服务器问题有关",
+    "language": "zh",
+    "relevant_keys": ["wikimedia-ncw3k9b4ynz6"]
+  },
+  {
+    "id": "q06",
+    "text": "degraded performance accessing Wikimedia wikis",
+    "language": "en",
+    "relevant_keys": ["wikimedia-qdkw27z7d2yt"]
+  },
+  {
+    "id": "q07",
+    "text": "Kubernetes Pod Service StatefulSet debugging",
+    "language": "mixed",
+    "relevant_keys": ["upstream-kubernetes-debug"]
+  },
+  {
+    "id": "q08",
+    "text": "Prometheus pending firing keep_firing_for alert rules",
+    "language": "en",
+    "relevant_keys": ["upstream-prometheus-alerting"]
+  },
+  {
+    "id": "q09",
+    "text": "MariaDB error log slow query binary log monitoring",
+    "language": "mixed",
+    "relevant_keys": ["upstream-mariadb-monitoring"]
+  },
+  {
+    "id": "q10",
+    "text": "BGP route withdrawal caused a network outage",
+    "language": "en",
+    "relevant_keys": ["external-cloudflare-2026-02-20", "external-google-cloud-network"]
+  },
+  {
+    "id": "q11",
+    "text": "Gitaly Puma load balancer 5xx saturation",
+    "language": "en",
+    "relevant_keys": ["external-gitlab-loadbalancer-2026-04-11"]
+  },
+  {
+    "id": "q12",
+    "text": "Wikimedia wiki 访问异常 incident history",
+    "language": "mixed",
+    "relevant_keys": ["wikimedia-qdkw27z7d2yt", "wikimedia-7m1vqs2gwnmq"]
+  }
+]

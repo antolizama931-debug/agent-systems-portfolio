@@ -1,3 +1,5 @@
+import pytest
+
 from app.knowledge import KnowledgeBaseStore, SessionMemoryStore
 
 
@@ -26,6 +28,20 @@ def test_status_reports_truthful_hybrid_retrieval_components():
     assert status.retrieval_mode == "混合检索 RAG"
     assert status.embedding_model == "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
     assert "RRF" in status.retriever
+
+
+def test_retrieval_modes_support_benchmark_comparison():
+    """评测对照模式必须复用同一索引，并拒绝未定义模式。"""
+    store = KnowledgeBaseStore(max_documents=2)
+    store.add("payment.md", "支付接口 5xx 时检查数据库 connection pool。".encode("utf-8"))
+
+    for mode in ("bm25", "dense", "hybrid"):
+        results = store.search("数据库连接池耗尽", top_k=2, mode=mode)
+        assert results
+        assert results[0].document_name == "payment.md"
+
+    with pytest.raises(ValueError, match="检索模式"):
+        store.search("数据库连接池耗尽", mode="unsupported")
 
 
 def test_uploaded_document_is_restored_from_sqlite(tmp_path):
