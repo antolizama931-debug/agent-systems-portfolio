@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-05T06:22:00Z",
+  "generated_at_utc": "2026-08-05T06:28:09Z",
   "benchmark_version": 1,
   "corpus": {
     "mode": "verified-snapshot+fixed-reference",
@@ -135,17 +135,17 @@
       "bm25": {
         "status": "measured",
         "n_queries": 12,
-        "recall_at_1": 0.875,
+        "recall_at_1": 0.791667,
         "recall_at_3": 0.958333,
         "recall_at_5": 1.0,
-        "mrr": 0.958333,
+        "mrr": 0.902778,
         "latency_ms": {
           "n": 60,
-          "mean_ms": 0.138,
-          "p50_ms": 0.134,
-          "p95_ms": 0.188,
-          "min_ms": 0.085,
-          "max_ms": 0.232
+          "mean_ms": 0.18,
+          "p50_ms": 0.164,
+          "p95_ms": 0.288,
+          "min_ms": 0.119,
+          "max_ms": 0.308
         },
         "delta_vs_bm25_percentage_points": {
           "recall_at_1": 0.0,
@@ -157,23 +157,23 @@
       "dense": {
         "status": "measured",
         "n_queries": 12,
-        "recall_at_1": 0.875,
-        "recall_at_3": 0.916667,
+        "recall_at_1": 0.583333,
+        "recall_at_3": 0.791667,
         "recall_at_5": 0.958333,
-        "mrr": 0.9375,
+        "mrr": 0.718056,
         "latency_ms": {
           "n": 60,
-          "mean_ms": 5.261,
-          "p50_ms": 5.16,
-          "p95_ms": 6.209,
-          "min_ms": 4.159,
-          "max_ms": 6.584
+          "mean_ms": 4.614,
+          "p50_ms": 4.569,
+          "p95_ms": 5.232,
+          "min_ms": 3.791,
+          "max_ms": 5.883
         },
         "delta_vs_bm25_percentage_points": {
-          "recall_at_1": 0.0,
-          "recall_at_3": -4.167,
+          "recall_at_1": -20.833,
+          "recall_at_3": -16.667,
           "recall_at_5": -4.167,
-          "mrr": -2.083
+          "mrr": -18.472
         }
       },
       "hybrid_rrf": {
@@ -185,17 +185,17 @@
         "mrr": 0.891667,
         "latency_ms": {
           "n": 60,
-          "mean_ms": 5.257,
-          "p50_ms": 5.284,
-          "p95_ms": 6.495,
-          "min_ms": 3.71,
-          "max_ms": 6.653
+          "mean_ms": 4.759,
+          "p50_ms": 4.702,
+          "p95_ms": 5.394,
+          "min_ms": 4.043,
+          "max_ms": 5.699
         },
         "delta_vs_bm25_percentage_points": {
-          "recall_at_1": -8.333,
+          "recall_at_1": 0.0,
           "recall_at_3": -8.333,
           "recall_at_5": -4.167,
-          "mrr": -6.667
+          "mrr": -1.111
         }
       }
     },
@@ -213,16 +213,16 @@
             "ranked_document_ids": [
               "STATUS-A3A3041C8EFD40D0",
               "STATUS-59D09147F6764333",
-              "PUBLIC-A71A8E2602C1A54E",
-              "PUBLIC-C31C47D5C902966E",
-              "PUBLIC-890E8E71891E4037",
               "STATUS-9FFB9A6A7228CBA1",
+              "STATUS-FEF86732E13C93C9",
+              "STATUS-BB23B07642EFC33A",
+              "STATUS-E557E596579866ED",
+              "PUBLIC-A71A8E2602C1A54E",
               "PUBLIC-B9455E125477E1C4",
               "PUBLIC-724D8BFFFFFFA121",
-              "STATUS-FEF86732E13C93C9",
-              "PUBLIC-01CA3F4D1785F6EC",
-              "STATUS-BB23B07642EFC33A",
-              "STATUS-E557E596579866ED"
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-01CA3F4D1785F6EC"
             ]
           },
           "dense": {
@@ -232,11 +232,11 @@
             "ranked_document_ids": [
               "STATUS-A3A3041C8EFD40D0",
               "STATUS-FEF86732E13C93C9",
-              "PUBLIC-C31C47D5C902966E",
-              "PUBLIC-890E8E71891E4037",
               "STATUS-BB23B07642EFC33A",
               "STATUS-59D09147F6764333",
-              "PUBLIC-B9455E125477E1C4"
+              "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-890E8E71891E4037"
             ]
           },
           "hybrid_rrf": {
@@ -287,12 +287,12 @@
               "STATUS-FEF86732E13C93C9",
               "STATUS-59D09147F6764333",
               "STATUS-BB23B07642EFC33A",
-              "PUBLIC-890E8E71891E4037",
-              "PUBLIC-C31C47D5C902966E",
               "STATUS-9FFB9A6A7228CBA1",
-              "PUBLIC-724D8BFFFFFFA121",
               "STATUS-E557E596579866ED",
               "STATUS-A3A3041C8EFD40D0",
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-C31C47D5C902966E",
               "PUBLIC-01CA3F4D1785F6EC"
             ]
           },
@@ -327,10 +327,10 @@
             "recall_at_5": 1.0,
             "ranked_document_ids": [
               "STATUS-9FFB9A6A7228CBA1",
-              "PUBLIC-C31C47D5C902966E",
               "STATUS-E557E596579866ED",
               "STATUS-59D09147F6764333",
-              "STATUS-BB23B07642EFC33A"
+              "STATUS-BB23B07642EFC33A",
+              "PUBLIC-C31C47D5C902966E"
             ]
           },
           "dense": {
@@ -341,11 +341,11 @@
               "STATUS-9FFB9A6A7228CBA1",
               "STATUS-E557E596579866ED",
               "STATUS-59D09147F6764333",
-              "PUBLIC-C31C47D5C902966E",
               "STATUS-BB23B07642EFC33A",
-              "PUBLIC-890E8E71891E4037",
               "STATUS-FEF86732E13C93C9",
-              "PUBLIC-724D8BFFFFFFA121"
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-890E8E71891E4037"
             ]
           },
           "hybrid_rrf": {
@@ -426,12 +426,12 @@
               "STATUS-9FFB9A6A7228CBA1",
               "STATUS-BB23B07642EFC33A",
               "STATUS-FEF86732E13C93C9",
-              "PUBLIC-A71A8E2602C1A54E",
               "STATUS-A3A3041C8EFD40D0",
-              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-A71A8E2602C1A54E",
               "PUBLIC-724D8BFFFFFFA121",
-              "PUBLIC-C31C47D5C902966E",
               "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-C31C47D5C902966E",
               "PUBLIC-01CA3F4D1785F6EC"
             ]
           },
@@ -441,12 +441,12 @@
             "recall_at_5": 1.0,
             "ranked_document_ids": [
               "STATUS-E557E596579866ED",
-              "PUBLIC-B9455E125477E1C4",
-              "PUBLIC-724D8BFFFFFFA121",
               "STATUS-59D09147F6764333",
               "STATUS-9FFB9A6A7228CBA1",
-              "PUBLIC-C31C47D5C902966E",
-              "PUBLIC-A71A8E2602C1A54E"
+              "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-A71A8E2602C1A54E",
+              "PUBLIC-C31C47D5C902966E"
             ]
           },
           "hybrid_rrf": {
@@ -486,13 +486,13 @@
               "STATUS-9FFB9A6A7228CBA1",
               "STATUS-E557E596579866ED",
               "STATUS-FEF86732E13C93C9",
-              "PUBLIC-890E8E71891E4037",
-              "PUBLIC-C31C47D5C902966E",
+              "STATUS-A3A3041C8EFD40D0",
               "PUBLIC-A71A8E2602C1A54E",
               "PUBLIC-724D8BFFFFFFA121",
               "PUBLIC-B9455E125477E1C4",
-              "PUBLIC-01CA3F4D1785F6EC",
-              "STATUS-A3A3041C8EFD40D0"
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-01CA3F4D1785F6EC"
             ]
           },
           "dense": {
@@ -502,15 +502,15 @@
             "ranked_document_ids": [
               "STATUS-59D09147F6764333",
               "STATUS-FEF86732E13C93C9",
-              "PUBLIC-890E8E71891E4037",
               "STATUS-BB23B07642EFC33A",
-              "PUBLIC-C31C47D5C902966E",
               "STATUS-9FFB9A6A7228CBA1",
               "STATUS-E557E596579866ED",
               "STATUS-A3A3041C8EFD40D0",
-              "PUBLIC-01CA3F4D1785F6EC",
               "PUBLIC-724D8BFFFFFFA121",
-              "PUBLIC-B9455E125477E1C4"
+              "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-01CA3F4D1785F6EC"
             ]
           },
           "hybrid_rrf": {
@@ -550,17 +550,17 @@
           },
           "dense": {
             "status": "measured",
-            "first_relevant_rank": 1,
+            "first_relevant_rank": 4,
             "recall_at_5": 1.0,
             "ranked_document_ids": [
-              "PUBLIC-724D8BFFFFFFA121",
-              "PUBLIC-C31C47D5C902966E",
               "STATUS-59D09147F6764333",
-              "PUBLIC-01CA3F4D1785F6EC",
               "STATUS-FEF86732E13C93C9",
+              "STATUS-BB23B07642EFC33A",
+              "PUBLIC-724D8BFFFFFFA121",
               "PUBLIC-B9455E125477E1C4",
-              "PUBLIC-890E8E71891E4037",
-              "STATUS-BB23B07642EFC33A"
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-01CA3F4D1785F6EC",
+              "PUBLIC-890E8E71891E4037"
             ]
           },
           "hybrid_rrf": {
@@ -596,13 +596,13 @@
           },
           "dense": {
             "status": "measured",
-            "first_relevant_rank": 1,
+            "first_relevant_rank": 3,
             "recall_at_5": 1.0,
             "ranked_document_ids": [
-              "PUBLIC-A71A8E2602C1A54E",
               "STATUS-E557E596579866ED",
-              "PUBLIC-B9455E125477E1C4",
-              "STATUS-59D09147F6764333"
+              "STATUS-59D09147F6764333",
+              "PUBLIC-A71A8E2602C1A54E",
+              "PUBLIC-B9455E125477E1C4"
             ]
           },
           "hybrid_rrf": {
@@ -626,22 +626,22 @@
         "methods": {
           "bm25": {
             "status": "measured",
-            "first_relevant_rank": 1,
+            "first_relevant_rank": 3,
             "recall_at_5": 1.0,
             "ranked_document_ids": [
-              "PUBLIC-B9455E125477E1C4",
               "STATUS-59D09147F6764333",
-              "STATUS-E557E596579866ED"
+              "STATUS-E557E596579866ED",
+              "PUBLIC-B9455E125477E1C4"
             ]
           },
           "dense": {
             "status": "measured",
-            "first_relevant_rank": 1,
+            "first_relevant_rank": 2,
             "recall_at_5": 1.0,
             "ranked_document_ids": [
+              "STATUS-59D09147F6764333",
               "PUBLIC-B9455E125477E1C4",
-              "PUBLIC-01CA3F4D1785F6EC",
-              "STATUS-59D09147F6764333"
+              "PUBLIC-01CA3F4D1785F6EC"
             ]
           },
           "hybrid_rrf": {
@@ -676,16 +676,16 @@
           },
           "dense": {
             "status": "measured",
-            "first_relevant_rank": 1,
-            "recall_at_5": 1.0,
+            "first_relevant_rank": 5,
+            "recall_at_5": 0.5,
             "ranked_document_ids": [
-              "PUBLIC-890E8E71891E4037",
               "STATUS-FEF86732E13C93C9",
-              "PUBLIC-C31C47D5C902966E",
               "STATUS-A3A3041C8EFD40D0",
               "STATUS-59D09147F6764333",
-              "PUBLIC-01CA3F4D1785F6EC",
-              "PUBLIC-724D8BFFFFFFA121"
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-C31C47D5C902966E",
+              "PUBLIC-01CA3F4D1785F6EC"
             ]
           },
           "hybrid_rrf": {
@@ -754,28 +754,28 @@
               "STATUS-FEF86732E13C93C9",
               "STATUS-BB23B07642EFC33A",
               "STATUS-E557E596579866ED",
-              "PUBLIC-890E8E71891E4037",
-              "PUBLIC-C31C47D5C902966E",
               "PUBLIC-A71A8E2602C1A54E",
               "PUBLIC-724D8BFFFFFFA121",
               "PUBLIC-B9455E125477E1C4",
+              "PUBLIC-890E8E71891E4037",
+              "PUBLIC-C31C47D5C902966E",
               "PUBLIC-01CA3F4D1785F6EC"
             ]
           },
           "dense": {
             "status": "measured",
-            "first_relevant_rank": 4,
-            "recall_at_5": 0.5,
+            "first_relevant_rank": 3,
+            "recall_at_5": 1.0,
             "ranked_document_ids": [
               "STATUS-E557E596579866ED",
               "STATUS-9FFB9A6A7228CBA1",
-              "PUBLIC-01CA3F4D1785F6EC",
               "STATUS-59D09147F6764333",
-              "PUBLIC-890E8E71891E4037",
-              "PUBLIC-A71A8E2602C1A54E",
               "STATUS-BB23B07642EFC33A",
-              "PUBLIC-724D8BFFFFFFA121",
               "STATUS-FEF86732E13C93C9",
+              "PUBLIC-A71A8E2602C1A54E",
+              "PUBLIC-724D8BFFFFFFA121",
+              "PUBLIC-01CA3F4D1785F6EC",
+              "PUBLIC-890E8E71891E4037",
               "PUBLIC-C31C47D5C902966E"
             ]
           },
@@ -802,7 +802,7 @@
       }
     ],
     "cold_start": {
-      "dense_first_query_ms": 1011.926,
+      "dense_first_query_ms": 1488.551,
       "dense_available": true
     },
     "repeats_per_query": 5
@@ -813,21 +813,21 @@
       "safe_name": "runbook.md",
       "media_type": "text/markdown",
       "character_count": 45,
-      "elapsed_ms": 0.047
+      "elapsed_ms": 0.046
     },
     "incident.txt": {
       "status": "passed",
       "safe_name": "incident.txt",
       "media_type": "text/plain",
       "character_count": 15,
-      "elapsed_ms": 0.012
+      "elapsed_ms": 0.013
     },
     "evidence.pdf": {
       "status": "passed",
       "safe_name": "evidence.pdf",
       "media_type": "application/pdf",
       "character_count": 19,
-      "elapsed_ms": 2.97
+      "elapsed_ms": 2.619
     }
   },
   "agent_run": {
@@ -836,11 +836,11 @@
     "repeats": 20,
     "wall_clock_ms": {
       "n": 20,
-      "mean_ms": 3.004,
-      "p50_ms": 2.965,
-      "p95_ms": 3.369,
-      "min_ms": 2.645,
-      "max_ms": 4.298
+      "mean_ms": 2.882,
+      "p50_ms": 2.615,
+      "p95_ms": 3.312,
+      "min_ms": 2.389,
+      "max_ms": 7.438
     },
     "tool_calls": {
       "mean": 5,

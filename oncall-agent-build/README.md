@@ -92,11 +92,11 @@ Agent Run、审批、处置结果、知识候选和企业告警去重状态写�
 
 | 检索模式 | Recall@5 | MRR | P50 延迟 | P95 延迟 |
 |---|---:|---:|---:|---:|
-| BM25 | **1.000** | **0.958** | 0.125 ms | 0.167 ms |
-| 纯多语言向量 | 0.958 | 0.938 | 4.262 ms | 4.747 ms |
-| Hybrid（RRF） | 0.958 | 0.892 | 4.423 ms | 5.151 ms |
+| BM25 | **1.000** | **0.958** | 0.134 ms | 0.188 ms |
+| 纯多语言向量 | 0.958 | 0.938 | 5.160 ms | 6.209 ms |
+| Hybrid（RRF） | 0.958 | 0.892 | 5.284 ms | 6.495 ms |
 
-该评测集没有证明 Hybrid 相对 BM25 或纯向量的 Recall@5 提升，因此不能在简历中声称“RRF 使 Recall@5 提升 X%”。当前结果可作为基线；延迟只统计本地进程内 warm-cache 检索，不包含模型首次下载、网络和 DeepSeek 生成。完整逐查询结果见 [`benchmarks/results/analysis-report.md`](benchmarks/results/analysis-report.md) 和 [`benchmarks/results/benchmark.json`](benchmarks/results/benchmark.json)。
+该评测集没有证明 Hybrid 相对 BM25 或纯向量的 Recall@5 提升：Hybrid 相对 BM25 为 **−4.17 个百分点**。因此不能在简历中声称“RRF 使 Recall@5 提升 X%”。当前结果可作为基线；延迟只统计本地进程内 warm-cache 检索，不包含模型首次下载、网络和 DeepSeek 生成。完整逐查询结果见 [`benchmarks/results/analysis-report.md`](benchmarks/results/analysis-report.md) 和 [`benchmarks/results/benchmark.json`](benchmarks/results/benchmark.json)。
 
 ```powershell
 \.venv\Scripts\python.exe benchmarks\knowledge_retrieval_benchmark.py

@@ -40,7 +40,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from app.engine import analyze_incident  # noqa: E402
-from app.knowledge import KnowledgeBaseStore, _tokenize, extract_document_text  # noqa: E402
+from app.knowledge import KnowledgeBaseStore, extract_document_text  # noqa: E402
 from app.models import IncidentRequest, Severity  # noqa: E402
 from app.public_sources import (  # noqa: E402
     EXTERNAL_ANALOGIES,
@@ -187,14 +187,15 @@ def _chunks(store: KnowledgeBaseStore) -> list[Any]:
 
 
 def ranked_ids(store: KnowledgeBaseStore, query: str, method: str) -> list[str]:
-    chunks = _chunks(store)
     if method == "bm25":
-        # 相关性标签按文档级维护；同一文档的多个 chunk 只能计一次。
-        return list(dict.fromkeys(chunk.document_id for chunk in store._bm25_ranking(_tokenize(query), chunks)))
+        citations = store.search(query, top_k=TOP_K, mode="bm25")
+        return list(dict.fromkeys(citation.document_id for citation in citations))
     if method == "dense":
-        return list(dict.fromkeys(chunk.document_id for chunk in store._dense_ranking(query, chunks)))
+        citations = store.search(query, top_k=TOP_K, mode="dense")
+        return list(dict.fromkeys(citation.document_id for citation in citations))
     if method == "hybrid_rrf":
-        return list(dict.fromkeys(citation.document_id for citation in store.search(query, top_k=TOP_K)))
+        citations = store.search(query, top_k=TOP_K, mode="hybrid")
+        return list(dict.fromkeys(citation.document_id for citation in citations))
     raise ValueError(f"unknown retrieval method: {method}")
 
 
