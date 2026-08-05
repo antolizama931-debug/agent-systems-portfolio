@@ -174,7 +174,7 @@ DEEPSEEK_MAX_TOKENS=2200
 
 测试覆盖：Wikimedia 事故映射、草稿过滤、Runbook 同步、命名空间隔离、权威度重排、HTML 清理、来源追踪、上游失败快照回退、BM25 与多语言语义召回、RRF 状态、危险建议阻断、告警认证与去重、审批、处置演练、恢复验证、回滚和 API 端到端流程。
 
-当前 FastAPI 暴露 20 个 `/api/*` 路由；本地 `pytest -q` 最近一次结果为 31 passed。
+当前 FastAPI 暴露 17 个 `/api/*` 唯一路径、20 个 HTTP method-route 对；本地 `pytest -q` 最近一次结果为 31 passed。
 
 ## Railway 部署
 
