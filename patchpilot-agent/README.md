@@ -22,6 +22,8 @@ python -m venv .venv
 
 ## 测试
 
+独立测试摘要见 [`TEST_REPORT.md`](TEST_REPORT.md)，包含本地 pytest 和 Railway 线上 API 验证结果。
+
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
 ```

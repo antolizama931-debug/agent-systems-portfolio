@@ -168,6 +168,8 @@ DEEPSEEK_MAX_TOKENS=2200
 
 ## 测试
 
+独立测试摘要见 [`benchmarks/results/oncall_test_report.md`](benchmarks/results/oncall_test_report.md)。
+
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
 ```
