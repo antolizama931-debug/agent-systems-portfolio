@@ -1,8 +1,8 @@
 // Public URLs only. Never put API keys, Railway tokens or model credentials here.
 window.AGENT_PORTFOLIO_CONFIG = {
   githubUrl: "https://github.com/antolizama931-debug",
-  opspilotUrl: "",
+  opspilotUrl: "https://agent-opspilot-demo-production.up.railway.app",
   opspilotRepositoryUrl: "https://github.com/antolizama931-debug/agent-systems-portfolio",
-  reliabilityUrl: "",
+  reliabilityUrl: "https://agent-reliabilitylab-demo-production.up.railway.app",
   reliabilityRepositoryUrl: "https://github.com/antolizama931-debug/agent-systems-portfolio",
 };
