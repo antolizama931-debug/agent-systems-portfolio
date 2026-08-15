@@ -1,8 +1,8 @@
-// Public deployment and repository links for both Agent applications.
+// Public URLs only. Never put API keys, Railway tokens or model credentials here.
 window.AGENT_PORTFOLIO_CONFIG = {
   githubUrl: "https://github.com/antolizama931-debug",
-  onCallAgentUrl: "https://oncall-agent-production-4c9c.up.railway.app",
-  onCallRepositoryUrl: "https://github.com/antolizama931-debug/oncall-agent",
-  mewCodeAgentUrl: "https://mewcode-production.up.railway.app",
-  mewCodeRepositoryUrl: "https://github.com/antolizama931-debug/agent-systems-portfolio/tree/main/patchpilot-agent",
+  opspilotUrl: "",
+  opspilotRepositoryUrl: "https://github.com/antolizama931-debug/agent-systems-portfolio",
+  reliabilityUrl: "",
+  reliabilityRepositoryUrl: "https://github.com/antolizama931-debug/agent-systems-portfolio",
 };

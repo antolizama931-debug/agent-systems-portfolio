@@ -10,3 +10,8 @@
 **/.screens/
 **/.deploy/
 output/
+
+# Project runtime source is maintained in the private deployment workspace.
+/common/
+/opspilot/
+/agent_reliability_lab/

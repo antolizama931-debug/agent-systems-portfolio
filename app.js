@@ -2,23 +2,34 @@ const config = window.AGENT_PORTFOLIO_CONFIG || {};
 
 const links = {
   github: config.githubUrl,
-  oncall: config.onCallAgentUrl,
-  oncallRepo: config.onCallRepositoryUrl,
-  mewcode: config.mewCodeAgentUrl,
-  mewcodeRepo: config.mewCodeRepositoryUrl,
+  opspilotRepository: config.opspilotRepositoryUrl,
+  reliabilityRepository: config.reliabilityRepositoryUrl,
 };
 
 Object.entries(links).forEach(([name, href]) => {
   document.querySelectorAll(`[data-link="${name}"]`).forEach((link) => {
-    if (href) {
-      link.href = href;
-      link.target = "_blank";
-      link.rel = "noreferrer";
-    } else {
+    if (!href) {
       link.classList.add("disabled");
       link.setAttribute("aria-disabled", "true");
-      link.title = "部署完成后开放";
+      return;
     }
+    link.href = href;
+    link.target = "_blank";
+    link.rel = "noreferrer";
+  });
+});
+
+const projects = {
+  opspilot: config.opspilotUrl,
+  reliability: config.reliabilityUrl,
+};
+
+Object.entries(projects).forEach(([name, url]) => {
+  document.querySelectorAll(`[data-status="${name}"]`).forEach((label) => {
+    label.textContent = url ? "ONLINE" : "READY TO DEPLOY";
+  });
+  document.querySelectorAll(`[data-status-dot="${name}"]`).forEach((dot) => {
+    dot.classList.toggle("offline", !url);
   });
 });
 

@@ -3,119 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f5f7fb" />
-    <meta name="description" content="Agent Systems Lab：OnCall Agent 与 MewCode 的统一项目入口。" />
-    <title>Agent Systems Lab｜王存章</title>
+    <meta name="theme-color" content="#0b1220" />
+    <meta name="description" content="Agent Engineering Lab：OpsPilot 与 AgentReliabilityLab 的统一项目导航。" />
+    <title>Agent Engineering Lab｜王存章</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=4" />
+    <link rel="stylesheet" href="./styles.css?v=5" />
     <script src="./config.js"></script>
     <script src="./app.js" defer></script>
   </head>
   <body>
-    <header class="site-header">
-      <div class="page-shell nav-shell">
-        <a class="brand" href="#top"><span>AS</span><div><b>Agent Systems Lab</b><small>AI AGENT PORTFOLIO</small></div></a>
-        <nav><a href="#projects">项目导航</a><a href="#principles">工程边界</a><a class="github-link" data-link="github">GitHub <span>↗</span></a></nav>
-      </div>
-    </header>
-
+    <header class="site-header"><div class="page-shell nav-shell"><a class="brand" href="./"><span>AE</span><div><b>Agent Engineering Lab</b><small>PORTFOLIO / LIVE SYSTEMS</small></div></a><nav><a href="#projects">项目导航</a><a href="#principles">工程边界</a><a class="github-link" data-link="github">GitHub <span>↗</span></a></nav></div></header>
     <main id="top">
-      <section class="hero page-shell">
-        <div class="hero-copy">
-          <div class="eyebrow"><i></i> TWO PRODUCTION-STYLE AGENT DEMOS</div>
-          <h1>选择一个 Agent，<br /><em>进入完整演示。</em></h1>
-          <p>统一入口连接两个端到端智能体项目：事故响应 Agent 与编程 Agent。每个项目均包含可交互界面、执行轨迹和明确的安全边界。</p>
-          <a class="hero-link" href="#projects">查看两个项目 <span>↓</span></a>
-        </div>
-        <aside class="hero-summary" aria-label="项目概览">
-          <div><strong>02</strong><span>Agent 项目</span></div>
-          <div><strong>02</strong><span>在线演示</span></div>
-          <div class="summary-wide"><i></i><span>All systems available</span></div>
-        </aside>
-      </section>
-
-      <section class="projects" id="projects">
-        <div class="page-shell">
-          <div class="section-head">
-            <div><span>PROJECT DIRECTORY</span><h2>选择要进入的系统</h2></div>
-            <p>两个项目并列展示，入口、源码和技术边界保持一致，不需要经过额外页面。</p>
-          </div>
-
-          <div class="project-grid">
-            <article class="project-card oncall">
-              <div class="card-accent"></div>
-              <div class="card-top">
-                <span class="project-icon">OC</span>
-                <span class="availability"><i></i> ONLINE</span>
-              </div>
-              <div class="card-copy">
-                <small>INCIDENT RESPONSE AGENT</small>
-                <h3>OnCall Agent</h3>
-                <p>从公开事故和企业告警出发，完成证据归一化、根因判断、策略审批、Runbook 演练、恢复验证与复盘沉淀。</p>
-              </div>
-              <div class="capability-list">
-                <span>Hybrid RAG</span><span>Evidence Grounding</span><span>Human Approval</span><span>Rollback</span>
-              </div>
-              <dl class="project-facts">
-                <div><dt>场景</dt><dd>事故响应</dd></div>
-                <div><dt>核心流程</dt><dd>调查 → 审批 → 恢复</dd></div>
-                <div><dt>部署</dt><dd>Railway</dd></div>
-              </dl>
-              <div class="card-actions">
-                <a class="launch" data-link="oncall"><span>打开 OnCall Agent</span><b>→</b></a>
-                <a class="source-link" data-link="oncallRepo"><span>查看源码</span><b>↗</b></a>
-              </div>
-            </article>
-
-            <article class="project-card mewcode">
-              <div class="card-accent"></div>
-              <div class="card-top">
-                <span class="project-icon">MC</span>
-                <span class="availability"><i></i> ONLINE</span>
-              </div>
-              <div class="card-copy">
-                <small>TERMINAL CODING AGENT</small>
-                <h3>MewCode</h3>
-                <p>通过自定义异步 Agent Loop 连接模型与代码工具，统一处理流式事件、上下文预算、权限门和多轮工具调用；在线版使用固定 Fixture 安全展示执行轨迹。</p>
-              </div>
-              <div class="capability-list">
-                <span>Agent Loop</span><span>MCP</span><span>Context Budget</span><span>Permission Gate</span>
-              </div>
-              <dl class="project-facts">
-                <div><dt>场景</dt><dd>代码智能体</dd></div>
-                <div><dt>核心流程</dt><dd>决策 → 工具 → 验证</dd></div>
-                <div><dt>部署</dt><dd>Railway</dd></div>
-              </dl>
-              <div class="card-actions">
-                <a class="launch" data-link="mewcode"><span>打开 MewCode</span><b>→</b></a>
-                <a class="source-link" data-link="mewcodeRepo"><span>项目说明</span><b>↗</b></a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="principles" id="principles">
-        <div class="page-shell">
-          <div class="section-head compact">
-            <div><span>SHARED ENGINEERING BOUNDARY</span><h2>两个项目遵循相同的执行约束</h2></div>
-            <p>模型负责提出候选方案，证据、权限系统和验证流程决定方案是否可以执行。</p>
-          </div>
-          <div class="principle-grid">
-            <article><span>01</span><b>Evidence</b><h3>证据与推测分离</h3><p>观察事实、模型假设与执行动作使用不同结构。</p></article>
-            <article><span>02</span><b>Authority</b><h3>权限先于置信度</h3><p>允许列表、风险等级和人工审批共同控制执行。</p></article>
-            <article><span>03</span><b>Recovery</b><h3>失败可以恢复</h3><p>状态、工具输出和审批事件可保存、可回放。</p></article>
-            <article><span>04</span><b>Evaluation</b><h3>固定任务评测</h3><p>用成功率、时延、成本和阻断率衡量迭代。</p></article>
-          </div>
-        </div>
-      </section>
+      <section class="hero page-shell"><div class="hero-copy"><div class="eyebrow"><i></i> TWO INTERACTIVE AGENT SYSTEMS</div><h1>选择一个系统，<br /><em>直接进入演示。</em></h1><p>两个可运行的 Agent 工程项目：一个展示安全可恢复的任务执行，一个展示故障注入与执行型可靠性评测。每个按钮都会进入独立的项目展示页，并连接对应的在线功能。</p><a class="hero-link" href="#projects">浏览项目 <span>↓</span></a></div><aside class="hero-summary" aria-label="项目概览"><div><strong>02</strong><span>interactive demos</span></div><div><strong>02</strong><span>Railway services</span></div><div class="summary-wide"><i></i><span>Live URLs are hydrated after deployment</span></div></aside></section>
+      <section class="projects" id="projects"><div class="page-shell"><div class="section-head"><div><span>PROJECT DIRECTORY</span><h2>两个入口，两个完整系统</h2></div><p>先看项目边界，再进入可交互页面。页面会展示架构、实现重点和在线演示入口。</p></div><div class="project-grid">
+        <article class="project-card opspilot" data-project="opspilot"><div class="card-accent"></div><div class="card-top"><span class="project-icon">OP</span><span class="availability"><i data-status-dot="opspilot"></i><span data-status="opspilot">CONFIGURING</span></span></div><div class="card-copy"><small>SAFE, RESUMABLE AGENT RUNTIME</small><h3>OpsPilot</h3><p>提交事故任务，观察诊断工具链，在扩容、回滚、重启等副作用操作前完成审批，并从 checkpoint 恢复执行。</p></div><div class="capability-list"><span>Tool Contract</span><span>Policy Gate</span><span>HITL</span><span>Checkpoint</span></div><dl class="project-facts"><div><dt>场景</dt><dd>生产运维</dd></div><div><dt>核心流程</dt><dd>诊断 → 审批 → 恢复</dd></div><div><dt>入口</dt><dd>项目展示页</dd></div></dl><div class="card-actions"><a class="launch" href="./opspilot.html"><span>进入 OpsPilot</span><b>→</b></a><a class="source-link" data-link="opspilotRepository"><span>源码</span><b>↗</b></a></div></article>
+        <article class="project-card reliability" data-project="reliability"><div class="card-accent"></div><div class="card-top"><span class="project-icon">RL</span><span class="availability"><i data-status-dot="reliability"></i><span data-status="reliability">CONFIGURING</span></span></div><div class="card-copy"><small>EXECUTION-BASED RELIABILITY EVALUATION</small><h3>ReliabilityLab</h3><p>选择策略和故障场景，直接运行超时/HTTP 500 注入实验，用最终基础设施状态计算恢复率和未授权副作用。</p></div><div class="capability-list"><span>Fault Injection</span><span>Policy Baselines</span><span>Recovery</span><span>Replayable</span></div><dl class="project-facts"><div><dt>场景</dt><dd>Agent 可靠性</dd></div><div><dt>核心流程</dt><dd>注入 → 执行 → 验收</dd></div><div><dt>入口</dt><dd>项目展示页</dd></div></dl><div class="card-actions"><a class="launch" href="./reliability.html"><span>进入 ReliabilityLab</span><b>→</b></a><a class="source-link" data-link="reliabilityRepository"><span>源码</span><b>↗</b></a></div></article>
+      </div></div></section>
+      <section class="principles" id="principles"><div class="page-shell"><div class="section-head compact"><div><span>SHARED ENGINEERING BOUNDARY</span><h2>模型提议，系统决定能否执行</h2></div><p>两个项目共用清晰的工具边界、策略门禁、执行轨迹和可复现评测，而不是把 Agent 简化成聊天框。</p></div><div class="principle-grid"><article><span>01</span><b>CONTRACT</b><h3>工具先有契约</h3><p>schema、角色、副作用和幂等键在工具层明确表达。</p></article><article><span>02</span><b>AUTHORITY</b><h3>权限先于置信度</h3><p>模型不能绕过人工审批直接修改模拟基础设施。</p></article><article><span>03</span><b>RECOVERY</b><h3>失败可以恢复</h3><p>checkpoint、retryable error 和结果状态支持继续执行。</p></article><article><span>04</span><b>EVALUATION</b><h3>结果可被复现</h3><p>固定场景、故障注入和最终状态验收产生可比较指标。</p></article></div></div></section>
     </main>
-
-    <footer>
-      <div class="page-shell footer-inner">
-        <div class="footer-brand"><span>AS</span><p><b>王存章</b><small>AI Agent 应用开发</small></p></div>
-        <p>Python · Java · FastAPI · LangGraph · RAG · MCP</p>
-      </div>
-    </footer>
+    <footer><div class="page-shell footer-inner"><div class="footer-brand"><span>AE</span><p><b>王存章</b><small>Agent 应用开发 · Agent 算法</small></p></div><p>Python · Tool Calling · MCP · Reliability</p></div></footer>
   </body>
 </html>
