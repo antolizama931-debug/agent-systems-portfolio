@@ -1,68 +1,52 @@
-# Agent Engineering Lab UI Specification
+# Agent Systems UI Specification
 
-## 目标
+## Design direction
 
-这是一套面向技术招聘者的 GitHub Pages 作品集界面。核心任务是让访客在 10 秒内完成：
+“Editorial technical portfolio”：用编辑型排版和轻量系统图表达工程能力，避免把作品集做成泛化的 SaaS 仪表盘。
 
-1. 理解两个项目分别解决什么问题；
-2. 进入对应的项目展示页；
-3. 在展示页中直接操作 Railway 在线服务；
-4. 查看源码与工程边界。
+- Canvas：暖白纸面 + 极浅网格，制造稳定、专业的阅读背景。
+- Typography：大标题负责定位项目价值，等宽小标签负责表达运行时状态。
+- Color：Cobalt 用于 OpsPilot 的安全执行主题，Teal 用于 ReliabilityLab 的评测主题。
+- Surface：白色卡片只承载信息分组，不使用大面积渐变和过重阴影。
+- Motion：只保留按钮 hover 和 iframe 状态变化，降低展示页噪声。
 
-## 信息架构
+## Information architecture
 
 ```text
-导航页 index.html
-├── OpsPilot 展示页 opspilot.html
-│   └── Railway iframe：安全可恢复 Agent 运行时
-└── ReliabilityLab 展示页 reliability.html
-    └── Railway iframe：故障注入与可靠性评测
+index.html
+├── OpsPilot card → opspilot.html → Railway live iframe
+└── ReliabilityLab card → reliability.html → Railway live iframe
 ```
 
-## 设计令牌
+## Components
 
-| 类别 | 令牌 | 取值/原则 |
-| --- | --- | --- |
-| 背景 | `--ink` | 深蓝黑，强调工程工具感 |
-| 主文字 | `--paper` | 高对比浅色 |
-| 次文字 | `--muted` | 降低说明文字视觉权重 |
-| OpsPilot 强调色 | `--lime` | 表示安全边界与可执行状态 |
-| ReliabilityLab 强调色 | `--orange` | 表示故障注入、诊断和实验 |
-| 边界 | `--line` | 低对比细线，区分卡片层级 |
-| 圆角 | `--radius-*` | 卡片适中圆角，避免消费级 SaaS 风格 |
-| 字体 | system stack | 不依赖外部字体，保证 GitHub Pages 可用 |
+- `site-header`：品牌、项目锚点、GitHub 外链。
+- `lab-console`：作品集级总览，展示系统数、场景数和共享工具链。
+- `system-card`：每个项目的工程问题、能力标签、CSS mini visualization、状态和入口。
+- `architecture-card`：项目详情页的架构/指标摘要。
+- `demo-shell`：模拟浏览器工具栏 + 真实 Railway iframe。
+- `service-state`：在线、未配置和重试状态；颜色不作为唯一状态信号，始终同步文字。
+- `detail-points`：项目的三项可面试技术重点。
 
-## 组件与状态
+## Reliability fixes
 
-- `project-card`：项目卡片，包含场景、核心流程、能力标签和两个动作。
-- `availability`：部署状态。没有公开 URL 时显示 `CONFIGURING`；配置 URL 后显示 `ONLINE`。
-- `primary-button`：打开在线系统，在新标签页打开公开 Railway URL。
-- `secondary-button`：查看源码或返回导航。
-- `live-frame-wrap`：在线服务容器。没有 URL 时显示可解释的离线占位；有 URL 时加载 iframe。
-- `detail-grid`：以三项短说明展示架构、可靠性和可观测性，不把页面变成长文档。
+- 每个项目页在 `body[data-live-url]` 和 iframe `src` 中保留公开 Railway URL 兜底。
+- `config.js`、`showcase.js` 和 `styles.css` 使用版本化 query string，绕过 GitHub Pages 的静态资源缓存。
+- `showcase.js` 优先读取 `config.js`，缺失时回退到 HTML 公开 URL。
+- 在线服务失败时显示“RETRY IN NEW TAB”，不再显示错误的“部署完成后更新 config.js”。
+- 不在公开配置中保存 API Key、Railway Token 或模型凭证。
 
-## 交互约束
+## Responsive / accessibility
 
-- 导航页的两个项目入口始终可用，不依赖 Railway 是否在线。
-- 在线按钮和 iframe 只从 `config.js` 读取公开 URL。
-- 未配置 URL 时按钮禁用，并明确提示“部署后更新 `config.js`”，不跳转到空地址。
-- 在线页面使用懒加载 iframe，避免导航页首屏同时请求两个后端。
-- GitHub 与源码链接在新标签页打开，并设置 `rel="noreferrer"`。
-- 生产运维项目明确显示“模拟基础设施”，避免访客误解为真实生产操作。
+- 1160px 内容宽度；940px 开始单列 hero；760px 以后卡片、方法和详情区变为单列。
+- 关键入口使用真实链接，键盘可聚焦；iframe 带有 `title`。
+- 状态同时使用文字、颜色和状态点；`prefers-reduced-motion` 会降低过渡动画。
+- 不引入外部字体、图片或第三方脚本，GitHub Pages 可独立加载。
 
-## 响应式与可访问性
+## Acceptance checklist
 
-- 使用 `meta viewport`、网格自动折叠和移动端单列布局。
-- 颜色不是唯一状态信息：状态同时有文字和圆点。
-- iframe 具备 `title`；按钮动作使用可读文本，不使用只有图标的关键入口。
-- 所有卡片入口保持键盘可聚焦，焦点样式由浏览器默认 outline 与按钮边界共同提供。
-- 不引入外部图片或第三方脚本，减少 GitHub Pages 运行时依赖。
-
-## 验收清单
-
-- [ ] 导航页两个入口分别跳转到 `opspilot.html` 与 `reliability.html`。
-- [ ] 两个展示页都能显示架构说明、源码链接和在线服务区域。
-- [ ] `config.js` 配置公开 URL 后，在线按钮与 iframe 同时生效。
-- [ ] 两个 Railway 服务的 `/api/health` 返回 `status=ok`。
-- [ ] 移动端宽度下页面无横向滚动，项目卡片保持可读。
-- [ ] 公开仓库扫描不到 API Key、Railway Token 或 `.env`。
+- [ ] 导航页两个项目按钮分别进入两个详情页。
+- [ ] 详情页首次加载即有 iframe `src`，不依赖异步 config 才能显示功能。
+- [ ] 两个页面均显示 `ONLINE`，失败时提供新标签页重试入口。
+- [ ] GitHub Pages 资源带版本号，配置更新不会长期命中旧缓存。
+- [ ] 移动端无横向滚动，项目卡片仍保留入口和状态。
