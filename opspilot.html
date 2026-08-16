@@ -1,19 +1,116 @@
 <!doctype html>
 <html lang="zh-CN">
   <head>
-    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f5f6f2" /><title>OpsPilot / Agent Systems</title>
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="./styles.css?v=20260815-4" />
-    <script src="./config.js?v=20260815-4"></script><script src="./showcase.js?v=20260815-4" defer></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#07111d" />
+    <title>OpsPilot / Agent Systems</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./showcase.css?v=20260816-2" />
+    <script src="./config.js?v=20260816-2"></script>
+    <script src="./showcase.js?v=20260816-2" defer></script>
   </head>
-  <body class="detail-body" data-showcase="opspilot" data-live-url="https://agent-opspilot-demo-production.up.railway.app">
-    <header class="site-header"><div class="page-shell nav-shell"><a class="brand" href="./"><span class="brand-mark">AS</span><span class="brand-copy"><b>Agent Systems</b><small>PROJECT 01 / OPSPILOT</small></span></a><nav aria-label="项目导航"><a href="./">返回导航</a><a class="github-link" data-link="github">GitHub <span>↗</span></a></nav></div></header>
-    <main class="page-shell detail-page">
-      <div class="breadcrumb"><a href="./">Agent Systems</a><span>/</span><span>OpsPilot</span></div>
-      <section class="detail-hero"><div class="detail-hero-copy"><div class="kicker"><span class="kicker-line"></span>PROJECT 01 · SAFE AGENT RUNTIME</div><h1>OpsPilot<br /><span>让 Agent 先诊断，再执行。</span></h1><p>一个可暂停、可恢复、可审批的生产运维 Agent。在线演示连接模拟基础设施，不连接真实生产环境。</p><div class="hero-actions"><a class="button button-accent" data-action="open-live">打开在线系统 <span>↗</span></a><a class="button button-ghost" data-link="repository">查看仓库 <span>↗</span></a></div></div><aside class="architecture-card"><div class="architecture-top"><span>ARCHITECTURE</span><b>SAFE / RESUMABLE</b></div><div class="architecture-flow"><div class="architecture-node"><small>01</small><b>PLAN</b><span>tool calls</span></div><i></i><div class="architecture-node is-gate"><small>02</small><b>GATE</b><span>approval</span></div><i></i><div class="architecture-node"><small>03</small><b>RUN</b><span>checkpoint</span></div></div><div class="architecture-stats"><div><b>HITL</b><span>side effects</span></div><div><b>SQLite</b><span>recovery</span></div><div><b>JSONL</b><span>trace</span></div></div></aside></section>
-      <section class="demo-section" id="demo"><div class="section-title-row"><div><div class="section-kicker">LIVE DEMO</div><h2>直接操作这个项目</h2></div><div id="live-state" class="service-state"><i></i><span>ONLINE</span></div></div><div class="demo-shell"><div class="demo-toolbar"><span><i></i><i></i><i></i><b>agent-opspilot-demo / production</b></span><a data-action="open-live">新标签页打开 ↗</a></div><div class="live-frame-wrap"><iframe id="live-frame" src="https://agent-opspilot-demo-production.up.railway.app" title="OpsPilot 在线交互演示" loading="eager" referrerpolicy="no-referrer"></iframe><div id="live-offline" class="live-offline" hidden><strong>在线服务暂时不可用</strong><p>请点击上方按钮在新标签页重试。</p></div></div></div></section>
-      <section class="detail-points"><article><span>01 / CONTROL</span><h3>副作用有策略门</h3><p>扩容、回滚、重启等工具都带有 side effect 标记，必须经过角色检查与显式审批。</p></article><article><span>02 / RECOVERY</span><h3>失败可以继续</h3><p>线程状态写入 SQLite checkpoint，服务重启后可以从待处理节点恢复，而不是重新猜测。</p></article><article><span>03 / TRACE</span><h3>每一步都可回放</h3><p>trace id、工具参数、延迟和错误类型形成 JSONL 轨迹，支持调试与离线评测。</p></article></section>
+  <body class="showcase-page theme-opspilot" data-showcase="opspilot" data-live-url="https://agent-opspilot-demo-production.up.railway.app">
+    <header class="showcase-topbar">
+      <div class="showcase-shell showcase-topbar-inner">
+        <a class="showcase-brand" href="./">
+          <span class="showcase-mark">AS</span>
+          <span class="showcase-brand-copy"><strong>Agent Systems</strong><small>PROJECT 01 / OPSPILOT</small></span>
+        </a>
+        <nav class="showcase-nav" aria-label="项目导航">
+          <a href="./">INDEX</a>
+          <a class="showcase-nav-current" href="#demo">LIVE RUN</a>
+          <a class="showcase-nav-external" data-link="github">GITHUB ↗</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="showcase-shell showcase-main">
+      <div class="showcase-breadcrumb"><a href="./">Agent Systems</a><span>/</span><strong>OpsPilot</strong></div>
+
+      <section class="showcase-hero" id="overview">
+        <div class="showcase-hero-copy">
+          <div class="showcase-eyebrow"><span>01</span> SAFE AGENT RUNTIME · DEPLOYMENT PROOF</div>
+          <h1>让 Agent<br /><em>先诊断，再执行。</em></h1>
+          <p>一个可暂停、可审批、可恢复的生产型 Agent 运行时。把高风险工具调用拆成可解释的计划、策略门和持久化检查点，让人可以在副作用发生前介入。</p>
+          <div class="showcase-actions">
+            <a class="showcase-action showcase-action-primary" data-action="open-live">打开在线系统 <span>↗</span></a>
+            <a class="showcase-action showcase-action-secondary" data-link="repository">查看项目仓库 <span>↗</span></a>
+          </div>
+          <div class="hero-footnote"><span>PUBLIC DEMO</span><span>HUMAN-IN-THE-LOOP</span><span>DURABLE CHECKPOINTS</span></div>
+        </div>
+
+        <aside class="run-card" aria-label="OpsPilot 运行预览">
+          <div class="run-card-header"><span>RUN PREVIEW / TRACE 0001</span><span class="showcase-status"><i></i>ONLINE</span></div>
+          <div class="run-card-context"><span>trace_id</span><code>ops_2026_0816_0001</code></div>
+          <div class="run-flow">
+            <div class="run-step is-done"><span class="run-step-index">01</span><span class="run-step-label"><strong>DIAGNOSE</strong><small>inspect cluster state</small></span><code>done</code></div>
+            <div class="run-step is-done"><span class="run-step-index">02</span><span class="run-step-label"><strong>PROPOSE</strong><small>build an executable plan</small></span><code>done</code></div>
+            <div class="run-step is-active"><span class="run-step-index">03</span><span class="run-step-label"><strong>APPROVAL GATE</strong><small>side effect requires review</small></span><code>wait</code></div>
+            <div class="run-gate"><strong>GATE REQUIRED</strong><span>scale cluster / human decision</span></div>
+            <div class="run-step is-pending"><span class="run-step-index">04</span><span class="run-step-label"><strong>EXECUTE</strong><small>resume from checkpoint</small></span><code>next</code></div>
+          </div>
+          <div class="run-card-footer"><span>policy: safe-side-effect</span><span>SQLite + JSONL</span></div>
+        </aside>
+      </section>
+
+      <nav class="showcase-jumpbar" aria-label="页面章节导航">
+        <a class="is-current" href="#overview">OVERVIEW</a>
+        <a href="#demo">LIVE DEMO</a>
+        <a href="#control">CONTROL CONTRACT</a>
+        <a href="#recovery">RECOVERY PATH</a>
+      </nav>
+
+      <section class="showcase-section">
+        <div class="showcase-section-header">
+          <div><div class="section-kicker">WHY THIS PROJECT</div><h2>把 Agent 的“能做”变成“可控地做”。</h2></div>
+          <p>展示页先呈现运行证据，再解释实现机制。访客可以直接进入在线系统，观察审批、恢复和 trace 如何串成一条完整执行链。</p>
+        </div>
+        <div class="signal-grid">
+          <article class="signal-card"><span class="signal-index">01</span><div><span class="signal-label">CONTROL CONTRACT</span><h3>把副作用放进策略门。</h3><p>工具元数据声明 side effect、风险等级和审批要求，Agent 只能通过显式 policy gate 进入执行阶段。</p><code>requires_approval: true</code></div></article>
+          <article class="signal-card"><span class="signal-index">02</span><div><span class="signal-label">DURABLE STATE</span><h3>失败之后仍然知道下一步。</h3><p>任务状态写入 SQLite checkpoint；服务重启后恢复待处理节点，而不是重新猜测已经发生过的动作。</p><code>checkpoint.resume()</code></div></article>
+          <article class="signal-card"><span class="signal-index">03</span><div><span class="signal-label">TRACEABLE OUTPUT</span><h3>每一次工具调用都能复盘。</h3><p>trace id、参数、耗时、错误类型和人工决策写入 JSONL，支持在线调试和离线回放。</p><code>trace_id → event log</code></div></article>
+        </div>
+      </section>
+
+      <section class="showcase-section demo-section" id="demo">
+        <div class="showcase-section-header demo-headline">
+          <div><div class="section-kicker">LIVE DEMO / RAILWAY</div><h2>直接运行一次完整的 Agent 任务。</h2></div>
+          <div id="live-state" class="showcase-status"><i></i><span>ONLINE</span></div>
+        </div>
+        <div class="demo-shell">
+          <div class="demo-toolbar"><span><i></i><i></i><i></i><b>agent-opspilot-demo / production</b></span><a data-action="open-live">OPEN NEW TAB ↗</a></div>
+          <div class="live-frame-wrap"><iframe id="live-frame" src="https://agent-opspilot-demo-production.up.railway.app" title="OpsPilot 在线交互演示" loading="eager" referrerpolicy="no-referrer"></iframe><div id="live-offline" class="live-offline" hidden><strong>在线服务暂时不可用</strong><p>请点击上方按钮在新标签页重试。</p></div></div>
+        </div>
+        <div class="demo-caption"><strong>可操作演示</strong><span>当前页面嵌入公开 Railway 服务；不连接真实生产基础设施。</span></div>
+      </section>
+
+      <section class="showcase-section execution-section" id="control">
+        <div class="showcase-section-header"><div><div class="section-kicker">CONTROL CONTRACT</div><h2>把安全边界写进执行协议。</h2></div><p>这个项目的核心不是让模型“更敢做”，而是让执行器明确知道哪些动作必须暂停、谁可以批准、恢复时从哪里继续。</p></div>
+        <div class="execution-grid">
+          <div class="timeline-card">
+            <div class="card-label">EXECUTION TIMELINE / EXAMPLE</div>
+            <div class="timeline-list">
+              <div class="timeline-row"><span class="timeline-time">00:00.142</span><span class="timeline-dot"></span><div><strong>diagnose_cluster</strong><small>读取节点状态，未产生副作用</small></div><code>READ</code></div>
+              <div class="timeline-row"><span class="timeline-time">00:00.388</span><span class="timeline-dot"></span><div><strong>propose_scale</strong><small>生成计划并计算风险标签</small></div><code>PLAN</code></div>
+              <div class="timeline-row is-active"><span class="timeline-time">00:00.401</span><span class="timeline-dot"></span><div><strong>human_approval</strong><small>暂停，等待操作者确认副作用</small></div><code>GATE</code></div>
+              <div class="timeline-row"><span class="timeline-time">resume</span><span class="timeline-dot"></span><div><strong>execute_plan</strong><small>从 checkpoint 恢复，而非重放已完成步骤</small></div><code>RUN</code></div>
+            </div>
+          </div>
+          <aside class="contract-card"><div class="card-label">POLICY OBJECT / READABLE BY HUMANS</div><h3>审批不是按钮，是可验证状态。</h3><p>审批结果、操作者、时间戳和恢复位置一起写入任务状态，形成可审计的 execution contract。</p><div class="contract-code"><span class="key">risk</span>: <span class="value">"side_effect"</span><br /><span class="key">approval</span>: <span class="value">"required"</span><br /><span class="key">resume_from</span>: <span class="value">"checkpoint:02"</span></div><a class="showcase-action showcase-action-secondary" href="#demo">回到在线演示 ↑</a></aside>
+        </div>
+      </section>
+
+      <section class="showcase-section execution-section" id="recovery">
+        <div class="showcase-section-header"><div><div class="section-kicker">RECOVERY PATH</div><h2>暂停、失败、重启，最终状态仍然可解释。</h2></div><p>状态机和事件日志让恢复路径成为产品能力，而不是散落在异常处理里的隐藏逻辑。</p></div>
+        <div class="signal-grid">
+          <article class="signal-card"><span class="signal-index">A</span><div><span class="signal-label">PAUSE</span><h3>在风险边界前停住。</h3><p>遇到高风险工具调用时，系统保留上下文和计划，不提前执行副作用。</p><code>state: awaiting_approval</code></div></article>
+          <article class="signal-card"><span class="signal-index">B</span><div><span class="signal-label">RESTART</span><h3>重启后接着处理。</h3><p>worker 恢复任务并读取最近 checkpoint；已完成的读取步骤不会被重复伪装成新结果。</p><code>state: resumed</code></div></article>
+          <article class="signal-card"><span class="signal-index">C</span><div><span class="signal-label">AUDIT</span><h3>从日志还原决策。</h3><p>人工审批和工具结果保留在同一条 trace 中，方便排障、复盘与构造评测样本。</p><code>state: completed</code></div></article>
+        </div>
+      </section>
     </main>
-    <footer><div class="page-shell footer-inner"><div class="footer-brand"><span class="brand-mark">AS</span><span><b>OpsPilot</b><small>Safe, resumable agent runtime</small></span></div><a href="./reliability.html?v=20260815-4">下一个项目：ReliabilityLab ↗</a></div></footer>
+
+    <footer class="showcase-footer"><div class="showcase-shell showcase-footer-inner"><div class="showcase-footer-brand"><span class="showcase-mark">AS</span><span><strong>OpsPilot</strong><small>Safe, resumable agent runtime</small></span></div><a class="showcase-footer-next" href="./reliability.html?v=20260816-2">NEXT PROJECT · ReliabilityLab →</a></div></footer>
   </body>
 </html>

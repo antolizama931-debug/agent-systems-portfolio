@@ -1,19 +1,123 @@
 <!doctype html>
 <html lang="zh-CN">
   <head>
-    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f5f6f2" /><title>ReliabilityLab / Agent Systems</title>
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="./styles.css?v=20260815-4" />
-    <script src="./config.js?v=20260815-4"></script><script src="./showcase.js?v=20260815-4" defer></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#07111d" />
+    <title>ReliabilityLab / Agent Systems</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./showcase.css?v=20260816-2" />
+    <script src="./config.js?v=20260816-2"></script>
+    <script src="./showcase.js?v=20260816-2" defer></script>
   </head>
-  <body class="detail-body detail-body--teal" data-showcase="reliability" data-live-url="https://agent-reliabilitylab-demo-production.up.railway.app">
-    <header class="site-header"><div class="page-shell nav-shell"><a class="brand" href="./"><span class="brand-mark">AS</span><span class="brand-copy"><b>Agent Systems</b><small>PROJECT 02 / RELIABILITYLAB</small></span></a><nav aria-label="项目导航"><a href="./">返回导航</a><a class="github-link" data-link="github">GitHub <span>↗</span></a></nav></div></header>
-    <main class="page-shell detail-page">
-      <div class="breadcrumb"><a href="./">Agent Systems</a><span>/</span><span>ReliabilityLab</span></div>
-      <section class="detail-hero"><div class="detail-hero-copy"><div class="kicker"><span class="kicker-line"></span>PROJECT 02 · EXECUTION-BASED EVALUATION</div><h1>ReliabilityLab<br /><span>让 Agent 的可靠性可测量。</span></h1><p>一个面向工具调用 Agent 的故障恢复评测框架。选择策略和场景，运行故障注入，并用最终基础设施状态验收结果。</p><div class="hero-actions"><a class="button button-accent" data-action="open-live">打开在线系统 <span>↗</span></a><a class="button button-ghost" data-link="repository">查看仓库 <span>↗</span></a></div></div><aside class="architecture-card architecture-card--teal"><div class="architecture-top"><span>BENCHMARK</span><b>REPLAYABLE / EXPLICIT</b></div><div class="metric-plot"><div><span>adaptive</span><i style="--value:92%"></i><b>92</b></div><div><span>verify</span><i style="--value:78%"></i><b>78</b></div><div><span>plan</span><i style="--value:64%"></i><b>64</b></div><div><span>react</span><i style="--value:48%"></i><b>48</b></div></div><div class="architecture-stats"><div><b>06</b><span>scenarios</span></div><div><b>04</b><span>policies</span></div><div><b>0</b><span>unauthorized</span></div></div></aside></section>
-      <section class="demo-section" id="demo"><div class="section-title-row"><div><div class="section-kicker">LIVE DEMO</div><h2>直接运行一次评测</h2></div><div id="live-state" class="service-state"><i></i><span>ONLINE</span></div></div><div class="demo-shell"><div class="demo-toolbar"><span><i></i><i></i><i></i><b>agent-reliabilitylab-demo / production</b></span><a data-action="open-live">新标签页打开 ↗</a></div><div class="live-frame-wrap"><iframe id="live-frame" src="https://agent-reliabilitylab-demo-production.up.railway.app" title="ReliabilityLab 在线交互演示" loading="eager" referrerpolicy="no-referrer"></iframe><div id="live-offline" class="live-offline" hidden><strong>在线服务暂时不可用</strong><p>请点击上方按钮在新标签页重试。</p></div></div></div></section>
-      <section class="detail-points"><article><span>01 / SCENARIOS</span><h3>固定场景 + 故障注入</h3><p>覆盖消息积压、错误发布、连接池耗尽、只读诊断及 timeout / HTTP 500 瞬态故障。</p></article><article><span>02 / BASELINES</span><h3>四种策略可对照</h3><p>ReAct、plan-execute、always-verify 和 adaptive-recovery 使用同一工具契约执行。</p></article><article><span>03 / ACCEPTANCE</span><h3>最终状态负责验收</h3><p>报告成功率、工具调用数、重试次数、恢复率和未授权副作用，结果可复现。</p></article></section>
+  <body class="showcase-page theme-reliability" data-showcase="reliability" data-live-url="https://agent-reliabilitylab-demo-production.up.railway.app">
+    <header class="showcase-topbar">
+      <div class="showcase-shell showcase-topbar-inner">
+        <a class="showcase-brand" href="./">
+          <span class="showcase-mark">AS</span>
+          <span class="showcase-brand-copy"><strong>Agent Systems</strong><small>PROJECT 02 / RELIABILITYLAB</small></span>
+        </a>
+        <nav class="showcase-nav" aria-label="项目导航">
+          <a href="./">INDEX</a>
+          <a class="showcase-nav-current" href="#demo">LIVE RUN</a>
+          <a class="showcase-nav-external" data-link="github">GITHUB ↗</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="showcase-shell showcase-main">
+      <div class="showcase-breadcrumb"><a href="./">Agent Systems</a><span>/</span><strong>ReliabilityLab</strong></div>
+
+      <section class="showcase-hero" id="overview">
+        <div class="showcase-hero-copy">
+          <div class="showcase-eyebrow"><span>02</span> EXECUTION-BASED EVALUATION · RECOVERY PROOF</div>
+          <h1>让 Agent 的恢复能力<br /><em>可复现、可比较。</em></h1>
+          <p>一个面向工具调用 Agent 的故障恢复评测框架。选择策略和场景，注入可控故障，再用最终基础设施状态验收结果，而不是只看一段自然语言答案。</p>
+          <div class="showcase-actions">
+            <a class="showcase-action showcase-action-primary" data-action="open-live">打开在线系统 <span>↗</span></a>
+            <a class="showcase-action showcase-action-secondary" data-link="repository">查看项目仓库 <span>↗</span></a>
+          </div>
+          <div class="hero-footnote"><span>REPLAYABLE RUNS</span><span>FAULT INJECTION</span><span>FINAL-STATE ORACLE</span></div>
+        </div>
+
+        <aside class="run-card" aria-label="ReliabilityLab 评测运行预览">
+          <div class="run-card-header"><span>EVAL RUN PREVIEW / CASE 0006</span><span class="showcase-status"><i></i>REPLAYABLE</span></div>
+          <div class="run-card-context"><span>experiment_id</span><code>recovery_matrix_0006</code></div>
+          <div class="run-flow">
+            <div class="run-step is-done"><span class="run-step-index">01</span><span class="run-step-label"><strong>SELECT POLICY</strong><small>adaptive-recovery</small></span><code>ready</code></div>
+            <div class="run-step is-done"><span class="run-step-index">02</span><span class="run-step-label"><strong>INJECT FAULT</strong><small>HTTP 500 / timeout</small></span><code>done</code></div>
+            <div class="run-step is-active"><span class="run-step-index">03</span><span class="run-step-label"><strong>REPLAY TRACE</strong><small>inspect nested tool calls</small></span><code>run</code></div>
+            <div class="run-gate"><strong>EVALUATION CONTRACT</strong><span>accept on final state</span></div>
+            <div class="run-step is-pending"><span class="run-step-index">04</span><span class="run-step-label"><strong>VERIFY ORACLE</strong><small>compare expected / observed</small></span><code>next</code></div>
+          </div>
+          <div class="run-card-footer"><span>06 scenarios</span><span>04 policies · 01 oracle</span></div>
+        </aside>
+      </section>
+
+      <nav class="showcase-jumpbar" aria-label="页面章节导航">
+        <a class="is-current" href="#overview">OVERVIEW</a>
+        <a href="#demo">LIVE DEMO</a>
+        <a href="#matrix">SCENARIO MATRIX</a>
+        <a href="#acceptance">ACCEPTANCE</a>
+      </nav>
+
+      <section class="showcase-section">
+        <div class="showcase-section-header">
+          <div><div class="section-kicker">WHY THIS PROJECT</div><h2>不只评价答案，更评价执行过程。</h2></div>
+          <p>展示页采用“运行预览 → 在线实验 → 场景矩阵 → 验收字段”的路径，访客可以先理解证据链，再直接运行一个可复现 case。</p>
+        </div>
+        <div class="signal-grid">
+          <article class="signal-card"><span class="signal-index">01</span><div><span class="signal-label">SCENARIO CONTROL</span><h3>故障注入是可配置的。</h3><p>将消息堆积、连接池耗尽、HTTP 500 和 timeout 作为明确输入，减少“偶然失败”带来的解释空间。</p><code>fault: http_500</code></div></article>
+          <article class="signal-card"><span class="signal-index">02</span><div><span class="signal-label">BASELINE MATRIX</span><h3>同一契约下比较策略。</h3><p>ReAct、plan-execute、always-verify 与 adaptive-recovery 使用同一套工具和验收器，结果可横向对比。</p><code>policy × scenario</code></div></article>
+          <article class="signal-card"><span class="signal-index">03</span><div><span class="signal-label">FINAL-STATE ORACLE</span><h3>用系统状态完成验收。</h3><p>成功率、重试次数、恢复率和未授权副作用都来自可检查的最终状态，不把模型自报结果当作事实。</p><code>expected ≠ narrative</code></div></article>
+        </div>
+      </section>
+
+      <section class="showcase-section demo-section" id="demo">
+        <div class="showcase-section-header demo-headline">
+          <div><div class="section-kicker">LIVE DEMO / RAILWAY</div><h2>直接运行一次故障恢复评测。</h2></div>
+          <div id="live-state" class="showcase-status"><i></i><span>ONLINE</span></div>
+        </div>
+        <div class="demo-shell">
+          <div class="demo-toolbar"><span><i></i><i></i><i></i><b>agent-reliabilitylab-demo / production</b></span><a data-action="open-live">OPEN NEW TAB ↗</a></div>
+          <div class="live-frame-wrap"><iframe id="live-frame" src="https://agent-reliabilitylab-demo-production.up.railway.app" title="ReliabilityLab 在线交互演示" loading="eager" referrerpolicy="no-referrer"></iframe><div id="live-offline" class="live-offline" hidden><strong>在线服务暂时不可用</strong><p>请点击上方按钮在新标签页重试。</p></div></div>
+        </div>
+        <div class="demo-caption"><strong>可操作评测台</strong><span>公开演示使用固定场景和模拟基础设施；输出面向方法验证，不代表真实生产 SLA。</span></div>
+      </section>
+
+      <section class="showcase-section execution-section" id="matrix">
+        <div class="showcase-section-header"><div><div class="section-kicker">SCENARIO MATRIX</div><h2>每个 case 都有故障、策略和验收器。</h2></div><p>矩阵把“发生了什么”和“应该达到什么状态”分开，避免只用最终文本评价 Agent 是否恢复成功。</p></div>
+        <div class="matrix-wrap">
+          <table class="matrix-table">
+            <thead><tr><th>SCENARIO</th><th>INJECTION</th><th>POLICY INPUT</th><th>ACCEPTANCE ORACLE</th></tr></thead>
+            <tbody>
+              <tr><td>queue pressure</td><td>message backlog</td><td><code>react</code></td><td>queue drains without duplicate side effect</td></tr>
+              <tr><td>transient API</td><td>HTTP 500 / timeout</td><td><code>plan-execute</code></td><td>bounded retry and final resource state</td></tr>
+              <tr><td>connection exhaustion</td><td>pool saturation</td><td><code>always-verify</code></td><td>recovery completes without unauthorized action</td></tr>
+              <tr><td>read-only diagnosis</td><td>stale observation</td><td><code>adaptive-recovery</code></td><td>fresh observation before any write operation</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="matrix-note">MATRIX DESIGN NOTE / policy、fault、oracle 三个字段可以独立替换，因此支持回放、扩展与基线对比。</div>
+      </section>
+
+      <section class="showcase-section execution-section" id="acceptance">
+        <div class="showcase-section-header"><div><div class="section-kicker">ACCEPTANCE REPORT</div><h2>报告回答的是：系统最后处于什么状态？</h2></div><p>把实验产物组织成可读的运行报告，便于定位失败发生在哪一步，也便于后续构造数据集和回归测试。</p></div>
+        <div class="execution-grid">
+          <div class="timeline-card">
+            <div class="card-label">EVAL TRACE / NESTED SPANS</div>
+            <div class="timeline-list">
+              <div class="timeline-row"><span class="timeline-time">span 01</span><span class="timeline-dot"></span><div><strong>policy/adaptive-recovery</strong><small>记录策略版本和输入任务</small></div><code>ROOT</code></div>
+              <div class="timeline-row"><span class="timeline-time">span 02</span><span class="timeline-dot"></span><div><strong>fault/http_500</strong><small>注入一次可控外部错误</small></div><code>FAULT</code></div>
+              <div class="timeline-row is-active"><span class="timeline-time">span 03</span><span class="timeline-dot"></span><div><strong>tool/retry_request</strong><small>检查重试边界和工具参数</small></div><code>TOOL</code></div>
+              <div class="timeline-row"><span class="timeline-time">span 04</span><span class="timeline-dot"></span><div><strong>oracle/final_state</strong><small>比较 expected 与 observed</small></div><code>VERIFY</code></div>
+            </div>
+          </div>
+          <aside class="contract-card"><div class="card-label">REPORT FIELDS / NOT A MODEL CLAIM</div><h3>让“成功”变成可检查字段。</h3><p>报告将模型输出、工具调用和基础设施状态并列展示，任何一个字段不满足都可以明确标记为失败或需复核。</p><div class="contract-code"><span class="key">success_rate</span>: <span class="value">computed</span><br /><span class="key">retry_count</span>: <span class="value">observed</span><br /><span class="key">final_state</span>: <span class="value">verified</span><br /><span class="key">side_effects</span>: <span class="value">audited</span></div><a class="showcase-action showcase-action-secondary" href="#demo">回到在线评测 ↑</a></aside>
+        </div>
+      </section>
     </main>
-    <footer><div class="page-shell footer-inner"><div class="footer-brand"><span class="brand-mark">AS</span><span><b>ReliabilityLab</b><small>Execution-based agent evaluation</small></span></div><a href="./opspilot.html?v=20260815-4">← 返回 OpsPilot</a></div></footer>
+
+    <footer class="showcase-footer"><div class="showcase-shell showcase-footer-inner"><div class="showcase-footer-brand"><span class="showcase-mark">AS</span><span><strong>ReliabilityLab</strong><small>Execution-based agent evaluation</small></span></div><a class="showcase-footer-next" href="./opspilot.html?v=20260816-2">← PREVIOUS PROJECT · OpsPilot</a></div></footer>
   </body>
 </html>
