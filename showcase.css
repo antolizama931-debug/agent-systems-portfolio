@@ -232,3 +232,68 @@ body.showcase-page { min-width: 320px; margin: 0; overflow-x: hidden; background
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* Readability pass: body copy stays at 16px+ while metadata remains compact but legible. */
+body.showcase-page { font-size: 16px; line-height: 1.5; }
+.showcase-brand-copy strong { font-size: 16px; }
+.showcase-brand-copy small { font-size: 11px; }
+.showcase-nav { font-size: 12px; }
+.showcase-nav .showcase-nav-external { min-height: 44px; padding-inline: 14px; font-size: 12px; }
+.showcase-breadcrumb { font-size: 11px; }
+.showcase-eyebrow { font-size: 11px; }
+.showcase-eyebrow > span { width: 26px; height: 26px; font-size: 10px; }
+.showcase-hero h1 { font-size: clamp(48px, 6.7vw, 80px); }
+.showcase-hero-copy > p { font-size: 18px; line-height: 1.72; }
+.showcase-action { min-height: 48px; padding-inline: 17px; font-size: 13px; }
+.hero-footnote { font-size: 10px; }
+.run-card-header, .showcase-status { font-size: 11px; }
+.run-card-context { font-size: 11px; }
+.run-step { font-size: 12px; }
+.run-step-label small { font-size: 11px; }
+.run-step > code { font-size: 10px; }
+.run-gate { font-size: 10px; }
+.run-card-footer { font-size: 10px; }
+.showcase-jumpbar a { font-size: 11px; }
+.showcase-section h2 { font-size: clamp(34px, 4.6vw, 54px); }
+.section-kicker { font-size: 11px; }
+.showcase-section-header > p { font-size: 16px; line-height: 1.72; }
+.signal-label { font-size: 10px; }
+.signal-card h3 { font-size: 22px; }
+.signal-card p { font-size: 14px; line-height: 1.72; }
+.signal-card code { font-size: 10px; }
+.demo-toolbar { font-size: 10px; }
+.demo-caption { font-size: 10px; }
+.card-label { font-size: 10px; }
+.timeline-row { font-size: 13px; }
+.timeline-time { font-size: 10px; }
+.timeline-row strong { font-size: 14px; }
+.timeline-row small { font-size: 13px; }
+.timeline-row code { font-size: 10px; }
+.contract-card h3 { font-size: 28px; }
+.contract-card p { font-size: 14px; line-height: 1.72; }
+.contract-code { font-size: 11px; }
+.matrix-table th { font-size: 10px; }
+.matrix-table td { font-size: 14px; }
+.matrix-table code { font-size: 10px; }
+.matrix-note { font-size: 10px; }
+.showcase-footer-inner { font-size: 11px; }
+.showcase-footer-brand strong { font-size: 14px; }
+.showcase-footer-brand small { font-size: 10px; }
+
+@media (max-width: 760px) {
+  .showcase-hero h1 { font-size: clamp(46px, 13vw, 74px); }
+  .showcase-hero-copy > p { font-size: 17px; }
+  .showcase-section h2 { font-size: clamp(36px, 10vw, 50px); }
+  .showcase-section-header > p { font-size: 16px; }
+  .timeline-row { font-size: 13px; }
+}
+
+@media (max-width: 520px) {
+  .showcase-nav .showcase-nav-external { min-height: 44px; padding-inline: 12px; font-size: 11px; }
+  .showcase-hero-copy > p { font-size: 16px; }
+  .showcase-section-header > p { font-size: 16px; }
+  .run-card { padding: 16px; }
+  .run-step { font-size: 12px; }
+  .timeline-row { font-size: 13px; }
+  .contract-card h3 { font-size: 25px; }
+}

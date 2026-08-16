@@ -197,3 +197,63 @@ code, .section-kicker, .hero-overline, .proof-title, .project-id, .service-state
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
+
+/* Readability pass: use a deliberate 12/14/16/18px scale instead of tiny UI text. */
+body { font-size: 16px; line-height: 1.5; }
+.portfolio-brand-copy strong { font-size: 16px; }
+.portfolio-brand-copy small { font-size: 11px; }
+.portfolio-links { font-size: 12px; }
+.portfolio-github { min-height: 44px; padding-inline: 14px; }
+.hero-overline { font-size: 11px; }
+.hero-copy h1 { font-size: clamp(48px, 6.6vw, 78px); }
+.hero-copy p { font-size: 18px; line-height: 1.72; }
+.action { min-height: 48px; padding-inline: 17px; font-size: 13px; }
+.hero-count { font-size: 12px; }
+.hero-count strong { font-size: 32px; }
+.proof-board-head { font-size: 11px; }
+.board-metrics strong { font-size: 31px; }
+.board-metrics small { font-size: 11px; }
+.board-flow { font-size: 12px; }
+.board-note { font-size: 11px; }
+.section-kicker { font-size: 11px; }
+.section-header h2, .method-header h2 { font-size: clamp(34px, 4.3vw, 52px); }
+.section-header p, .method-header p { font-size: 16px; line-height: 1.72; }
+.section-count { font-size: 11px; }
+.project-id { font-size: 11px; }
+.project-id > span { font-size: 12px; }
+.project-id small { font-size: 10px; }
+.service-state { font-size: 10px; }
+.project-summary h3 { font-size: 42px; }
+.project-summary p { font-size: 15px; line-height: 1.75; }
+.tag-row span { padding: 7px 10px; font-size: 10px; }
+.proof-title, .proof-title b { font-size: 10px; }
+.project-proof li { font-size: 11px; }
+.project-proof li > small { font-size: 10px; }
+.proof-foot { font-size: 10px; }
+.project-output small { font-size: 10px; }
+.project-output strong { font-size: 13px; }
+.test-line, .test-line b { font-size: 10px; }
+.action-project, .action-source { min-height: 48px; font-size: 12px; }
+.method-grid b { font-size: 10px; }
+.method-grid h3 { font-size: 21px; }
+.method-grid p { font-size: 14px; line-height: 1.72; }
+.footer-inner { font-size: 12px; }
+.footer-brand strong { font-size: 14px; }
+.footer-brand small { font-size: 10px; }
+
+@media (max-width: 760px) {
+  .hero-copy h1 { font-size: clamp(46px, 13vw, 70px); }
+  .hero-copy p { font-size: 17px; }
+  .section-header h2, .method-header h2 { font-size: clamp(36px, 10vw, 50px); }
+  .section-header p, .method-header p { font-size: 16px; }
+  .project-summary h3 { font-size: 40px; }
+  .project-summary p { font-size: 16px; }
+}
+
+@media (max-width: 520px) {
+  .hero-copy p { font-size: 16px; }
+  .board-flow { font-size: 11px; }
+  .project-summary h3 { font-size: 38px; }
+  .project-output strong { font-size: 13px; }
+  .project-actions .action { min-height: 48px; font-size: 13px; }
+}
