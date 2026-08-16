@@ -32,4 +32,12 @@
       dot.classList.toggle("offline", !url);
     });
   });
+
+  const publicBuilds = ["opspilot", "reliability"].filter((name) => config[`${name}Url`] || cardUrl(name)).length;
+  document.querySelectorAll("[data-portfolio-status]").forEach((label) => {
+    label.textContent = publicBuilds === 2 ? "PUBLIC BUILDS ONLINE" : `${publicBuilds}/2 BUILDS CONFIGURING`;
+  });
+  document.querySelectorAll("[data-portfolio-status-dot]").forEach((dot) => {
+    dot.classList.toggle("offline", publicBuilds !== 2);
+  });
 })();

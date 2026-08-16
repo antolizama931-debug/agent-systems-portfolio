@@ -3,106 +3,71 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f5f6f2" />
-    <meta name="description" content="Agent Systems：两个可直接运行的 Agent 工程项目作品集。" />
-    <title>Agent Systems / Live Builds</title>
+    <meta name="theme-color" content="#07111d" />
+    <meta name="description" content="Agent Systems：两个可以直接操作的 Agent 工程系统作品集。" />
+    <title>Agent Systems / Runnable Proofs</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20260815-4" />
-    <script src="./config.js?v=20260815-4"></script>
-    <script src="./app.js?v=20260815-4" defer></script>
+    <link rel="stylesheet" href="./home.css?v=20260816-1" />
+    <script src="./config.js?v=20260816-1"></script>
+    <script src="./app.js?v=20260816-1" defer></script>
   </head>
   <body>
-    <header class="site-header">
-      <div class="page-shell nav-shell">
-        <a class="brand" href="./" aria-label="返回 Agent Systems 首页">
-          <span class="brand-mark">AS</span>
-          <span class="brand-copy"><b>Agent Systems</b><small>PORTFOLIO / LIVE BUILDS</small></span>
+    <header class="portfolio-header">
+      <div class="page-shell portfolio-nav">
+        <a class="portfolio-brand" href="./" aria-label="返回 Agent Systems 首页">
+          <span class="portfolio-mark">AS</span>
+          <span class="portfolio-brand-copy"><strong>Agent Systems</strong><small>PORTFOLIO / RUNNABLE PROOFS</small></span>
         </a>
-        <nav aria-label="主导航">
-          <a href="#systems">项目</a>
-          <a href="#method">方法</a>
-          <a class="github-link" data-link="github">GitHub <span>↗</span></a>
+        <nav class="portfolio-links" aria-label="主导航">
+          <a href="#projects">PROJECTS</a>
+          <a href="#method">METHOD</a>
+          <a class="portfolio-github" data-link="github">GITHUB <span>↗</span></a>
         </nav>
       </div>
     </header>
 
     <main>
-      <section class="hero page-shell">
-        <div class="hero-copy">
-          <div class="kicker"><span class="kicker-line"></span>PORTFOLIO · AGENT ENGINEERING</div>
-          <h1>让 Agent 在真实约束下，<span>仍然可执行。</span></h1>
-          <p>两个可直接操作的 Agent 工程系统：一个解决安全执行与恢复，一个解决故障注入与可靠性评测。它们把模型输出放回工具契约、策略和最终状态里验证。</p>
-          <div class="hero-actions">
-            <a class="button button-dark" href="#systems">浏览两个系统 <span>↓</span></a>
-            <div class="hero-note"><strong>02</strong><span>interactive<br />systems</span></div>
+      <section class="portfolio-hero page-shell">
+        <div class="hero-overline"><span>AGENT SYSTEMS / 2026</span><span class="hero-live"><i data-portfolio-status-dot></i><span data-portfolio-status>PUBLIC BUILDS ONLINE</span></span></div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <h1>Agent 不是聊天框。<em>它必须可执行。</em></h1>
+            <p>两个面向 Agent 应用与算法岗位的可操作工程系统：一个控制副作用执行，一个用故障注入测量可靠性。每个按钮都连接到真实运行中的 Railway 工作台。</p>
+            <div class="hero-actions"><a class="action action-primary" href="#projects">SELECT A BUILD <span>↓</span></a><span class="hero-count"><strong>02</strong><span>live systems<br />runnable proofs</span></span></div>
           </div>
-        </div>
 
-        <aside class="lab-console" aria-label="作品集状态">
-          <div class="console-top"><span>LAB STATUS</span><span class="live-chip"><i></i> PUBLIC</span></div>
-          <div class="console-metrics">
-            <div><strong>02</strong><span>live builds</span></div>
-            <div><strong>06</strong><span>fault scenarios</span></div>
-            <div><strong>01</strong><span>shared contract</span></div>
-          </div>
-          <div class="console-flow" aria-label="Agent 执行链路">
-            <div><span>01</span><b>INPUT</b><small>task</small></div><i></i>
-            <div><span>02</span><b>POLICY</b><small>gate</small></div><i></i>
-            <div><span>03</span><b>TOOL</b><small>call</small></div><i></i>
-            <div><span>04</span><b>STATE</b><small>verify</small></div>
-          </div>
-          <div class="console-foot"><i></i> SIMULATED INFRASTRUCTURE / NO PRODUCTION ACCESS</div>
-        </aside>
+          <aside class="proof-board" aria-label="作品集能力概览">
+            <div class="proof-board-head"><span>PUBLIC BUILD INDEX</span><span class="board-status"><i></i> LIVE</span></div>
+            <div class="board-metrics"><div><strong>02</strong><small>RUNNABLE</small></div><div><strong>06</strong><small>FAULT FIXTURES</small></div><div><strong>01</strong><small>SHARED CONTRACT</small></div></div>
+            <div class="board-flow"><span>INPUT</span><i></i><span>POLICY</span><i></i><span>TOOL</span><i></i><span>STATE</span></div>
+            <div class="board-note"><span class="board-note-dot"></span> SIMULATED INFRASTRUCTURE / NO PRODUCTION ACCESS</div>
+          </aside>
+        </div>
       </section>
 
-      <section class="systems-section" id="systems">
+      <section class="projects-section" id="projects">
         <div class="page-shell">
-          <div class="section-intro">
-            <div><div class="section-kicker">SELECT A SYSTEM</div><h2>两个项目，两个工程问题</h2></div>
-            <p>点击项目进入独立展示页。展示页包含架构说明、源码入口和直接嵌入的 Railway 在线功能。</p>
-          </div>
+          <div class="section-header"><div><span class="section-kicker">01 / SELECT A SYSTEM</span><h2>两个项目，两个工程证明面。</h2></div><p>进入独立展示页后可以直接触发功能。页面同时给出源码入口、系统边界和可验证结果。</p><span class="section-count">02 / ONLINE</span></div>
 
-          <div class="system-grid">
-            <article class="system-card system-card--opspilot" data-project="opspilot" data-live-url="https://agent-opspilot-demo-production.up.railway.app">
-              <div class="system-card-top"><span class="system-number">01 / RUNTIME</span><span class="system-status"><i data-status-dot="opspilot"></i><span data-status="opspilot">ONLINE</span></span></div>
-              <div class="system-card-body">
-                <div class="system-copy">
-                  <div class="mini-label">SAFE AGENT RUNTIME</div>
-                  <h3>OpsPilot</h3>
-                  <p>让 Agent 先诊断，再执行。工具契约、策略门禁、人工审批和 SQLite checkpoint 共同约束每一次副作用操作。</p>
-                  <div class="tag-row"><span>Tool Contract</span><span>HITL</span><span>Checkpoint</span></div>
-                </div>
-                <div class="system-visual visual-runtime" aria-label="OpsPilot 执行流程示意图">
-                  <div class="visual-title"><span>RUNTIME FLOW</span><b>01—04</b></div>
-                  <div class="runtime-flow"><div class="flow-node is-active"><i></i><span>diagnose</span></div><div class="flow-line"></div><div class="flow-node"><i></i><span>approve</span></div><div class="flow-line"></div><div class="flow-node"><i></i><span>execute</span></div></div>
-                  <div class="visual-footer"><span>side effect</span><strong>HUMAN GATE</strong></div>
-                </div>
+          <div class="project-grid">
+            <article class="project-card project-card--opspilot" data-project="opspilot" data-live-url="https://agent-opspilot-demo-production.up.railway.app">
+              <div class="project-card-head"><div class="project-id"><span>01</span><small>SAFE AGENT RUNTIME</small></div><span class="service-state"><i data-status-dot="opspilot"></i><span data-status="opspilot">ONLINE</span></span></div>
+              <div class="project-card-main">
+                <div class="project-summary"><h3>OpsPilot</h3><p>让 Agent 先诊断，再执行。工具契约、策略门禁、人工审批和 SQLite checkpoint 共同约束每一次副作用操作。</p><div class="tag-row"><span>TOOL CONTRACT</span><span>HITL</span><span>CHECKPOINT</span></div></div>
+                <div class="project-proof"><div class="proof-title"><span>OBSERVABLE RUN</span><b>01—04</b></div><ol><li class="is-active"><b>01</b><span>diagnose</span><small>read-only</small></li><li><b>02</b><span>propose</span><small>typed plan</small></li><li><b>03</b><span>approve</span><small>human gate</small></li><li><b>04</b><span>verify</span><small>checkpoint</small></li></ol><div class="proof-foot"><span>side effect</span><strong>HUMAN GATE</strong></div></div>
               </div>
-              <div class="system-card-bottom">
-                <div class="system-facts"><div><small>场景</small><b>生产运维</b></div><div><small>输出</small><b>可恢复轨迹</b></div></div>
-                <div class="card-actions"><a class="card-primary" href="./opspilot.html?v=20260815-4">进入项目 <span>↗</span></a><a class="card-link" data-link="opspilotRepository">源码 <span>↗</span></a></div>
-              </div>
+              <div class="project-output"><div><small>INPUT</small><strong>事故任务</strong></div><div><small>CONTROL</small><strong>审批门</strong></div><div><small>OUTPUT</small><strong>可恢复轨迹</strong></div></div>
+              <div class="project-card-foot"><span class="test-line"><b>WHAT TO TEST</b> submit → approve → verify</span><div class="project-actions"><a class="action action-project" href="./opspilot.html?v=20260816-1">OPEN WORKBENCH <span>↗</span></a><a class="action action-source" data-link="opspilotRepository">SOURCE <span>↗</span></a></div></div>
             </article>
 
-            <article class="system-card system-card--reliability" data-project="reliability" data-live-url="https://agent-reliabilitylab-demo-production.up.railway.app">
-              <div class="system-card-top"><span class="system-number">02 / EVALUATION</span><span class="system-status"><i data-status-dot="reliability"></i><span data-status="reliability">ONLINE</span></span></div>
-              <div class="system-card-body">
-                <div class="system-copy">
-                  <div class="mini-label">EXECUTION-BASED EVALUATION</div>
-                  <h3>ReliabilityLab</h3>
-                  <p>让 Agent 的可靠性可测量。选择策略和故障场景，运行 timeout / HTTP 500 注入并验收最终基础设施状态。</p>
-                  <div class="tag-row"><span>Fault Injection</span><span>Baselines</span><span>Recovery</span></div>
-                </div>
-                <div class="system-visual visual-reliability" aria-label="ReliabilityLab 评测示意图">
-                  <div class="visual-title"><span>POLICY BENCHMARK</span><b>04 POLICIES</b></div>
-                  <div class="benchmark-bars"><div><span>adaptive</span><i style="--value:92%"></i><b>92</b></div><div><span>verify</span><i style="--value:78%"></i><b>78</b></div><div><span>plan</span><i style="--value:64%"></i><b>64</b></div><div><span>react</span><i style="--value:48%"></i><b>48</b></div></div>
-                  <div class="visual-footer"><span>recovery rate</span><strong>EXECUTION PASS</strong></div>
-                </div>
+            <article class="project-card project-card--reliability" data-project="reliability" data-live-url="https://agent-reliabilitylab-demo-production.up.railway.app">
+              <div class="project-card-head"><div class="project-id"><span>02</span><small>EXECUTION-BASED EVALUATION</small></div><span class="service-state"><i data-status-dot="reliability"></i><span data-status="reliability">ONLINE</span></span></div>
+              <div class="project-card-main">
+                <div class="project-summary"><h3>ReliabilityLab</h3><p>让 Agent 的可靠性可测量。选择策略和故障场景，运行 timeout / HTTP 500 注入，并验收最终基础设施状态。</p><div class="tag-row"><span>FAULT INJECTION</span><span>BASELINES</span><span>RECOVERY</span></div></div>
+                <div class="project-proof"><div class="proof-title"><span>EXECUTION CHECK</span><b>01—04</b></div><ol><li class="is-active"><b>01</b><span>policy</span><small>select</small></li><li><b>02</b><span>inject</span><small>fault once</small></li><li><b>03</b><span>replay</span><small>run cases</small></li><li><b>04</b><span>assert</span><small>final state</small></li></ol><div class="proof-foot"><span>oracle</span><strong>EXECUTION PASS</strong></div></div>
               </div>
-              <div class="system-card-bottom">
-                <div class="system-facts"><div><small>场景</small><b>故障恢复</b></div><div><small>输出</small><b>可比较报告</b></div></div>
-                <div class="card-actions"><a class="card-primary" href="./reliability.html?v=20260815-4">进入项目 <span>↗</span></a><a class="card-link" data-link="reliabilityRepository">源码 <span>↗</span></a></div>
-              </div>
+              <div class="project-output"><div><small>INPUT</small><strong>策略 + 场景</strong></div><div><small>CONTROL</small><strong>故障注入</strong></div><div><small>OUTPUT</small><strong>可比较报告</strong></div></div>
+              <div class="project-card-foot"><span class="test-line"><b>WHAT TO TEST</b> inject → recover → compare</span><div class="project-actions"><a class="action action-project" href="./reliability.html?v=20260816-1">OPEN WORKBENCH <span>↗</span></a><a class="action action-source" data-link="reliabilityRepository">SOURCE <span>↗</span></a></div></div>
             </article>
           </div>
         </div>
@@ -110,12 +75,12 @@
 
       <section class="method-section" id="method">
         <div class="page-shell">
-          <div class="section-intro section-intro--method"><div><div class="section-kicker">ENGINEERING METHOD</div><h2>把“看起来能用”变成“可以验收”。</h2></div><p>作品集的重点不是聊天界面，而是 Agent 在权限、失败和状态变化下是否仍然可控。</p></div>
+          <div class="method-header"><div><span class="section-kicker">02 / ENGINEERING METHOD</span><h2>把“能调用”变成“可验收”。</h2></div><p>作品集展示的重点不是聊天气泡，而是 Agent 在权限、失败和状态变化下是否仍然可控。</p></div>
           <div class="method-grid"><article><span>01</span><div><b>CONTRACT FIRST</b><h3>工具先有边界</h3><p>schema、角色、副作用和幂等键在工具层表达。</p></div></article><article><span>02</span><div><b>POLICY BEFORE CONFIDENCE</b><h3>权限先于模型置信度</h3><p>模型只能提议，策略决定能否执行。</p></div></article><article><span>03</span><div><b>STATE OVER NARRATIVE</b><h3>最终状态负责验收</h3><p>用 checkpoint、故障注入和状态指标复现结果。</p></div></article></div>
         </div>
       </section>
     </main>
 
-    <footer><div class="page-shell footer-inner"><div class="footer-brand"><span class="brand-mark">AS</span><span><b>Agent Systems</b><small>Python · Tool Calling · Reliability</small></span></div><span>Built for Agent application / algorithm roles</span></div></footer>
+    <footer class="portfolio-footer"><div class="page-shell footer-inner"><div class="footer-brand"><span class="portfolio-mark">AS</span><span><strong>Agent Systems</strong><small>Python · Tool Calling · Reliability</small></span></div><span>Built for Agent application / algorithm roles</span></div></footer>
   </body>
 </html>
