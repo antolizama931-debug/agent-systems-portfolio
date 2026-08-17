@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&display=swap");
 
 :root {
   --sc-bg: #f7f9fc;
@@ -296,4 +296,51 @@ body.showcase-page { font-size: 16px; line-height: 1.5; }
   .run-step { font-size: 12px; }
   .timeline-row { font-size: 13px; }
   .contract-card h3 { font-size: 25px; }
+}
+
+/* Typography v2: Noto Sans SC for interface copy; mono is reserved for code-like values. */
+:root { --font-ui: "Noto Sans SC", "Inter", "Microsoft YaHei", Arial, sans-serif; --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+body.showcase-page, body.showcase-page button { font-family: var(--font-ui); font-size: 16px; line-height: 1.6; }
+.showcase-page code, .showcase-page pre, .contract-code, .matrix-table code, .timeline-row code, .run-step > code { font-family: var(--font-mono); }
+.showcase-page h1, .showcase-page h2, .showcase-page h3, .showcase-brand-copy strong, .showcase-footer-brand strong { font-family: var(--font-ui); letter-spacing: -.025em; }
+.showcase-nav, .showcase-jumpbar, .showcase-eyebrow, .showcase-status, .run-card, .demo-toolbar, .showcase-footer, .hero-footnote { font-family: var(--font-ui); }
+.showcase-nav { font-size: 13px; letter-spacing: 0; }
+.showcase-nav .showcase-nav-external { min-height: 48px; padding-inline: 16px; font-size: 14px; font-weight: 700; letter-spacing: 0; }
+.showcase-breadcrumb { font-family: var(--font-ui); font-size: 12px; }
+.showcase-eyebrow { font-size: 12px; letter-spacing: 0; }
+.showcase-hero h1 { letter-spacing: -.03em; }
+.showcase-hero-copy > p { font-size: 18px; line-height: 1.75; }
+.showcase-action { min-height: 50px; font-family: var(--font-ui); font-size: 14px; font-weight: 700; letter-spacing: 0; }
+.hero-footnote { font-size: 11px; }
+.run-card-header, .showcase-status, .run-card-context { font-size: 12px; }
+.run-step { font-size: 13px; }
+.run-step-label small { font-family: var(--font-ui); font-size: 12px; }
+.run-step > code { font-size: 10px; }
+.run-gate, .run-card-footer { font-size: 11px; }
+.showcase-jumpbar a { font-size: 12px; letter-spacing: 0; }
+.section-kicker, .signal-label, .card-label { font-family: var(--font-ui); font-size: 12px; letter-spacing: 0; }
+.showcase-section h2 { letter-spacing: -.03em; }
+.showcase-section-header > p { font-size: 17px; line-height: 1.75; }
+.signal-card h3 { font-size: 22px; }
+.signal-card p { font-size: 16px; line-height: 1.75; }
+.signal-card code { font-family: var(--font-mono); font-size: 10px; }
+.demo-toolbar, .demo-caption { font-size: 11px; }
+.timeline-row { font-size: 14px; }
+.timeline-time { font-size: 11px; }
+.timeline-row strong { font-size: 15px; }
+.timeline-row small { font-family: var(--font-ui); font-size: 14px; }
+.contract-card h3 { font-size: 29px; }
+.contract-card p { font-size: 15px; line-height: 1.75; }
+.contract-code { font-size: 11px; }
+.matrix-table th { font-family: var(--font-ui); font-size: 11px; }
+.matrix-table td { font-size: 14px; line-height: 1.65; }
+.matrix-note { font-family: var(--font-ui); font-size: 11px; }
+.showcase-footer-inner { font-family: var(--font-ui); font-size: 12px; }
+
+@media (max-width: 760px) {
+  .showcase-hero-copy > p { font-size: 17px; }
+  .showcase-section-header > p { font-size: 16px; }
+  .showcase-action { min-height: 50px; font-size: 15px; }
+  .run-step { font-size: 13px; }
+  .signal-card p { font-size: 16px; }
 }

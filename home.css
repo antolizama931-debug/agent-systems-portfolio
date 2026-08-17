@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&display=swap");
 
 :root {
   --home-bg: #f7f9fc;
@@ -256,4 +256,40 @@ body { font-size: 16px; line-height: 1.5; }
   .project-summary h3 { font-size: 38px; }
   .project-output strong { font-size: 13px; }
   .project-actions .action { min-height: 48px; font-size: 13px; }
+}
+
+/* Typography v2: Noto Sans SC for interface copy; mono is reserved for code-like values. */
+:root { --font-ui: "Noto Sans SC", "Inter", "Microsoft YaHei", Arial, sans-serif; --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+body, body button { font-family: var(--font-ui); line-height: 1.6; }
+body code { font-family: var(--font-mono); }
+.portfolio-brand-copy strong, .hero-copy h1, .section-header h2, .method-header h2, .project-summary h3, .method-grid h3, .footer-brand strong { font-family: var(--font-ui); letter-spacing: -.025em; }
+.portfolio-links, .hero-overline, .section-kicker, .project-id, .service-state, .tag-row, .proof-title, .board-flow, .board-note, .test-line, .footer-brand small { font-family: var(--font-ui); }
+.action, .portfolio-github { font-family: var(--font-ui); font-size: 14px; font-weight: 700; letter-spacing: 0; }
+.portfolio-links { font-size: 13px; font-weight: 600; letter-spacing: 0; }
+.hero-overline, .section-kicker, .project-id, .service-state, .proof-title { font-size: 12px; letter-spacing: .01em; }
+.hero-copy p { font-size: 18px; line-height: 1.75; }
+.hero-count { font-family: var(--font-ui); font-size: 14px; }
+.board-flow { font-size: 13px; font-weight: 600; }
+.board-note { font-size: 12px; }
+.section-header p, .method-header p { font-size: 17px; line-height: 1.75; }
+.project-summary p { font-family: var(--font-ui); font-size: 16px; line-height: 1.8; }
+.project-summary h3 { font-size: 43px; }
+.tag-row span { font-size: 11px; }
+.project-proof li, .project-proof li > small, .proof-foot, .project-output small, .test-line, .test-line b { font-family: var(--font-ui); }
+.project-proof li { font-size: 12px; }
+.project-proof li > small { font-size: 11px; }
+.proof-foot, .project-output small, .test-line, .test-line b { font-size: 11px; }
+.project-output strong { font-size: 14px; }
+.action-project, .action-source { min-height: 50px; font-size: 14px; }
+.method-grid b { font-family: var(--font-ui); font-size: 11px; }
+.method-grid h3 { font-size: 22px; }
+.method-grid p { font-size: 15px; line-height: 1.75; }
+.footer-inner { font-family: var(--font-ui); font-size: 13px; }
+
+@media (max-width: 760px) {
+  .hero-copy p { font-size: 17px; }
+  .section-header p, .method-header p { font-size: 16px; }
+  .project-summary h3 { font-size: 40px; }
+  .project-summary p { font-size: 16px; }
+  .action-project, .action-source, .project-actions .action { min-height: 50px; font-size: 15px; }
 }
