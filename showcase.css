@@ -304,6 +304,7 @@ body.showcase-page, body.showcase-page button { font-family: var(--font-ui); fon
 .showcase-page code, .showcase-page pre, .contract-code, .matrix-table code, .timeline-row code, .run-step > code { font-family: var(--font-mono); }
 .showcase-page h1, .showcase-page h2, .showcase-page h3, .showcase-brand-copy strong, .showcase-footer-brand strong { font-family: var(--font-ui); letter-spacing: -.025em; }
 .showcase-nav, .showcase-jumpbar, .showcase-eyebrow, .showcase-status, .run-card, .demo-toolbar, .showcase-footer, .hero-footnote { font-family: var(--font-ui); }
+.showcase-page .showcase-eyebrow, .showcase-page .showcase-nav, .showcase-page .showcase-jumpbar, .showcase-page .showcase-status, .showcase-page .run-card, .showcase-page .run-card-header, .showcase-page .run-card-context, .showcase-page .run-step, .showcase-page .run-gate, .showcase-page .run-card-footer, .showcase-page .section-kicker, .showcase-page .signal-label, .showcase-page .demo-toolbar, .showcase-page .showcase-footer, .showcase-page .hero-footnote { font-family: var(--font-ui); }
 .showcase-nav { font-size: 13px; letter-spacing: 0; }
 .showcase-nav .showcase-nav-external { min-height: 48px; padding-inline: 16px; font-size: 14px; font-weight: 700; letter-spacing: 0; }
 .showcase-breadcrumb { font-family: var(--font-ui); font-size: 12px; }
